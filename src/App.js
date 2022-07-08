@@ -8,21 +8,16 @@ import Projects from './pages/projects/project';
 
 function App() {
 
-
   return (
 
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />}>
-          <Route index element={<Projects />} />
-          <Route path="/home/projects" element={<Projects />} />
-        </Route>
+        <Route path="/home" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/employees" element={<Employees />} />
-        <Route path="/home/teams" element={<Teams />} />
+        <Route path="/teams" element={<Teams />} />
       </Routes>
     </Router>
-
-
   );
 }
 
