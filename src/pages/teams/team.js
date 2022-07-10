@@ -1,9 +1,9 @@
 import React from "react";
-
+import "./team.css";
 const Teams = () => {
   return (
-    <div>
-      <h1>Teams</h1>
+    <div className="TeamContainer">
+      <h1>Teamssssssssssssssssssssssssssssssss</h1>
     </div>
   );
 };

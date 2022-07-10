@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EmployeeCard from "../../components/employee-card/employeeCard";
+import "./employee.css";
+
 
 const Employees = () => {
 
