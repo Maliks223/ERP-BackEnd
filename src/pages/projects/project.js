@@ -29,18 +29,19 @@ const Projects = () => {
             key={index}
             name={project.name}
             id={project.id}
+            // teamz={project.team[0].name}
             //  team={project.team[1]}
-            // team={project.team.map((teams, index) => {
-            //   return (
-            //     <div key={index}>
-            //       {teams.name}
+            teamz={project.team.map((teams, index) => {
+              return (
+                <div key={index}>
+                  {teams.name}
                  
 
                    
                   
-            //     </div>
-            //   );
-            // })}
+                </div>
+              );
+            })}
           />
         );
       })}
