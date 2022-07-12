@@ -70,8 +70,8 @@ const Employees = () => {
         <TableBody>
           {data.map((employee) => (
             <StyledTableRow key={employee.id}>
-              <StyledTableCell component="th" scope="row">
-                {data.id}
+              <StyledTableCell component="th" scope="row" align="center">
+                {employee.id}
               </StyledTableCell>
               <StyledTableCell align="center">{employee.firstname}</StyledTableCell>
               <StyledTableCell align="center">{employee.lastname}</StyledTableCell>
