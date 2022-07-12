@@ -10,21 +10,16 @@ function App() {
 
   return (
     <>
-   
-
-    <Router>
-    <SideBar/>
-
-      <Routes>
-      
-        <Route path="/home" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/employees" element={<Employees />} />
-        <Route path="/kpis" element={<Kpis />} />
-
-        <Route path="/teams" element={<Teams />} />
-      </Routes>
-    </Router>
+      <Router>
+        <SideBar />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/employees" element={<Employees />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/kpis" element={<Kpis />} />
+          <Route path="/teams" element={<Teams />} />
+        </Routes>
+      </Router>
     </>
   );
 }

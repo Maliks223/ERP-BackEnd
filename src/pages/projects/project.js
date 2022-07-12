@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./project.css";
 import Project from "./projectmodule";
 import Axios from "axios";
+import { Dialog } from "@mui/material";
 
 const Projects = () => {
   const [projects, setprojects] = useState([]);
+  const [postname, setpostname] = useState("");
+  const [post, setPost] = useState(false);
+
+
 
   const Request = async () => {
     const res = await Axios.get("http://localhost:8000/api/project").catch(
@@ -19,8 +23,48 @@ const Projects = () => {
     Request().then((data) => setprojects(data));
   }, []);
 
+  const handlePost = async () => {
+    const data = new FormData();
+    data.append("name", postname);
+
+    await Axios
+      .post("http://localhost:8000/api/project", data)
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
+     <button
+            id="icons"
+            onClick={() => {
+              setPost(!post);
+            }}
+          >
+            postttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+            {/* <i id="post" className="singlePostIcon far fa-edit"></i>{" "} */}
+          </button>
+          {post && (
+        <Dialog open={post}onClose={()=>{setPost(!post)}}>
+        <div>
+          <form
+            onSubmit={(e) => {
+              handlePost();
+            }}
+          >
+            <input
+              name="name"
+              placeholder="projectName"
+            //   onFocus={true}
+              type="text"
+              onChange={(e) => {
+                setpostname(e.target.value);
+              }}
+            />
+            <button type="submit">submit</button>
+          </form>
+        </div>
+        </Dialog>
+      )}
 
     <div className="ProjectContainer">
       {projects.map((project, index) => {
