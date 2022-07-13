@@ -5,11 +5,9 @@ import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import EmployeeForm from "../employee-form/employee-form";
 import { Link } from "react-router-dom";
@@ -75,7 +73,7 @@ const EmployeeRow = ({ data }) => {
     return (
         < StyledTableRow key={id} >
             <StyledTableCell component="th" scope="row" align="center">
-                <Avatar  alt={firstname} src={`http://localhost:8000/storage/uploads/${image}`} />
+                <Avatar alt={firstname} src={`http://localhost:8000/storage/uploads/${image}`} />
             </StyledTableCell>
             {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
             <StyledTableCell align="center">{firstname}</StyledTableCell>
