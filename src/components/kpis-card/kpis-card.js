@@ -34,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const EmployeeRow = ({ data }) => {
+const KPIRow = ({ data }) => {
 
     const [open, setOpen] = React.useState(false);
     const [openDelete, setOpenDelete] = React.useState(false);
@@ -54,12 +54,12 @@ const EmployeeRow = ({ data }) => {
         setOpenDelete(false);
     };
 
-    const { id, firstname, lastname, email, team_id, image } = data;
+    const { id, name } = data;
 
-    const handleDelete =async () => {
+    const handleDelete = async () => {
         try {
             const response = await fetch(
-                `http://localhost:8000/api/employees/${id}`, {
+                `http://localhost:8000/api/kpis/${id}`, {
                 method: "Delete",
                 content: "application/json",
             });
@@ -73,14 +73,10 @@ const EmployeeRow = ({ data }) => {
     return (
         < StyledTableRow key={id} >
             <StyledTableCell component="th" scope="row" align="center">
-                {/* <img style={{Width:'100px',Height:'100px'}} src={`http://localhost:8000/storage/uploads/${image}`} /> */}
                 {id}
             </StyledTableCell>
             {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
-            <StyledTableCell align="center">{firstname}</StyledTableCell>
-            <StyledTableCell align="center">{lastname}</StyledTableCell>
-            <StyledTableCell align="center">{email}</StyledTableCell>
-            <StyledTableCell align="center">{team_id ? team_id : 'Not in a Team'}</StyledTableCell>
+            <StyledTableCell align="center">{name}</StyledTableCell>
             <StyledTableCell align="center">
                 <Button onClick={handleClickOpen}>
                     <EditIcon color="success" />
@@ -88,7 +84,6 @@ const EmployeeRow = ({ data }) => {
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Edit</DialogTitle>
                     <DialogContent>
-                        <EmployeeForm data={data} />
                     </DialogContent>
                 </Dialog>
                 <Button onClick={handleClickOpenDelete}>
@@ -109,4 +104,4 @@ const EmployeeRow = ({ data }) => {
     )
 }
 
-export default EmployeeRow;
+export default KPIRow;

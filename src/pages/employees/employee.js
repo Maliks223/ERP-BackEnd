@@ -8,6 +8,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EmployeeRow from "../../components/employee-card/employeeCard";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -55,32 +58,24 @@ const Employees = () => {
     <>
       <h1>employees</h1>
       <TableContainer component={Paper}>
-      <Table  aria-label="customized table">
-      {/* sx={{ Width: 500}} */}
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Profile Picture</StyledTableCell>
-            <StyledTableCell align="center">First Name</StyledTableCell>
-            <StyledTableCell align="center">Last Name</StyledTableCell>
-            <StyledTableCell align="center">Email</StyledTableCell>
-            <StyledTableCell align="center">Team</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((employee) => (
-            <StyledTableRow key={employee.id}>
-              <StyledTableCell component="th" scope="row">
-                {data.id}
-              </StyledTableCell>
-              <StyledTableCell align="center">{employee.firstname}</StyledTableCell>
-              <StyledTableCell align="center">{employee.lastname}</StyledTableCell>
-              <StyledTableCell align="center">{employee.email}</StyledTableCell>
-              <StyledTableCell align="center">{employee.id}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        <Table sx={{ marginLeft: '15vw', width: '80vw' }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Profile Picture</StyledTableCell>
+              <StyledTableCell align="center">First Name</StyledTableCell>
+              <StyledTableCell align="center">Last Name</StyledTableCell>
+              <StyledTableCell align="center">Email</StyledTableCell>
+              <StyledTableCell align="center">Team</StyledTableCell>
+              <StyledTableCell align="center">Actions</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((employee) => (
+              <EmployeeRow data={employee} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   )
 };
