@@ -42,11 +42,10 @@ const EmployeeForm = ({ data }) => {
                 body: formData
             });
             const res = await response.json();
-            console.log(res
-                );
+            console.log(res);
         }
         catch {
-            return "error ya kaptin"
+            return 'err'
         }
     }
 
