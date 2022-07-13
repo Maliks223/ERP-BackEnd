@@ -7,7 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import EmployeeRow from "../../components/employee-card/employeeCard";
 import RoleRow from "../../components/role-card/roleCard";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

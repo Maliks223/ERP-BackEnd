@@ -5,13 +5,10 @@ import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import EmployeeForm from "../employee-form/employee-form";
 import KPIForm from "../kpi-form/kpiForm";
 
 
@@ -85,7 +82,7 @@ const KPIRow = ({ data }) => {
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Edit</DialogTitle>
                     <DialogContent>
-                    <KPIForm data={data} />
+                        <KPIForm data={data} />
                     </DialogContent>
                 </Dialog>
                 <Button onClick={handleClickOpenDelete}>

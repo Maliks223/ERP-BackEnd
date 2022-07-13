@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import FileUploader from "../File_uploader/fileUploader";
 
 
 const RoleForm = ({ data }) => {
