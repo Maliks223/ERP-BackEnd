@@ -75,7 +75,6 @@ const EmployeeRow = ({ data }) => {
             <StyledTableCell component="th" scope="row" align="center">
                 <Avatar alt={firstname} src={`http://localhost:8000/storage/uploads/${image}`} />
             </StyledTableCell>
-            {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
             <StyledTableCell align="center">{firstname}</StyledTableCell>
             <StyledTableCell align="center">{lastname}</StyledTableCell>
             <StyledTableCell align="center">{email}</StyledTableCell>
