@@ -12,7 +12,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -33,14 +32,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Project = ({ id, name, teamz }) => {
+const Project = ({ id, name, teamz, pivotId }) => {
+  console.log('ali',pivotId);
   const [Name, setName] = useState(name);
   const [edit, setEdit] = useState(false);
   const [assignteam, setassignteam] = useState(false);
   const [opendelete, handleclosedelete] = useState(false);
   const [team, setteam] = useState([]);
   const [teamzz, setteamzz] = useState("");
-  const [project, setproject] = useState(name);
+  const [deleteteam,setdeleteteam]=useState(false);
+  const[pivotid,setpivot]=useState(0);
 
   const handleSubmit = async (id) => {
     const data = new FormData();
@@ -70,6 +71,14 @@ const Project = ({ id, name, teamz }) => {
       .catch((err) => console.log(err));
   };
 
+  const handleDeleteProjectTeam = async (e) => {
+    await axios
+      .delete(`http://localhost:8000/api/teamproject/${pivotid}`)
+      .then((response) => response.data)
+      .then((result) => window.location.reload())
+      .catch((err) => console.log(err));
+  };
+
   const func = (e) => {
     setteamzz(e.target.value);
   };
@@ -93,7 +102,7 @@ const Project = ({ id, name, teamz }) => {
         </StyledTableCell>
         <StyledTableCell align="center">{name}</StyledTableCell>
         <StyledTableCell align="center">
-          {teamz ? teamz : "<h1>No Teams Assigned<h1>"}
+          {teamz.length !== 0 ? teamz : "No Teams Assigned"}
         </StyledTableCell>
         <StyledTableCell align="center">
           <Button
@@ -119,10 +128,35 @@ const Project = ({ id, name, teamz }) => {
             id="icons"
             onClick={() => {
               setassignteam(!assignteam);
-            }}
-          >
+            }}>
+
             assign to a team
           </Button>
+         
+          
+
+          <Button onClick={(e)=>{setdeleteteam(!deleteteam)}}>
+            delete team
+          </Button>
+          <Dialog open={deleteteam}onClose={(e)=>{setdeleteteam(!deleteteam)}}>
+            <form onSubmit={(e)=>handleDeleteProjectTeam(pivotId)}>
+          <select
+                  name="team"
+                  id="team"
+                  onChange={(e)=>{setpivot(e.target.value)}}
+                  style={{ padding: "3px 3px 10px 3px", margin: "11px" }}
+                >
+                  <option>Teams</option>
+                  {pivotId &&
+                    pivotId.map((e, i) => (
+                      <option key={i} value={e.pivot.id}>
+                        {e.name}
+                      </option>
+                    ))}
+                </select>
+                <Button type="submit">delete team</Button>
+                </form>
+          </Dialog>
         </StyledTableCell>
         <Dialog
           open={opendelete}
@@ -153,25 +187,6 @@ const Project = ({ id, name, teamz }) => {
           </DialogActions>
         </Dialog>
 
-        {/* <button
-            sytle={{ padding: "10px" }}
-            id="icon"
-            onClick={(e) => {
-              handleDelete(id);
-            }}
-          >
-            delete
-          </button>
-          <button
-            id="icons"
-            onClick={() => {
-              setEdit(!edit);
-            }}
-          >
-            edit
-          </button>
-          */}
-
         {edit && (
           <Dialog open={edit} onClose={() => setEdit(!edit)}>
             <DialogTitle>Edit</DialogTitle>
@@ -196,7 +211,6 @@ const Project = ({ id, name, teamz }) => {
             </DialogContent>
           </Dialog>
         )}
-{/* ............. */}
         {assignteam && (
           <Dialog open={assignteam} onClose={() => setassignteam(!assignteam)}>
             <DialogTitle>Assign Project to a Team</DialogTitle>
@@ -207,19 +221,6 @@ const Project = ({ id, name, teamz }) => {
                   Projectteam();
                 }}
               >
-                {/* <TextField defaultValue={project} name="Project_id"/> */}
-                {/* <label htmlFor="team">Choose a team:</label> */}
-
-                {/* <TextField
-                  name="project"
-                  type="text"
-                  placeholder="project"
-                  label="project id"
-                  value={id}
-                  onChange={(e) => {
-                    setproject(e.target.value);
-                  }}
-                /> */}
                 <select
                   name="team"
                   id="team"
@@ -239,6 +240,7 @@ const Project = ({ id, name, teamz }) => {
                   <Button className="submitButton" type="submit">
                     Submit
                   </Button>
+                  {/* <Button onClick={(e) => { handleDeleteProjectTeam(id) }}>Remove Team</Button> */}
                 </DialogActions>
               </form>
             </DialogContent>
