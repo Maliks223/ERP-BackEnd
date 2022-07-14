@@ -5,13 +5,13 @@ import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import EmployeeForm from "../employee-form/employee-form";
+import { Link } from "react-router-dom";
+import { Avatar } from "@mui/material";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -56,7 +56,7 @@ const EmployeeRow = ({ data }) => {
 
     const { id, firstname, lastname, email, team_id, image } = data;
 
-    const handleDelete =async () => {
+    const handleDelete = async () => {
         try {
             const response = await fetch(
                 `http://localhost:8000/api/employees/${id}`, {
@@ -73,8 +73,7 @@ const EmployeeRow = ({ data }) => {
     return (
         < StyledTableRow key={id} >
             <StyledTableCell component="th" scope="row" align="center">
-                {/* <img style={{Width:'100px',Height:'100px'}} src={`http://localhost:8000/storage/uploads/${image}`} /> */}
-                {id}
+                <Avatar alt={firstname} src={`http://localhost:8000/storage/uploads/${image}`} />
             </StyledTableCell>
             {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
             <StyledTableCell align="center">{firstname}</StyledTableCell>
@@ -104,6 +103,9 @@ const EmployeeRow = ({ data }) => {
                         <Button onClick={handleCloseDelete} >No</Button>
                     </DialogActions>
                 </Dialog>
+                <Button>
+                    <Link to={`/employees/id=${id}`} state={{ data: data }} >View More</Link>
+                </Button>
             </StyledTableCell>
         </StyledTableRow >
     )
