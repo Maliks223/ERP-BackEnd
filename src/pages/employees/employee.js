@@ -132,6 +132,7 @@ const Employees = () => {
 
   return (
     <>
+    <div className="employee-page">
       <h1>employees</h1>
       <Button>
         Add Employee
@@ -140,7 +141,7 @@ const Employees = () => {
         hi
       </Dialog>
       <TableContainer component={Paper}>
-        <Table sx={{ marginLeft: '15vw', width: '80vw' }} aria-label="customized table">
+        <Table aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="center"></StyledTableCell>
@@ -181,6 +182,7 @@ const Employees = () => {
           </TableFooter>
         </Table>
       </TableContainer>
+      </div>
     </>
   )
 };

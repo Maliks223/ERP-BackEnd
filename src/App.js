@@ -13,16 +13,19 @@ import Projects from "./pages/projects/project";
 import KPIS from "./pages/kpi/kpi";
 import Login from "./pages/login/login";
 import Dashboard from "./pages/Dashboard";
+import EmployeeProfile from "./pages/Employee profile/employeeProfile";
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="*" element={<Navigate to="/home" replace />} />
+          {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
           <Route path="login" element={<Login />} />
-          <Route path="/" element={<Dashboard />}>
+          <Route path="" element={<Dashboard />}>
+            <Route index path="home" element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="employees" element={<Employees />} />
+            <Route path="employees/id=:id" element={<EmployeeProfile />} />
             <Route path="projects" element={<Projects />} />
             <Route path="kpis" element={<KPIS />} />
             <Route path="teams" element={<Teams />} />
