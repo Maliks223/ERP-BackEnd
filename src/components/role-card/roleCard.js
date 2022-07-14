@@ -9,7 +9,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import KPIForm from "../kpi-form/kpiForm";
+import RoleForm from "../role-form/roleForm";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const KPIRow = ({ data }) => {
+const RoleRow = ({ data }) => {
 
     const [open, setOpen] = React.useState(false);
     const [openDelete, setOpenDelete] = React.useState(false);
@@ -52,12 +52,12 @@ const KPIRow = ({ data }) => {
         setOpenDelete(false);
     };
 
-    const { id, name } = data;
+    const { id, role } = data;
 
     const handleDelete = async () => {
         try {
             const response = await fetch(
-                `http://localhost:8000/api/kpis/${id}`, {
+                `http://localhost:8000/api/roles/${id}`, {
                 method: "Delete",
                 content: "application/json",
             });
@@ -70,11 +70,8 @@ const KPIRow = ({ data }) => {
     }
     return (
         < StyledTableRow key={id} >
-            <StyledTableCell component="th" scope="row" align="center">
-                {id}
-            </StyledTableCell>
-            {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
-            <StyledTableCell align="center">{name}</StyledTableCell>
+            <StyledTableCell align="center">{role}</StyledTableCell>
+            <StyledTableCell align="center">{" "}</StyledTableCell>
             <StyledTableCell align="center">
                 <Button onClick={handleClickOpen}>
                     <EditIcon color="success" />
@@ -82,7 +79,7 @@ const KPIRow = ({ data }) => {
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Edit</DialogTitle>
                     <DialogContent>
-                        <KPIForm data={data} />
+                        <RoleForm data={data} />
                     </DialogContent>
                 </Dialog>
                 <Button onClick={handleClickOpenDelete}>
@@ -103,4 +100,4 @@ const KPIRow = ({ data }) => {
     )
 }
 
-export default KPIRow;
+export default RoleRow;

@@ -1,9 +1,9 @@
-
+import Login from "../../pages/login/login";
 //import useState hook to create menu collapse state
 import React, { useState } from "react";
 
 //import react pro sidebar components
-import {ProSidebar,Menu,MenuItem,SidebarHeader,SidebarFooter,SidebarContent,} from "react-pro-sidebar";
+import {ProSidebar,Menu,MenuItem,SidebarHeader,SidebarFooter,SidebarContent} from "react-pro-sidebar";
 
 //import icons from react icons
 import { FaProjectDiagram } from "react-icons/fa";
@@ -65,7 +65,7 @@ const SideBar = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout<Link to="#"/></MenuItem>
+              <MenuItem icon={<FiLogOut />}>Logout<Link to="/login" onClick={<Login/>}/></MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>
