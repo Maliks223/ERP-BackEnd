@@ -63,7 +63,7 @@ const Project = ({ id, name, teamz }) => {
   const Projectteam = async () => {
     const data = new FormData();
     data.append("Team_id", teamzz);
-    data.append("Project_id", project);
+    data.append("Project_id", id);
 
     await axios
       .post("http://localhost:8000/api/teamproject", data)
@@ -210,15 +210,16 @@ const Project = ({ id, name, teamz }) => {
                 {/* <TextField defaultValue={project} name="Project_id"/> */}
                 {/* <label htmlFor="team">Choose a team:</label> */}
 
-                <TextField
+                {/* <TextField
                   name="project"
                   type="text"
                   placeholder="project"
                   label="project id"
+                  value={id}
                   onChange={(e) => {
                     setproject(e.target.value);
                   }}
-                />
+                /> */}
                 <select
                   name="team"
                   id="team"
