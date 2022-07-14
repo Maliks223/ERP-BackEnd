@@ -1,0 +1,18 @@
+.employee-profile {
+  width: 85vw;
+  margin-left: 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  overflow-y: scroll;
+  height: 80vh;
+  margin-top: 10vh;
+  padding-top:15vh;
+}
+.profile-image{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
