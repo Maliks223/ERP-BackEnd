@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   return (
     <div className='dash-container'>
-      <SideBar />
+      {/* <SideBar /> */}
       <Outlet />
     </div>
   )

@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Project = ({ id, name, teamz, pivotId }) => {
-  console.log('ali',pivotId);
+  // console.log('ali',pivotId);
   const [Name, setName] = useState(name);
   const [edit, setEdit] = useState(false);
   const [assignteam, setassignteam] = useState(false);
@@ -87,7 +87,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
       .get("http://localhost:8000/api/teams")
       .catch((err) => console.log(err));
     const data = await res.data;
-    console.log(data);
+    // console.log(data);
     setteam(data);
   };
   useEffect(() => {
@@ -111,7 +111,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
             }}
           >
             <EditIcon color="success" />
-          </Button>
+          </Button>     
           <Button
             onClick={(e) => {
               handleclosedelete(!opendelete);

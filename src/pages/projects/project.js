@@ -23,7 +23,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
-
+import { Link } from "react-router-dom";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -112,7 +112,7 @@ const Projects = () => {
   const [projects, setprojects] = useState([]);
   const [postname, setpostname] = useState("");
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [post, setPost] = useState(false);
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -152,14 +152,29 @@ const Projects = () => {
 
   return (
     <>
-      <button
+   <div className="emplo">
+<Link to="/teams">
+<Button className="back"style={{color:'black',margin: '10px', border: '1px solid black',
+backgroundColor: 'grey'}}>Back</Button></Link>
+      <Link to="/roles">
+<Button className="back"style={{color:'black',margin: '10px', border: '1px solid black',
+backgroundColor: 'grey'}}>  Roles</Button></Link>
+    </div>
+    <div className="projectcontainer">
+    <>
+
+  <div className="postproject">
+    <h1 className="h111">Projects Table</h1>
+    </div>
+      <Button style={{position:'absolute',top:'12%',marginLeft:'60%',border:'black solid 2px',borderRadius:'5px'}}
         id="icons"
         onClick={() => {
           setPost(!post);
         }}
       >
-        postttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-      </button>
+        post
+      </Button>
+     
       {post && (
         <Dialog
           open={post}
@@ -198,7 +213,7 @@ const Projects = () => {
       )}
       <TableContainer component={Paper}>
         <Table
-          sx={{ marginLeft: "15vw", width: "80vw" }}
+          sx={{ margin: "auto", width: "80vw" }}
           aria-label="customized table"
         >
           <TableHead>
@@ -253,6 +268,8 @@ const Projects = () => {
       </TableContainer>
 
 
+    </>
+    </div>
     </>
   );
 };

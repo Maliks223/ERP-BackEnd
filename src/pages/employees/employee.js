@@ -20,6 +20,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import { Link } from "react-router-dom";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -132,6 +133,14 @@ const Employees = () => {
 
   return (
     <>
+    <div className="emplo">
+      <Link to="/home">
+    <Button className="back"style={{color:'black',margin: '10px', border: '1px solid black',
+    backgroundColor: 'grey'}}>Back</Button></Link>
+          <Link to="/teams">
+    <Button className="back"style={{color:'black',margin: '10px', border: '1px solid black',
+    backgroundColor: 'grey'}}>  Teams</Button></Link>
+    </div>
     <div className="employee-page">
       <h1>employees</h1>
       <Button>
