@@ -14,6 +14,7 @@ import KPIS from "./pages/kpi/kpi";
 import Login from "./pages/login/login";
 import Dashboard from "./pages/Dashboard";
 import EmployeeProfile from "./pages/Employee profile/employeeProfile";
+import Roles from "./pages/Roles/roles";
 function App() {
   return (
     <>
@@ -29,6 +30,8 @@ function App() {
             <Route path="projects" element={<Projects />} />
             <Route path="kpis" element={<KPIS />} />
             <Route path="teams" element={<Teams />} />
+            <Route path="roles" element={<Roles />} />
+
           </Route>
         </Routes>
       </Router>

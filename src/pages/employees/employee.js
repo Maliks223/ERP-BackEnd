@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EmployeeRow from "../../components/employee-card/employeeCard";
-import { Button, Dialog } from "@mui/material";
+import { Button, Dialog, DialogContent, DialogTitle, Select, TextField } from "@mui/material";
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,6 +21,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { Link } from "react-router-dom";
+import axios from "axios";
+import FileUploader from "../../components/File_uploader/fileUploader";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -99,7 +101,17 @@ const Employees = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const[post,setpost]=useState(false);
+  //post employee
+  const[firstname,setfirstname]=useState("");
+  const[lastname,setlastname]=useState("");
+  const[email,setemail]=useState("");
+  const[phonenumber,setphonenumber]=useState("");
+  const[image,setimage]=useState(null);
+  const[team,setteam]=useState("");
 
+  //get team
+const[getteam,setgetteam]=useState([])
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
@@ -111,6 +123,23 @@ const Employees = () => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const handleSubmit = async () => {
+    const data = new FormData();
+    data.append("firstname", firstname);
+    data.append("lastname", lastname);
+    data.append("email", email);
+    data.append("phonenumber", phonenumber);
+    data.append("image", image);
+    data.append("team_id", team);
+try{
+    await fetch
+     (`http://localhost:8000/api/employees`,{method:'POST',body:data,content:"application/json" })
+}
+catch(err){
+     console.log(err);
+}
   };
 
 
@@ -129,6 +158,19 @@ const Employees = () => {
   useEffect(() => {
     fetchEmployees();
   }, []);
+  //teams
+  const Request = async () => {
+    const res = await axios
+      .get("http://localhost:8000/api/teams")
+      .catch((err) => console.log(err));
+    const data = await res.data;
+    // console.log(data);
+    setgetteam(data);
+  };
+  useEffect(() => {
+    Request();
+  }, []);
+
 
 
   return (
@@ -143,11 +185,75 @@ const Employees = () => {
     </div>
     <div className="employee-page">
       <h1>employees</h1>
-      <Button>
+      <Button onClick={()=>{setpost(!post)}}>
         Add Employee
       </Button>
-      <Dialog>
-        hi
+      <Dialog open={post}onClose={(e)=>setpost(!post)}>
+        <DialogTitle>Add Employee</DialogTitle>
+        <DialogContent>
+        <form className="formm"onSubmit={(e)=>{handleSubmit()}}>
+          <TextField    
+                    autoFocus
+                    margin="dense"
+                    name='first name'
+                    label="First Name"
+                    type="text"
+                    fullwidth
+                    variant="standard"onChange={(e)=>{setfirstname(e.target.value)}}/>
+          <TextField   
+                    autoFocus
+                    margin="dense"
+                    name='last name'
+                    label="Last Name"
+                    type="text"
+                    fullwidth
+                    variant="standard"onChange={(e)=>{setlastname(e.target.value)}}/>
+          <TextField   
+                    autoFocus
+                    margin="dense"
+                    name='email'
+                    label="Email"
+                    type="email"
+                    fullwidth
+                    variant="standard"
+                    onChange={(e)=>{setemail(e.target.value)}}/>
+          <TextField    
+                    autoFocus
+                    margin="dense"
+                    name='phone number'
+                    label="Phone Number"
+                    type="number"
+                    fullwidth
+                    variant="standard"
+                    onChange={(e)=>{setphonenumber(e.target.value)}}/>
+          {/* <TextField name="image"type="file"placeholder="image"onChange={(e)=>{setimage(e.target.files[0])}}/> */}
+
+
+          {/* <h3>Choose A Team</h3> */}
+          <select
+          autoFocus
+          margin="dense"
+          name='team'
+          label="Selet A TEam"
+          type="select"
+          fullwidth
+          variant="standard"
+                  onChange={(e)=>{setteam(e.target.value)}}
+                  style={{ padding: "3px 3px 10px 3px", margin: "11px" }}
+                >
+                  <option>Teams</option>
+                  {getteam &&
+                    getteam.map((e, i) => (
+                      <option key={i} value={e.id}>
+                        {e.name}
+                      </option>
+                    ))}
+                </select>
+                <FileUploader style={{marginLeft:'30px'}}onFileSelect={(file) => setimage(file)} />
+
+          <Button type="submit">submit</Button>
+        </form>
+        </DialogContent>
       </Dialog>
       <TableContainer component={Paper}>
         <Table aria-label="customized table">
@@ -165,8 +271,8 @@ const Employees = () => {
             {
               (rowsPerPage > 0
                 ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : data).map((employee) => (
-                  <EmployeeRow data={employee} />
+                : data).map((employee,index) => (
+                  <EmployeeRow key={index} data={employee} />
                 ))}
           </TableBody>
           <TableFooter>
