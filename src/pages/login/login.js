@@ -38,7 +38,7 @@ const Login = () => {
         autoComplete="off"
       >
         <div className="loginContainerform">
-        <h2>Please insert your email and password.</h2>
+          <h2>Please enter your email and password.</h2>
           <TextField
             onChange={(e) => setEmail(e.target.value)}
             className="input"
