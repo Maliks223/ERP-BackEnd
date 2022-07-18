@@ -1,36 +1,43 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import Menu from "../../components/circular navigation/circular";
-import './home.css'
+import "./home.css";
+
+
+
 const Home = () => {
+  const admin = localStorage.getItem("admin");
+  const json = JSON.parse(admin);
+  console.log("json", json);
+  const [user, setuser] = useState(json);
 
-    const admin = localStorage.getItem('admin');
-    const json = JSON.parse(admin);
-    console.log('json',json);
-    const [user, setuser] = useState(json);
+  return (
+    <>
+      <h1 className="welcome">Welcome {user.name}!</h1>
+      <div className="background"></div>
 
-    // const getUser=async() =>{
-    // const res=await axios.get("http://localhost:8000/api/user")
-    // .catch((err)=>console.log(err));
+      <div className="menuloc">
+        <Menu />
+      </div>
 
-    // const data=res.data;
-    // console.log(data);
-    // return data;
-    // }
-    // useEffect(()=>{
-    //     getUser().then((data)=>setuser(data));
-    // })
+      <div className="profileCard">
+        <div className="cardcontent">
+          <div>
+            <img
+              className="profile-image"
+              src={`http://localhost:8000/storage/uploads/${user.profile_image}`}
+              alt={user.name}
+            />
+          </div>
 
-    return (
-        <>
-            <h1>{user.name}</h1>
-            <div className="menuloc">
-                <Menu />
-            </div>
-            <div>
-                {/* <h1>Hello home page</h1> */}
-            </div>
-        </>
-    )
-}
-export default Home
+          <h2 className="name">Name : {user.name}</h2>
+          <h2>Email : {user.email}</h2>
+          <h2 className="role">
+            Role : {user.role === 0 ? "Admin" : "Super Admin"}
+          </h2>
+        </div>
+      </div>
+    </>
+  );
+};
+export default Home;
