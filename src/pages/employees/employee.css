@@ -1,3 +1,16 @@
-.EmployeesContainer{
-    margin-left:12vw;
+
+.employee-page{
+    width: 85vw;
+    /* margin-left: 16vw; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
 }
+.emplo{
+    display: flex;
+    justify-content: space-between;
+}
+
+

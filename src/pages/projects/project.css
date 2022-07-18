@@ -1,3 +1,24 @@
-.ProjectContainer{
-    margin-left: 12vw;
+.projectcontainer{
+    /* margin-top: 5vw; */
+    display: flex;
+   
+margin:5vw auto 0 auto;
+    /* margin-left: vw; */
+    /* display:flex;
+    align-items: center; */
 } 
+
+.postproject{
+    position: absolute;
+    top:10px;
+    margin-left:40%;
+    justify-items: center;
+
+
+}
+
+.h111{
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 30px;
+}

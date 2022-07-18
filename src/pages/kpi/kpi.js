@@ -46,7 +46,7 @@ const KPIS = () => {
     <>
       <h1>kpis</h1>
       <TableContainer component={Paper}>
-        <Table sx={{ marginLeft: '15vw', width: '80vw' }} aria-label="customized table">
+        <Table sx={{ margin: "auto", width: '80vw' }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Id</StyledTableCell>
