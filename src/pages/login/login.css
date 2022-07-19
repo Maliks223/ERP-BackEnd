@@ -1,55 +1,66 @@
-.loginContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: black;
+.loginContainer {
+  animation: fadeIn 2.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0A4F70;
 }
 
- .loginContainerform{
-    border-radius: 8px;
-    border: 1px solid black;
-    height: 50vh;
-    min-width: 20vw;
-    padding: 26px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    gap: 15px;
-} 
+.loginContainerform {
+  margin-top: 135px ;
+  margin-bottom: 50px ;
+  border-radius: 8px;
+  height: 50vh;
+  min-width: 25vw;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7F6F6;
+  gap: 15px;
+}
 
-.loginContainerform h2{
-    font-weight: 400;
-    font-size: 16px;
-    margin-bottom: 24px;
+#standard-basic{
+  width: 10px!important;
+}
+
+.loginContainerform h2 {
+  font-weight: 400;
+  font-size: 19px;
+  margin-bottom: 24px;
+}
+
+.loginBtn {
+  height: 4vh;
+  width: 10vw;
+  margin-top: 40px !important;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.614) !important;
+  border: rgba(0, 0, 0, 0.304) 1px solid !important;
+  background-color: #C6C4C4!important;
+}
+
+.input {
+  width: 100% !important;
+}
+
+.loginBtn:hover {
+  transition: 0.3s;
+  background-color: #0A4F70!important;
+  color: #F7F6F6!important;
+}
+
+.footer{
+  margin-top: 135px ;
+  color: #F7F6F6;
+  font-size: 32px;
 }
 
 
-.loginBtn{
-    height: 4vh;
-    width: 10vw;
-    margin-top: 24px!important;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.614)!important;
-    border: rgba(0, 0, 0, 0.304) 1px solid!important;
-      
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
-
-.input{
-    width: 100%!important;
-}
-
-.loginBtn:hover{
-    border: rgb(0, 0, 0)1px solid!important;
-    background-color: rgb(255, 255, 255)!important;
-   
-}
-
-
-
-
-
-

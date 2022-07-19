@@ -1,20 +1,22 @@
-
-.employee-page{
-    width: 85vw;
-    /* margin-left: 16vw; */
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: end;
-}
-.emplo{
-    display: flex;
-    justify-content: space-between;
-}
-.formm{
-    display: flex;
-    flex-direction: column;
-    padding: 50px;
+.employeeWraper {
+  height: 100vh;
+  margin-left: 13.5vw;
+  background-color: #f7f6f6;
 }
 
+.employee-page {
+  width: 85vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+.emplo {
+  display: flex;
+}
+
+.addEmployeeBtn:hover {
+  background-color: #0a4f70 !important;
+  color: white;
+}
