@@ -82,6 +82,8 @@ const Project = ({ id, name, teamz, pivotId }) => {
   const func = (e) => {
     setteamzz(e.target.value);
   };
+
+
   const Request = async () => {
     const res = await axios
       .get("http://localhost:8000/api/teams")
@@ -90,6 +92,8 @@ const Project = ({ id, name, teamz, pivotId }) => {
     // console.log(data);
     setteam(data);
   };
+
+  
   useEffect(() => {
     Request();
   }, []);

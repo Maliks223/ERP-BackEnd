@@ -25,6 +25,7 @@ const Login = () => {
     result = await result.json();
     console.log(result);
     localStorage.setItem("token", JSON.stringify(result.token));
+    localStorage.setItem("admin", JSON.stringify(result.admin));
   }
 
   return (

@@ -54,7 +54,7 @@ const EmployeeRow = ({ data }) => {
         setOpenDelete(false);
     };
 
-    const { id, firstname, lastname, email, team_id, image } = data;
+    const { id, firstname, lastname, email, team_id, image ,teams} = data;
 
     const handleDelete = async () => {
         try {
@@ -62,7 +62,8 @@ const EmployeeRow = ({ data }) => {
                 `http://localhost:8000/api/employees/${id}`, {
                 method: "Delete",
                 content: "application/json",
-            });
+            }) .then((response) => response.data)
+            .then((result) => window.location.reload());
             const res = await response.json();
             console.log(res);
         }
@@ -78,7 +79,7 @@ const EmployeeRow = ({ data }) => {
             <StyledTableCell align="center">{firstname}</StyledTableCell>
             <StyledTableCell align="center">{lastname}</StyledTableCell>
             <StyledTableCell align="center">{email}</StyledTableCell>
-            <StyledTableCell align="center">{team_id ? team_id : 'Not in a Team'}</StyledTableCell>
+            <StyledTableCell align="center">{teams ? teams.name : 'Not in a Team'}</StyledTableCell>
             <StyledTableCell align="center">
                 <Button onClick={handleClickOpen}>
                     <EditIcon color="success" />
