@@ -1,4 +1,5 @@
 
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Menu from "../../components/circular navigation/circular";
 import "./home.css";
@@ -13,9 +14,8 @@ const Home = () => {
 
   return (
     <>
-      <h1 className="welcome">Welcome {user.name}!</h1>
       <div className="background"></div>
-
+<div className="homecontainer">
       <div className="menuloc">
         <Menu />
       </div>
@@ -29,13 +29,18 @@ const Home = () => {
               alt={user.name}
             />
           </div>
+          <div className="seconddiv">
 
           <h2 className="name">Name : {user.name}</h2>
           <h2>Email : {user.email}</h2>
           <h2 className="role">
             Role : {user.role === 0 ? "Admin" : "Super Admin"}
           </h2>
+          <button className="but">EDIT</button>
+
+          </div>
         </div>
+      </div>
       </div>
     </>
   );

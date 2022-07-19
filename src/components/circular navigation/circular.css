@@ -11,7 +11,7 @@
        
   }
   i{
-    color:rgb(73, 110, 110);
+    color: #C6C4C4;
   }
 
   .inputz{
@@ -43,7 +43,7 @@
   .material-icons.md-36 { font-size: 36px; color: #03A9F4 }
   
   .btn {
-    background: #ECEFF1;
+    background:  rgb(1, 1, 55);
     font-size: 15px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -59,6 +59,9 @@
     
     -webkit-transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+  .btn:hover{
+    background-color: #4e788c;
   }
   
   .btn:not(:first-child) {
