@@ -1,7 +1,8 @@
 import Login from "../../pages/login/login";
 //import useState hook to create menu collapse state
 import React, { useState } from "react";
-
+import { GiEnergySword } from "react-icons/gi";
+import { RiAdminLine } from "react-icons/ri";
 //import react pro sidebar components
 import {ProSidebar,Menu,MenuItem,SidebarHeader,SidebarFooter,SidebarContent} from "react-pro-sidebar";
 
@@ -38,16 +39,17 @@ const SideBar = () => {
           <SidebarHeader>
           <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "Logo" : "Logo"}</p>
+              {/* <p>{menuCollapse ? "Logo" : "Logo"}</p> */}
+              <img className="rotate"src={require('./logoo__1_-removebg-preview.png')}/> 
               {/* <h1 icon={<FiHome/>}></h1> */}
             </div>
             <div className="closemenu" onClick={menuIconClick}>
                 {/* changing menu collapse icon on click */}
-              {menuCollapse ? (
+              {/* {menuCollapse ? (
                 <FiArrowRightCircle/>
               ) : (
                 <FiArrowLeftCircle/>
-              )}
+              )} */}
             </div>
           </SidebarHeader>
           <SidebarContent>
@@ -59,6 +61,10 @@ const SideBar = () => {
              <MenuItem icon={< FaProjectDiagram/>}>Kpi's<Link to="/kpis"/></MenuItem>
              <MenuItem icon={<RiProjector2Line />}>Projects<Link to="/projects"/></MenuItem> 
               <MenuItem icon={<RiTeamFill />}>Teams<Link to="/teams"/></MenuItem>
+              <MenuItem icon={<RiAdminLine />}>Admin<Link to="/teams"/></MenuItem>
+              <MenuItem icon={<GiEnergySword  />}>Roles<Link to="/teams"/></MenuItem>
+
+
              
 
             </Menu>
