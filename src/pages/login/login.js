@@ -41,19 +41,21 @@ const Login = () => {
         <div className="loginContainerform">
           <h2>Please enter your email and password.</h2>
           <TextField
+          variant="standard"
             onChange={(e) => setEmail(e.target.value)}
             className="input"
             required
             type="email"
-            id="outlined-required"
-            label="Email"
+            id="standard-basic"
+            label="Email" 
           />
           <TextField
             onChange={(e) => setPassword(e.target.value)}
             className="input"
             required
             type="password"
-            id="outlined-required"
+            id="standard-basic"
+            variant="standard"
             label="Password"
           />
           <Button className="loginBtn" onClick={login} variant="outlined">
@@ -61,6 +63,7 @@ const Login = () => {
           </Button>
         </div>
       </Box>
+      <div className="footer">Codi B08 Group 2 ©</div>
     </div>
   );
 };
