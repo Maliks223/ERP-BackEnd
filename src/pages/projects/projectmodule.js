@@ -40,8 +40,8 @@ const Project = ({ id, name, teamz, pivotId }) => {
   const [opendelete, handleclosedelete] = useState(false);
   const [team, setteam] = useState([]);
   const [teamzz, setteamzz] = useState("");
-  const [deleteteam,setdeleteteam]=useState(false);
-  const[pivotid,setpivot]=useState(0);
+  const [deleteteam, setdeleteteam] = useState(false);
+  const [pivotid, setpivot] = useState(0);
 
   const handleSubmit = async (id) => {
     const data = new FormData();
@@ -83,7 +83,6 @@ const Project = ({ id, name, teamz, pivotId }) => {
     setteamzz(e.target.value);
   };
 
-
   const Request = async () => {
     const res = await axios
       .get("http://localhost:8000/api/teams")
@@ -93,7 +92,6 @@ const Project = ({ id, name, teamz, pivotId }) => {
     setteam(data);
   };
 
-  
   useEffect(() => {
     Request();
   }, []);
@@ -115,7 +113,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
             }}
           >
             <EditIcon color="success" />
-          </Button>     
+          </Button>
           <Button
             onClick={(e) => {
               handleclosedelete(!opendelete);
@@ -124,42 +122,89 @@ const Project = ({ id, name, teamz, pivotId }) => {
             <DeleteIcon color="error" />
           </Button>
           <Button
+            className="addEmployeeBtn"
             style={{
-              color: "blue",
-              border: "0.1px solid black",
-              borderRadius: "2px",
+              backgroundColor: "grey",
+              marginRight: "20px",
+              marginLeft: "20px",
+              border: ".5px solid black",
+              backgroundColor: "#C6C4C4",
+              minHeight: "2vh",
+              minWidth: "4vw",
+              color: "black",
             }}
             id="icons"
             onClick={() => {
               setassignteam(!assignteam);
-            }}>
-
+            }}
+          >
             assign to a team
           </Button>
-         
-          
 
-          <Button onClick={(e)=>{setdeleteteam(!deleteteam)}}>
+          <Button
+            onClick={(e) => {
+              setdeleteteam(!deleteteam);
+            }}
+            className="addEmployeeBtn"
+            style={{
+              backgroundColor: "grey",
+              // marginRight: "65px",
+              border: ".5px solid black",
+              backgroundColor: "#C6C4C4",
+              minHeight: "2vh",
+              minWidth: "4vw",
+              color: "black",
+            }}
+          >
             delete team
           </Button>
-          <Dialog open={deleteteam}onClose={(e)=>{setdeleteteam(!deleteteam)}}>
-            <form onSubmit={(e)=>handleDeleteProjectTeam(pivotId)}>
-          <select
-                  name="team"
-                  id="team"
-                  onChange={(e)=>{setpivot(e.target.value)}}
-                  style={{ padding: "3px 3px 10px 3px", margin: "11px" }}
-                >
-                  <option>Teams</option>
-                  {pivotId &&
-                    pivotId.map((e, i) => (
-                      <option key={i} value={e.pivot.id}>
-                        {e.name}
-                      </option>
-                    ))}
-                </select>
-                <Button type="submit">delete team</Button>
-                </form>
+          <Dialog
+            open={deleteteam}
+            onClose={(e) => {
+              setdeleteteam(!deleteteam);
+            }}
+          >
+            <form onSubmit={(e) => handleDeleteProjectTeam(pivotId)}>
+              <h4 className="deleteTeamForm">Delete team </h4>
+              <select
+                name="team"
+                id="team"
+                onChange={(e) => {
+                  setpivot(e.target.value);
+                }}
+                style={{
+                  width: "15vw",
+                  padding: "3px 3px 10px 3px",
+                  margin: "36px 36px 75px 36px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <option>Teams</option>
+                {pivotId &&
+                  pivotId.map((e, i) => (
+                    <option key={i} value={e.pivot.id}>
+                      {e.name}
+                    </option>
+                  ))}
+              </select>
+              <Button
+                type="submit"
+                className="addEmployeeBtn"
+                style={{
+                  backgroundColor: "grey",
+                  marginLeft: "120px",
+                  marginBottom: "36px",
+                  border: ".5px solid black",
+                  backgroundColor: "#C6C4C4",
+                  minHeight: "2vh",
+                  minWidth: "4vw",
+                  color: "black",
+                }}
+              >
+                delete team
+              </Button>
+            </form>
           </Dialog>
         </StyledTableCell>
         <Dialog
@@ -170,7 +215,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
         >
           <DialogTitle>Delete</DialogTitle>
           <DialogContent>
-            Are you sure you want to Delete this Employee?
+            Are you sure you want to Delete this Project ?
           </DialogContent>
           <DialogActions>
             <Button
@@ -178,12 +223,32 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 handleDelete(id);
               }}
               color="error"
+              className="addEmployeeBtn"
+              style={{
+                backgroundColor: "grey",
+                // marginRight: "65px",
+                border: ".5px solid black",
+                backgroundColor: "#C6C4C4",
+                minHeight: "2vh",
+                minWidth: "4vw",
+                color: "black",
+              }}
             >
               Yes
             </Button>
             <Button
               onClick={(e) => {
                 handleclosedelete(!opendelete);
+              }}
+              className="addEmployeeBtn"
+              style={{
+                backgroundColor: "grey",
+                // marginRight: "65px",
+                border: ".5px solid black",
+                backgroundColor: "#C6C4C4",
+                minHeight: "2vh",
+                minWidth: "4vw",
+                color: "black",
               }}
             >
               No
@@ -207,7 +272,19 @@ const Project = ({ id, name, teamz, pivotId }) => {
                   }}
                 />
                 <DialogActions>
-                  <Button className="submitButton" type="submit">
+                  <Button
+                    className="addEmployeeBtn"
+                    style={{
+                      backgroundColor: "grey",
+                      marginRight: "65px",
+                      border: ".5px solid black",
+                      backgroundColor: "#C6C4C4",
+                      minHeight: "2vh",
+                      minWidth: "4vw",
+                      color: "black",
+                    }}
+                    type="submit"
+                  >
                     Edit
                   </Button>
                 </DialogActions>
@@ -229,7 +306,13 @@ const Project = ({ id, name, teamz, pivotId }) => {
                   name="team"
                   id="team"
                   onChange={func}
-                  style={{ padding: "3px 3px 10px 3px", margin: "11px" }}
+                  style={{
+                    width: "15vw",
+                    padding: "3px 3px 10px 3px",
+                    margin: "36px 36px 75px 36px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
                 >
                   <option>Teams</option>
                   {team &&
@@ -241,7 +324,19 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 </select>
 
                 <DialogActions>
-                  <Button className="submitButton" type="submit">
+                  <Button
+                    className="addEmployeeBtn"
+                    style={{
+                      backgroundColor: "grey",
+                      margin: "auto",
+                      border: ".5px solid black",
+                      backgroundColor: "#C6C4C4",
+                      minHeight: "2vh",
+                      minWidth: "4vw",
+                      color: "black",
+                    }}
+                    type="submit"
+                  >
                     Submit
                   </Button>
                   {/* <Button onClick={(e) => { handleDeleteProjectTeam(id) }}>Remove Team</Button> */}
