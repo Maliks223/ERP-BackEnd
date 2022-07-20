@@ -1,24 +1,32 @@
-.projectcontainer{
-    /* margin-top: 5vw; */
-    display: flex;
-   
-margin:5vw auto 0 auto;
-    /* margin-left: vw; */
-    /* display:flex;
-    align-items: center; */
-} 
-
-.postproject{
-    position: absolute;
-    top:10px;
-    margin-left:40%;
-    justify-items: center;
-
-
+.projectsWrapper {
+  width: 90vw;
+  margin-left: 250px;
 }
 
-.h111{
-    border: 3px solid black;
-    border-radius: 10px;
-    padding: 30px;
+.projectsTitle {
+  display: flex;
+  justify-content: center;
+  font-size: 36px;
+  margin-top: 72px;
+  margin-bottom: 72px;
+}
+
+.deleteTeamForm {
+  width: 50%;
+  margin-left: 130px;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.tableTitle {
+  background-color: #0a4f70 !important;
+  border-left: 1px solid white;
+  font-size: 24px !important;
+}
+
+.postproject{
+  display: flex;
+  justify-content: flex-end;
+  gap: 30vw;
 }

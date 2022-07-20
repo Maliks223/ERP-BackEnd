@@ -164,105 +164,43 @@ const Employees = () => {
 
 
   return (
-    <>
-      <div className="emplo">
-        <Link to="/home">
-          <Button className="back" style={{
-            color: 'black', margin: '10px', border: '1px solid black',
-            backgroundColor: 'grey'
-          }}>Back</Button></Link>
-        <Link to="/teams">
-          <Button className="back" style={{
-            color: 'black', margin: '10px', border: '1px solid black',
-            backgroundColor: 'grey'
-          }}>  Teams</Button></Link>
-      </div>
+    <div className="employeeWraper">
+  
       <div className="employee-page">
-        <h1>employees</h1>
-        <Button>
-          Add Employee
-        </Button>
-        <Dialog>
-          hi
-        </Dialog>
-        <TableContainer component={Paper}>
-          <Table aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center"></StyledTableCell>
-                <StyledTableCell align="center">First Name</StyledTableCell>
-                <StyledTableCell align="center">Last Name</StyledTableCell>
-                <StyledTableCell align="center">Email</StyledTableCell>
-                <StyledTableCell align="center">Team</StyledTableCell>
-                <StyledTableCell align="center">Actions</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {
-                (rowsPerPage > 0
-                  ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : data).map((employee) => (
-                    <EmployeeRow data={employee} />
-                  ))}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                  colSpan={5}
-                  count={data.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  SelectProps={{
-                    inputProps: {
-                      'aria-label': 'rows per page',
-                    },
-                    native: true,
-                  }}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={TablePaginationActions}
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
-      </div>
-      {/* <div className="employee-page">
-        <h1>Employees Control</h1>
+        <h1 className="projectsTitle" >Employees Control</h1>
 
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="center" sx={{ fontSize: "22px" }}>
+                <StyledTableCell className="tableTitle" align="center" sx={{ fontSize: "22px" }}>
                   IMG
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   First Name
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Last Name
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Email
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Team
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
@@ -270,7 +208,7 @@ const Employees = () => {
                 </StyledTableCell>
               </TableRow>
             </TableHead>
-            <TableBody sx={{ backgroundColor: "#2f6781" }}>
+            <TableBody sx={{ Color: "black" }}>
               {(rowsPerPage > 0
                 ? data.slice(
                   page * rowsPerPage,
@@ -318,8 +256,8 @@ const Employees = () => {
         >
           Add Employee
         </Button>
-      </div> */}
-    </>
+      </div> 
+    </div>
   );
 };
 export default Employees;

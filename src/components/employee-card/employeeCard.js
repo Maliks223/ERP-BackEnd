@@ -77,16 +77,32 @@ const EmployeeRow = ({ data }) => {
           src={`http://localhost:8000/storage/uploads/${image}`}
         />
       </StyledTableCell>
-      <StyledTableCell align="center" sx={{ color: "white", fontSize: "50" }}>
+      <StyledTableCell
+        className="tableInfo"
+        align="center"
+        sx={{ color: "black" }}
+      >
         {firstname}
       </StyledTableCell>
-      <StyledTableCell align="center" sx={{ color: "white" }}>
+      <StyledTableCell
+        className="tableInfo"
+        align="center"
+        sx={{ color: "black" }}
+      >
         {lastname}
       </StyledTableCell>
-      <StyledTableCell align="center" sx={{ color: "white" }}>
+      <StyledTableCell
+        className="tableInfo"
+        align="center"
+        sx={{ color: "black" }}
+      >
         {email}
       </StyledTableCell>
-      <StyledTableCell align="center" sx={{ color: "white" }}>
+      <StyledTableCell
+        className="tableInfo"
+        align="center"
+        sx={{ color: "black" }}
+      >
         {team_id ? team_id : "Not in a Team"}
       </StyledTableCell>
       <StyledTableCell align="center">
@@ -143,7 +159,19 @@ const EmployeeRow = ({ data }) => {
             </Button>
           </DialogActions>
         </Dialog>
-        <Button sx={{ transform: "scale(0.45)", textDecoration: "underline" }}>
+        <Button
+          className="addEmployeeBtn"
+          style={{
+            backgroundColor: "grey",
+            marginLeft: "20px",
+            textDecoration: "none",
+            // border: ".5px solid black",
+            backgroundColor: "#C6C4C4",
+            minHeight: "2vh",
+            minWidth: "4vw",
+            // color: "black",
+          }}
+        >
           <Link to={`/employees/id=${id}`} state={{ data: data }}>
             View More
           </Link>
