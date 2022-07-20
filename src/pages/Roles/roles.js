@@ -199,12 +199,12 @@ data.append('description',description);
                 <Table sx={{ width: '85vw' }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell align="center" sx={{ fontSize: "22px" }}>Role</StyledTableCell>
-                            <StyledTableCell align="center" sx={{ fontSize: "22px", borderLeft: "1px solid white" }}>Description</StyledTableCell>
-                            <StyledTableCell align="center" sx={{ fontSize: "22px", borderLeft: "1px solid white" }}>Actions</StyledTableCell>
+                            <StyledTableCell align="center" >Role</StyledTableCell>
+                            <StyledTableCell align="center" >Description</StyledTableCell>
+                            <StyledTableCell align="center">Actions</StyledTableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody sx={{ backgroundColor: "#2f6781" }}>
+                    <TableBody>
                         {(rowsPerPage > 0
                     ? data.slice(
                         page * rowsPerPage,

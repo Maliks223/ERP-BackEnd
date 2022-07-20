@@ -20,7 +20,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 15,
-    color: theme.palette.common.white,
+  
 
 
   },
@@ -115,7 +115,7 @@ const Team = ({ name, project, id ,pivotId}) => {
               setEdit(!edit);
             }}
           >
-            <EditIcon style={{color:"black"}} />
+            <EditIcon color="success" />
           </Button>  
           <Button
             onClick={(e) => {
@@ -152,10 +152,10 @@ const Team = ({ name, project, id ,pivotId}) => {
             </Button>
           </DialogActions>
           </Dialog>
-          <Button style={{color:'white'}} onClick={() => setassignproject(!assignproject)}>
+          <Button  onClick={() => setassignproject(!assignproject)}>
             assign a project
           </Button>
-          <Button style={{color:'white'}}  onClick={(e)=>{setdeleteproject(!deleteproject)}}>
+          <Button   onClick={(e)=>{setdeleteproject(!deleteproject)}}>
             delete project
           </Button>
           <Dialog open={deleteproject}onClose={(e)=>{setdeleteproject(!deleteproject)}}>

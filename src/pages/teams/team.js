@@ -203,30 +203,27 @@ New            </Button>
               >
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="center" sx={{ fontSize: "22px" }}>
+                    <StyledTableCell align="center">
                       id
                     </StyledTableCell>
                     <StyledTableCell
                       align="center"
-                      sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                     >
                       Team
                     </StyledTableCell>
                     <StyledTableCell
                       align="center"
-                      sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                     >
                       Assigned Project
                     </StyledTableCell>
                     <StyledTableCell
                       align="center"
-                      sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                     >
                       Actions
                     </StyledTableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody sx={{ backgroundColor: "#2f6781" }}>
+                <TableBody>
                   {/* <div className="TeamContainer"> */}
                   {(rowsPerPage > 0
                     ? team.slice(

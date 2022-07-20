@@ -19,7 +19,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 15,
-        color: theme.palette.common.white,    },
+           },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -72,12 +72,12 @@ const RoleRow = ({ data }) => {
     }
     return (
         < StyledTableRow key={id} >
-            <StyledTableCell component="th" scope="row"  align="center" sx={{ color: "white" }}>{role}</StyledTableCell>
-            <StyledTableCell align="center" sx={{ color: "white" }}>{description}</StyledTableCell>
+            <StyledTableCell component="th" scope="row"  align="center" >{role}</StyledTableCell>
+            <StyledTableCell align="center" >{description}</StyledTableCell>
 
-            <StyledTableCell align="center" sx={{ color: "white" }}>
-                <Button onClick={handleClickOpen}style={{color:'black'}}>
-                    <EditIcon />
+            <StyledTableCell align="center" >
+                <Button onClick={handleClickOpen}>
+                    <EditIcon color="success" />
                 </Button>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Edit</DialogTitle>
