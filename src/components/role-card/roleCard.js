@@ -18,8 +18,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-    },
+        fontSize: 15,
+           },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -52,7 +52,7 @@ const RoleRow = ({ data }) => {
         setOpenDelete(false);
     };
 
-    const { id, role } = data;
+    const { id, role, description } = data;
 
     const handleDelete = async () => {
         try {
@@ -60,7 +60,9 @@ const RoleRow = ({ data }) => {
                 `http://localhost:8000/api/roles/${id}`, {
                 method: "Delete",
                 content: "application/json",
-            });
+            })
+            .then((response) => response.data)
+            .then((result) => window.location.reload());
             const res = await response.json();
             console.log(res);
         }
@@ -70,9 +72,10 @@ const RoleRow = ({ data }) => {
     }
     return (
         < StyledTableRow key={id} >
-            <StyledTableCell align="center">{role}</StyledTableCell>
-            <StyledTableCell align="center">{" "}</StyledTableCell>
-            <StyledTableCell align="center">
+            <StyledTableCell component="th" scope="row"  align="center" >{role}</StyledTableCell>
+            <StyledTableCell align="center" >{description}</StyledTableCell>
+
+            <StyledTableCell align="center" >
                 <Button onClick={handleClickOpen}>
                     <EditIcon color="success" />
                 </Button>
@@ -95,6 +98,8 @@ const RoleRow = ({ data }) => {
                         <Button onClick={handleCloseDelete} >No</Button>
                     </DialogActions>
                 </Dialog>
+                <Button>Assign to Employee</Button>
+
             </StyledTableCell>
         </StyledTableRow >
     )

@@ -31,7 +31,9 @@ const KPIForm = ({ data }) => {
                 method: "POST",
                 content: "application/json",
                 body: formData
-            });
+            })
+            .then((response) => response.data)
+            .then((result) => window.location.reload());
             const res = await response.json();
             console.log(res);
         }
@@ -56,7 +58,7 @@ const KPIForm = ({ data }) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleEdit}>Edit</Button>
-                {/* <Button onClick={handleClose}>Cancek</Button> */}
+                {/* <Button onClick={exit()}>Cancek</Button> */}
             </DialogActions>
         </>
     )

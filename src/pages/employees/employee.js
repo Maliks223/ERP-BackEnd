@@ -133,6 +133,7 @@ const Employees = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  
 
   const fetchEmployees = async () => {
     try {
@@ -269,7 +270,7 @@ const Employees = () => {
                 </StyledTableCell>
               </TableRow>
             </TableHead>
-            <TableBody sx={{ backgroundColor: "#0A4F70" }}>
+            <TableBody sx={{ backgroundColor: "#2f6781" }}>
               {(rowsPerPage > 0
                 ? data.slice(
                   page * rowsPerPage,

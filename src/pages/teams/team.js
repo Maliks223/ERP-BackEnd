@@ -1,6 +1,6 @@
 import React from "react";
 import "./team.css";
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Team from "./teammodule";
 import axios from "axios";
 import { DialogContent, TextField } from "@mui/material";
@@ -11,19 +11,19 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DialogTitle from "@mui/material/DialogTitle";
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { Button, Dialog } from "@mui/material";
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
 import { Link } from "react-router-dom";
 
 function TablePaginationActions(props) {
@@ -53,28 +53,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -86,8 +94,6 @@ TablePaginationActions.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
-
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -109,44 +115,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
-
-
-
-
 const Teams = () => {
-const[team,setteam]=useState([]);
-const[post,setpost]=useState(false);
-const[name,setname]=useState("");
-const [page, setPage] = React.useState(0);
-const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [team, setteam] = useState([]);
+  const [post, setpost] = useState(false);
+  const [name, setname] = useState("");
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-    const Post=async()=>{
-      const data=new FormData();
-       data.append("name",name);
-    const res=await axios.post("http://localhost:8000/api/teams",data)
-   .catch((err)=>console.log(err));
-   };
+  const Post = async () => {
+    const data = new FormData();
+    data.append("name", name);
+    const res = await axios
+      .post("http://localhost:8000/api/teams", data)
+      .catch((err) => console.log(err));
+  };
 
-// Avoid a layout jump when reaching the last page with empty rows.
-const emptyRows =
-page > 0 ? Math.max(0, (1 + page) * rowsPerPage - team.length) : 0;
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - team.length) : 0;
 
-const handleChangePage = (event, newPage) => {
-setPage(newPage);
-};
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-const handleChangeRowsPerPage = (event) => {
-setRowsPerPage(parseInt(event.target.value, 10));
-setPage(0);
-};
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
-
- 
   const Request = async () => {
-    const res = await axios.get("http://localhost:8000/api/teams").catch(
-      (err) => console.log(err)
-    );
+    const res = await axios
+      .get("http://localhost:8000/api/teams")
+      .catch((err) => console.log(err));
     const data = await res.data;
     console.log(data);
     return data;
@@ -154,103 +154,123 @@ setPage(0);
   useEffect(() => {
     Request().then((data) => setteam(data));
   }, []);
-  
-
 
   return (
     <>
-           <div className="emplo">
+      <div className="teamContainer">
+        
+        <div className="teamcontainer">
+          <h1 className="tableteams"style={{marginTop:'50px'}}>Teams Control</h1>
+          <>
+            <Button
+              style={{
+                position:'absolute',top:'2vh',right:'6vw',border:'1px solid transparent',backgroundColor:'#0A4F70',color:'white'
 
-    <Link to="/employees">
-    <Button className="back"style={{color:'black',margin: '10px', border: '1px solid black',
-    backgroundColor: 'grey'}}>Back</Button></Link>
-          <Link to="/projects">
-    <Button className="back"style={{color:'black',margin: '10px', border: '1px solid black',
-    backgroundColor: 'grey'}}>  Projects</Button></Link>
+              }}
+              onClick={() => setpost(!post)}
+            >
+New Team       </Button>
+            {post && (
+              <Dialog open={post} onClose={() => setpost(!post)}>
+                <DialogTitle >Add Team</DialogTitle>
+                <form onSubmit={(e) => Post()} style={{padding:"50px",display:'flex',flexDirection:"column"}}>
+                  <TextField
+                    name="name"
+                    id="name"
+                    label="Project"
+                    onChange={(e) => {
+                      setname(e.target.value);
+                    }}
+                  />
+                  <div>
+                  <Button style={{margin:'40px 0px 0px 0px'}} type="submit">submit</Button>
+                  <Button onClick={() => setpost(!post)} style={{margin:'40px 0px 0px 150px',color:'red'}}>Cancel</Button>
+                  </div>
+                </form>
+
+              </Dialog>
+            )}
+            <TableContainer component={Paper}>
+              <Table
+                sx={{ margin: "auto", width: "85vw" }}
+                aria-label="customized table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell align="center">
+                      id
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                    >
+                      Team
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                    >
+                      Assigned Project
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align="center"
+                    >
+                      Actions
+                    </StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {/* <div className="TeamContainer"> */}
+                  {(rowsPerPage > 0
+                    ? team.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                    : team
+                  ).map((teamm, index) => {
+                    return (
+                      <Team
+                        key={index}
+                        name={teamm.name}
+                        id={teamm.id}
+                        pivotId={teamm.project}
+                        project={teamm.project.map((teammm, index) => {
+                          return <div key={index}>{teammm.name}</div>;
+                        })}
+                      />
+                    );
+                  })}
+                  {/* </div> */}
+                </TableBody>
+                <TableBody>
+                  <TableRow>
+                    <TablePagination
+                      rowsPerPageOptions={[
+                        5,
+                        10,
+                        25,
+                        { label: "All", value: -1 },
+                      ]}
+                      colSpan={3}
+                      count={team.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      SelectProps={{
+                        inputProps: {
+                          "aria-label": "rows per page",
+                        },
+                        native: true,
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      ActionsComponent={TablePaginationActions}
+                    />
+                  </TableRow>
+                  <TableFooter></TableFooter>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </>
         </div>
-
-    <div className="teamcontainer">
-      
-      <h1 className="tableteams">Teams Table</h1>
-    <>
-    <Button style={{marginLeft:'0%',border:'black solid 2px',borderRadius:'5px'}} onClick={()=>setpost(!post)}>postttttt</Button>
-    {post &&
-    <Dialog open={post} onClose={()=>setpost(!post)}>
-      <form onSubmit={(e)=>Post()}>
-        <TextField name="name"id="name"onChange={(e)=>{setname(e.target.value)}}/>
-        <Button type="submit">submit</Button>
-      </form>
-    </Dialog>
-    
-    }
-    <TableContainer component={Paper}>
-        <Table
-          sx={{margin: "auto", width: "80vw" }}
-          aria-label="customized table"
-        >
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="center">id</StyledTableCell>
-              <StyledTableCell align="center">Team</StyledTableCell>
-              <StyledTableCell align="center">Assigned Project</StyledTableCell>
-              <StyledTableCell align="center">Actions</StyledTableCell>
-            </TableRow>
-          </TableHead>
-  <TableBody>
-  
-    {/* <div className="TeamContainer"> */}
-      {(rowsPerPage > 0
-              ? team.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : team).map((teamm,index)=>{
-        return (
-          <Team 
-          key={index}
-          name={teamm.name}
-          id={teamm.id}
-          pivotId={teamm.project}
-          project={teamm.project.map((teammm,index)=>{
-            return (
-              <div key={index}>
-              {teammm.name}
-              </div>
-            )
-          })}
-          
-          />
-        )
-      })
-       
-      }
-    {/* </div> */}
-    </TableBody>
-    <TableBody>
-    <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                colSpan={3}
-                count={team.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
-                  native: true,
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
-            </TableRow>
-    <TableFooter>
-    </TableFooter>
-  </TableBody>
-  </Table>
-
-  </TableContainer>
-
-    </>
-    </div>
+      </div>
     </>
   );
 };
