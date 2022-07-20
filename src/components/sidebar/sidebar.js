@@ -21,7 +21,6 @@ import { Link } from "react-router-dom";
 
 
 const SideBar = () => {
-  
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false)
 
@@ -40,10 +39,12 @@ const SideBar = () => {
           <div className="logotext">
               {/* small and big change using menucollapse state */}
               {/* <p>{menuCollapse ? "Logo" : "Logo"}</p> */}
-              <img className="rotate"src={require('./logoo__1_-removebg-preview.png')}/> 
+              <img className="rotate"src={require('./malek.png')}/> 
+              <img className="taz" src={require('./tazkarje.png')}/>
               {/* <h1 icon={<FiHome/>}></h1> */}
             </div>
             <div className="closemenu" onClick={menuIconClick}>
+
                 {/* changing menu collapse icon on click */}
               {/* {menuCollapse ? (
                 <FiArrowRightCircle/>
@@ -54,15 +55,15 @@ const SideBar = () => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
+              <MenuItem active={window.location.pathname === "/home" ? true : false} icon={<FiHome />}>
                 Home<Link to="/home"/>
               </MenuItem>
-              <MenuItem icon={<BiBody />}>Employees<Link to="/employees"/></MenuItem>
-             <MenuItem icon={< FaProjectDiagram/>}>Kpi's<Link to="/kpis"/></MenuItem>
-             <MenuItem icon={<RiProjector2Line />}>Projects<Link to="/projects"/></MenuItem> 
-              <MenuItem icon={<RiTeamFill />}>Teams<Link to="/teams"/></MenuItem>
-              <MenuItem icon={<RiAdminLine />}>Admin<Link to="/teams"/></MenuItem>
-              <MenuItem icon={<GiEnergySword  />}>Roles<Link to="/teams"/></MenuItem>
+              <MenuItem active={window.location.pathname === "/employees" ? true : false} icon={<BiBody />}>Employees<Link to="/employees"/></MenuItem>
+             <MenuItem active={window.location.pathname === "/kpis" ? true : false} icon={< FaProjectDiagram/>}>Kpi's<Link to="/kpis"/></MenuItem>
+             <MenuItem active={window.location.pathname === "/projects" ? true : false} icon={<RiProjector2Line />}>Projects<Link to="/projects"/></MenuItem> 
+              <MenuItem active={window.location.pathname === "/teams" ? true : false} icon={<RiTeamFill />}>Teams<Link to="/teams"/></MenuItem>
+              <MenuItem active={window.location.pathname === "/admin" ? true : false} icon={<RiAdminLine />}>Admin<Link to="/teams"/></MenuItem>
+              <MenuItem active={window.location.pathname === "/roles" ? true : false} icon={<GiEnergySword  />}>Roles<Link to="/roles"/></MenuItem>
 
 
              

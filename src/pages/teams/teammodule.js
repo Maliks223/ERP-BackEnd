@@ -19,7 +19,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 15,
+    color: theme.palette.common.white,
+
+
   },
 }));
 
@@ -112,7 +115,7 @@ const Team = ({ name, project, id ,pivotId}) => {
               setEdit(!edit);
             }}
           >
-            <EditIcon color="success" />
+            <EditIcon style={{color:"black"}} />
           </Button>  
           <Button
             onClick={(e) => {
@@ -129,7 +132,7 @@ const Team = ({ name, project, id ,pivotId}) => {
         >
           <DialogTitle>Delete</DialogTitle>
           <DialogContent>
-            Are you sure you want to Delete this Employee?
+            Are you sure you want to Delete this Team?
           </DialogContent>
           <DialogActions>
             <Button
@@ -149,13 +152,15 @@ const Team = ({ name, project, id ,pivotId}) => {
             </Button>
           </DialogActions>
           </Dialog>
-          <Button onClick={() => setassignproject(!assignproject)}>
+          <Button style={{color:'white'}} onClick={() => setassignproject(!assignproject)}>
             assign a project
           </Button>
-          <Button onClick={(e)=>{setdeleteproject(!deleteproject)}}>
+          <Button style={{color:'white'}}  onClick={(e)=>{setdeleteproject(!deleteproject)}}>
             delete project
           </Button>
           <Dialog open={deleteproject}onClose={(e)=>{setdeleteproject(!deleteproject)}}>
+            <DialogTitle>Delete Assigned project</DialogTitle>
+            <DialogContent>
             <form onSubmit={(e)=>handleDeleteProjectTeam(pivotId)}>
           <select
                   name="team"
@@ -171,24 +176,43 @@ const Team = ({ name, project, id ,pivotId}) => {
                       </option>
                     ))}
                 </select>
+                <DialogActions>
                 <Button type="submit">delete Project</Button>
+                <Button style={{color:'red'}}onClick={()=>{setdeleteproject(!deleteproject)}}>Cancel</Button>
+
+                
+                </DialogActions>
                 </form>
+                </DialogContent>
           </Dialog>
         </StyledTableCell>
 
 
         {edit && (
           <Dialog open={edit} onClose={() => setEdit(!edit)}>
+                        <DialogTitle>Edit Team</DialogTitle>
+<DialogContent>
             <form onSubmit={(e) => handleEdit(id)}>
               <TextField
-                name="name"
+             autoFocus
+             margin="dense"
+             name="Name"
+             label="Name"
+             type="text"
+             fullWidth
+             variant="standard"
                 defaultValue={Name}
                 onChange={(e) => {
                   setname(e.target.value);
                 }}
               />
+              <DialogActions>
               <Button type="submit">submit</Button>
+              <Button style={{color:'red'}}onClick={()=>{setEdit(!edit)}}>Cancel</Button>
+
+              </DialogActions>
             </form>
+            </DialogContent>
           </Dialog>
         )}
         {assignproject && (
@@ -196,6 +220,8 @@ const Team = ({ name, project, id ,pivotId}) => {
             open={assignproject}
             onClose={() => setassignproject(!assignproject)}
           >
+                                    <DialogTitle>Assign A Project</DialogTitle>
+<DialogContent>
             <form
               onSubmit={(e) => {
                 Projectteam();
@@ -205,7 +231,7 @@ const Team = ({ name, project, id ,pivotId}) => {
                 name="team"
                 onChange={(e) => setteam(e.target.value)}
               /> */}
-              <select
+              <select style={{padding:'5px'}}
                 name="project"
                 onChange={(e) => setprojectz(e.target.value)}
                 value={projectz}
@@ -217,8 +243,13 @@ const Team = ({ name, project, id ,pivotId}) => {
                     <option value={e.id}>{e.name}</option>
                   ))}
               </select>
+              <DialogActions>
               <Button type="submit">submit</Button>
+              <Button style={{color:'red'}}onClick={()=>{setassignproject(!assignproject)}}>Cancel</Button>
+
+              </DialogActions>
             </form>
+            </DialogContent>
           </Dialog>
         )}
       </StyledTableRow>

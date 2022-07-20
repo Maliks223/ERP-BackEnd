@@ -24,6 +24,8 @@ const RoleForm = ({ data }) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('role', inputs.role);
+        formData.append('description', inputs.description);
+
         formData.append("_method", "PUT");
         try {
             const response = await fetch(
@@ -31,7 +33,9 @@ const RoleForm = ({ data }) => {
                 method: "POST",
                 content: "application/json",
                 body: formData
-            });
+            })
+            .then((response) => response.data)
+            .then((result) => window.location.reload());
             const res = await response.json();
             console.log(res);
         }
@@ -47,7 +51,18 @@ const RoleForm = ({ data }) => {
                     autoFocus
                     margin="dense"
                     name="role"
-                    label="First Name"
+                    label="Role"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                    onChange={handleChange}
+                />
+
+                 <TextField
+                    autoFocus
+                    margin="dense"
+                    name="description"
+                    label="Description"
                     type="text"
                     fullWidth
                     variant="standard"
@@ -56,7 +71,7 @@ const RoleForm = ({ data }) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleEdit}>Edit</Button>
-                {/* <Button onClick={handleClose}>Cancek</Button> */}
+                {/* <Button onClick={}>Cancek</Button> */}
             </DialogActions>
         </>
     )
