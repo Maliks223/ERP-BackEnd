@@ -5,28 +5,7 @@ import { useLocation } from "react-router-dom";
 import './employeeProfile.css';
 import KPIAssignForm from "../../components/KPI_assign/KPI_assign_form";
 import EditEmployeeTeam from "../../components/Edit_Employee_team/editEmployeeTeam";
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import LineGraph from "../../components/LineGraph/LineGraph";
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
+import BarCharts from "../../components/LineGraph/LineGraph";
 
 const EmployeeProfile = () => {
     const [open, setOpen] = useState(false);
@@ -58,8 +37,8 @@ const EmployeeProfile = () => {
     const fetchEmployee = async () => {
         const response = await fetch(`http://localhost:8000/api/employees/${data.id}`);
         const res = await response.json();
-        setEmployee(res[0]);
-        console.log(res[0]);
+        setEmployee(res.data[0]);
+        console.log(res);
     }
 
     useEffect(() => {
@@ -94,7 +73,7 @@ const EmployeeProfile = () => {
                         </DialogContent>
                     </Dialog>
 
-                    <LineGraph kpis={employee.kpis} />
+                    <BarCharts kpis={employee.kpis} />
 
                     {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
                     <Dialog open={openTeam} onClose={handleCloseTeam}>
