@@ -164,82 +164,43 @@ const[getteam,setgetteam]=useState([])
 
   return (
     <div className="employeeWraper">
-      <div className="emplo">
-        <Button
-          className="addEmployeeBtn"
-          sx={{
-            marginTop: "24px",
-            display: "flex",
-            backgroundColor: "#C6C4C4",
-            minHeight: "4vh",
-            minWidth: "10vw",
-            fontWeight: "600",
-            color: "rgba(0, 0, 0, 0.614)",
-            marginLeft: "24px",
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "http://localhost:3000/home";
-          }}
-        >
-          Back to home page
-        </Button>
-        <Button
-          className="addEmployeeBtn"
-          sx={{
-            marginTop: "24px",
-            display: "flex",
-            backgroundColor: "#C6C4C4",
-            minHeight: "4vh",
-            minWidth: "10vw",
-            fontWeight: "600",
-            color: "rgba(0, 0, 0, 0.614)",
-            marginLeft: "24px",
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "http://localhost:3000/teams";
-          }}
-        >
-          Teams
-        </Button>
-      </div>
+  
       <div className="employee-page">
-        <h1>Employees Control</h1>
+        <h1 className="projectsTitle" >Employees Control</h1>
 
         {/* <Dialog>hi</Dialog> */}
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="center" sx={{ fontSize: "22px" }}>
+                <StyledTableCell className="tableTitle" align="center" sx={{ fontSize: "22px" }}>
                   IMG
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   First Name
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Last Name
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Email
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Team
                 </StyledTableCell>
-                <StyledTableCell
+                <StyledTableCell className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
@@ -247,7 +208,7 @@ const[getteam,setgetteam]=useState([])
                 </StyledTableCell>
               </TableRow>
             </TableHead>
-            <TableBody sx={{ backgroundColor: "#0A4F70" }}>
+            <TableBody sx={{ Color: "black" }}>
               {(rowsPerPage > 0
                 ? data.slice(
                     page * rowsPerPage,

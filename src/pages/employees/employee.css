@@ -18,5 +18,5 @@
 
 .addEmployeeBtn:hover {
   background-color: #0a4f70 !important;
-  color: white;
+  color: white!important;
 }
