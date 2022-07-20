@@ -164,18 +164,12 @@ const Teams = () => {
           <>
             <Button
               style={{
-                border: "black solid 2px",
-                borderRadius: "5px",
-                position:'absolute',
-                right:'4vw',
-                color:'white',
-                backgroundColor:'grey',
-                top:'11.8vh'
+                position:'absolute',top:'2vh',right:'6vw',border:'1px solid transparent',backgroundColor:'#0A4F70',color:'white'
 
               }}
               onClick={() => setpost(!post)}
             >
-New            </Button>
+New Team       </Button>
             {post && (
               <Dialog open={post} onClose={() => setpost(!post)}>
                 <DialogTitle >Add Team</DialogTitle>

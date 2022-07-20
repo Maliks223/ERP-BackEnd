@@ -154,7 +154,7 @@ data.append('description',description);
 
     return (
         <>
-        <Button style={{position:'absolute',top:'12vh',right:'3vw',border:'1px solid transparent',backgroundColor:'grey',color:'white'}} onClick={()=>{setopendialog(!opendialog)}}>New</Button>
+        <Button style={{position:'absolute',top:'2vh',right:'6vw',border:'1px solid transparent',backgroundColor:'#0A4F70',color:'white'}} onClick={()=>{setopendialog(!opendialog)}}>New Role</Button>
         {opendialog &&
         <Dialog open={opendialog}onClose={()=>setopendialog(!opendialog)}>
             <DialogTitle>Add New Role</DialogTitle>

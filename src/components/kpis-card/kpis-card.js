@@ -57,10 +57,12 @@ const KPIRow = ({ data }) => {
     const handleDelete = async () => {
         try {
             const response = await fetch(
-                `http://localhost:8000/api/kpis/${id}`, {
+                `http://localhost:8000/api/kpi/${id}`, {
                 method: "Delete",
                 content: "application/json",
-            });
+            })
+            .then((response) => response.data)
+            .then((result) => window.location.reload());;
             const res = await response.json();
             console.log(res);
         }

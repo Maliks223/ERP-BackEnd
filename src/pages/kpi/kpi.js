@@ -57,7 +57,7 @@ const[open,setclose]=useState(false);
   return (
     <>
     <div className="kpiContainer">
-    <Button onClick={()=>setclose(!open)} style={{position:'absolute',right:'5vw',top:'18.5vh',backgroundColor:'grey',color:'white'}}>New</Button>
+    <Button onClick={()=>setclose(!open)} style={{position:'absolute',top:'2vh',right:'6vw',border:'1px solid transparent',backgroundColor:'#0A4F70',color:'white'}}>New Kpi</Button>
    {open && <Dialog open={open}onClose={()=>{setclose(!open)}}>
       <DialogTitle>Add New KPI</DialogTitle>
       <DialogContent>
@@ -95,7 +95,7 @@ const[open,setclose]=useState(false);
           </TableHead>
           <TableBody>
             {data.map((kpi,index) => (
-              <KPIRow key={index} data={kpi} />
+              <KPIRow key={index} data={kpi}/>
             ))}
           </TableBody>
         </Table>
