@@ -114,7 +114,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Projects = () => {
+const Projects = (props) => {
   const [projects, setprojects] = useState([]);
   const [postname, setpostname] = useState("");
   const [page, setPage] = React.useState(0);

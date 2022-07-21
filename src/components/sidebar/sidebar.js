@@ -62,7 +62,7 @@ const SideBar = () => {
              <MenuItem active={window.location.pathname === "/kpis" ? true : false} icon={< FaProjectDiagram/>}>Kpi's<Link to="/kpis"/></MenuItem>
              <MenuItem active={window.location.pathname === "/projects" ? true : false} icon={<RiProjector2Line />}>Projects<Link to="/projects"/></MenuItem> 
               <MenuItem active={window.location.pathname === "/teams" ? true : false} icon={<RiTeamFill />}>Teams<Link to="/teams"/></MenuItem>
-              <MenuItem active={window.location.pathname === "/admin" ? true : false} icon={<RiAdminLine />}>Admin<Link to="/teams"/></MenuItem>
+              <MenuItem active={window.location.pathname === "/admin" ? true : false} icon={<RiAdminLine />}>Admin<Link to="/admin"/></MenuItem>
               <MenuItem active={window.location.pathname === "/roles" ? true : false} icon={<GiEnergySword  />}>Roles<Link to="/roles"/></MenuItem>
 
 
