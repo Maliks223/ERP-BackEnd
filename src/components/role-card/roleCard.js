@@ -130,7 +130,19 @@ const RoleRow = ({ data }) => {
             </Button>
           </DialogActions>
         </Dialog>
-        <Button>Assign to Employee</Button>
+        <Button
+                      className="addEmployeeBtn"
+         style={{
+          backgroundColor: "grey",
+          marginRight: "20px",
+          marginLeft: "20px",
+
+          border: ".5px solid black",
+          backgroundColor: "#C6C4C4",
+          minHeight: "2vh",
+          minWidth: "4vw",
+          color: "black",
+        }}>Assign to Employee</Button>
       </StyledTableCell>
     </StyledTableRow>
   );

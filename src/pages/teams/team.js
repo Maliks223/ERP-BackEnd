@@ -164,13 +164,14 @@ const Teams = () => {
           </h1>
           <>
             <Button
+            className="addEmployeeBtn"
               style={{
                 position: "absolute",
                 top: "2vh",
                 right: "6vw",
-                border: "1px solid transparent",
-                backgroundColor: "#0A4F70",
-                color: "white",
+                border: "1px solid black",
+                backgroundColor: "#C6C4C4",
+                color: "black",
               }}
               onClick={() => setpost(!post)}
             >

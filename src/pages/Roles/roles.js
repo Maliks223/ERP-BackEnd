@@ -110,10 +110,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const Roles = () => {
   const [data, setData] = useState([]);
-  const [page, setPage] = React.useState(0);
   const [opendialog, setopendialog] = useState(false);
   const [role, setrole] = useState([]);
   const [description, setdescription] = useState([]);
+  const [page, setPage] = React.useState(0);
+
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const fetchRoles = async () => {
@@ -157,13 +158,14 @@ const Roles = () => {
   return (
     <>
       <Button
+                    className="addEmployeeBtn"
         style={{
           position: "absolute",
           top: "2vh",
           right: "6vw",
-          border: "1px solid transparent",
-          backgroundColor: "#0A4F70",
-          color: "white",
+          border: "1px solid black",
+          backgroundColor: "//#endregionC6C4C4",
+          color: "black",
         }}
         onClick={() => {
           setopendialog(!opendialog);
@@ -214,7 +216,6 @@ const Roles = () => {
                     marginRight: "20px",
                     marginLeft: "20px",
                     marginTop: "30px",
-
                     border: ".5px solid black",
                     backgroundColor: "#C6C4C4",
                     minHeight: "2vh",
@@ -232,7 +233,6 @@ const Roles = () => {
                     marginRight: "20px",
                     marginLeft: "20px",
                     marginTop: "30px",
-
                     border: ".5px solid black",
                     backgroundColor: "#C6C4C4",
                     minHeight: "2vh",
