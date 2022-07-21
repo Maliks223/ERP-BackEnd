@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   async function login(e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(email, password);
 
     let item = { email, password };

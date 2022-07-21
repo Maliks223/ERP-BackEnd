@@ -120,7 +120,7 @@ const Employees = () => {
   const [team, setteam] = useState("");
 
   //get team
-  const [getteam, setgetteam] = useState([])
+  const [getteam, setgetteam] = useState([]);
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
@@ -133,7 +133,6 @@ const Employees = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  
 
   const fetchEmployees = async () => {
     try {
@@ -162,45 +161,68 @@ const Employees = () => {
     Request();
   }, []);
 
-
   return (
     <div className="employeeWraper">
-  
       <div className="employee-page">
-        <h1 className="projectsTitle" >Employees Control</h1>
-
+        <div className="postproject">
+          <h1 className="projectsTitle">Employees Control</h1>
+          <Button
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "grey",
+              border: ".5px solid black",
+              backgroundColor: "#C6C4C4",
+              marginTop: "130px",
+              marginRight: "-32vw",
+              maxHeight: "4vh",
+              maxWidth: "10vw",
+              color: "black",
+            }}
+          >
+            Add Employee
+          </Button>
+        </div>
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell className="tableTitle" align="center" sx={{ fontSize: "22px" }}>
+                <StyledTableCell
+                  className="tableTitle"
+                  align="center"
+                  sx={{ fontSize: "22px" }}
+                >
                   IMG
                 </StyledTableCell>
-                <StyledTableCell className="tableTitle"
+                <StyledTableCell
+                  className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   First Name
                 </StyledTableCell>
-                <StyledTableCell className="tableTitle"
+                <StyledTableCell
+                  className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Last Name
                 </StyledTableCell>
-                <StyledTableCell className="tableTitle"
+                <StyledTableCell
+                  className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Email
                 </StyledTableCell>
-                <StyledTableCell className="tableTitle"
+                <StyledTableCell
+                  className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
                   Team
                 </StyledTableCell>
-                <StyledTableCell className="tableTitle"
+                <StyledTableCell
+                  className="tableTitle"
                   align="center"
                   sx={{ fontSize: "22px", borderLeft: "1px solid white" }}
                 >
@@ -211,9 +233,9 @@ const Employees = () => {
             <TableBody sx={{ Color: "black" }}>
               {(rowsPerPage > 0
                 ? data.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                 : data
               ).map((employee) => (
                 <EmployeeRow data={employee} />
@@ -241,22 +263,7 @@ const Employees = () => {
             </TableFooter>
           </Table>
         </TableContainer>
-        <Button
-          className="addEmployeeBtn"
-          sx={{
-            marginTop: "24px",
-            display: "flex",
-            backgroundColor: "#C6C4C4",
-            minHeight: "4vh",
-            minWidth: "10vw",
-            fontWeight: "600",
-            color: "rgba(0, 0, 0, 0.614)",
-            marginBottom: "24px",
-          }}
-        >
-          Add Employee
-        </Button>
-      </div> 
+      </div>
     </div>
   );
 };

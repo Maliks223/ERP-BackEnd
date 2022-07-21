@@ -1,39 +1,37 @@
-import React from 'react';
 import "./lineGraph.css";
+import React from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
+
 
 ChartJS.register(
     CategoryScale,
     LinearScale,
-    PointElement,
-    LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend
 );
 
-
-const LineGraph = (props) => {
+const BarCharts = (props) => {
     const kpis = props.kpis;
     return (
         <>
             <div className='line-graph'>
-                <Line data={{
-                    labels: kpis.map((employee) => employee.pivot.KPI_date),
+                <Bar data={{
+                    labels: kpis.map((employee) => employee.KPI_date.slice(0,10)),
                     datasets: [
                         {
                             label: "Rate",
-                            data: kpis.map((employee) => employee.pivot.rate),
+                            data: kpis.map((employee) => employee.rate),
                             backgroundColor: [
                                 "#ffbb11",
                                 "#ecf0f1",
@@ -51,7 +49,7 @@ const LineGraph = (props) => {
                         },
                         title: {
                             display: true,
-                            text: 'Chart.js Line Chart',
+                            text: kpis[0].kpi_name,
                         },
                     },
                 }} />
@@ -60,4 +58,4 @@ const LineGraph = (props) => {
     )
 }
 
-export default LineGraph;
+export default BarCharts;
