@@ -27,11 +27,11 @@ const BarCharts = (props) => {
         <>
             <div className='line-graph'>
                 <Bar data={{
-                    labels: kpis.map((employee) => employee.pivot.KPI_date),
+                    labels: kpis.map((employee) => employee.KPI_date.slice(0,10)),
                     datasets: [
                         {
                             label: "Rate",
-                            data: kpis.map((employee) => employee.pivot.rate),
+                            data: kpis.map((employee) => employee.rate),
                             backgroundColor: [
                                 "#ffbb11",
                                 "#ecf0f1",
@@ -49,7 +49,7 @@ const BarCharts = (props) => {
                         },
                         title: {
                             display: true,
-                            text: 'Chart.js Line Chart',
+                            text: kpis[0].kpi_name,
                         },
                     },
                 }} />
