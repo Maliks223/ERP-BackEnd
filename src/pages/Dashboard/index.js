@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from '../../components/sidebar/sidebar';
 import './index.css';
+import NavBar from '../../components/navbar/navbar';
 
 
 const Dashboard = () => {
@@ -15,6 +16,7 @@ const Dashboard = () => {
 
   return (
     <div className='dash-container'>
+      <NavBar/>
       <SideBar />
       <Outlet />
     </div>

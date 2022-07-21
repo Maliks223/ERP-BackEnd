@@ -1,3 +1,9 @@
-.KpiContainer{
-    margin-left:12vw;
+.kpiContainer{
+    margin-left:13.5vw;
+    margin-top: 15vh;
+}
+
+.control{
+    margin-left: 40%;
+    margin-top: 50px;
 }

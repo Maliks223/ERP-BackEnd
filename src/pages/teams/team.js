@@ -158,28 +158,36 @@ const Teams = () => {
   return (
     <>
       <div className="teamContainer">
-        
         <div className="teamcontainer">
-          <h1 className="tableteams"style={{marginTop:'50px'}}>Teams Control</h1>
+          <h1 className="tableteams" style={{ marginTop: "50px" }}>
+            Teams Control
+          </h1>
           <>
             <Button
+            className="addEmployeeBtn"
               style={{
-                border: "black solid 2px",
-                borderRadius: "5px",
-                position:'absolute',
-                right:'4vw',
-                color:'white',
-                backgroundColor:'grey',
-                top:'11.8vh'
-
+                position: "absolute",
+                top: "2vh",
+                right: "6vw",
+                border: "1px solid black",
+                backgroundColor: "#C6C4C4",
+                color: "black",
               }}
               onClick={() => setpost(!post)}
             >
-New            </Button>
+              New Team{" "}
+            </Button>
             {post && (
               <Dialog open={post} onClose={() => setpost(!post)}>
-                <DialogTitle >Add Team</DialogTitle>
-                <form onSubmit={(e) => Post()} style={{padding:"50px",display:'flex',flexDirection:"column"}}>
+                <DialogTitle>Add Team</DialogTitle>
+                <form
+                  onSubmit={(e) => Post()}
+                  style={{
+                    padding: "50px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   <TextField
                     name="name"
                     id="name"
@@ -189,11 +197,42 @@ New            </Button>
                     }}
                   />
                   <div>
-                  <Button style={{margin:'40px 0px 0px 0px'}} type="submit">submit</Button>
-                  <Button onClick={() => setpost(!post)} style={{margin:'40px 0px 0px 150px',color:'red'}}>Cancel</Button>
+                    <Button
+                      className="addEmployeeBtn"
+                      style={{
+                        backgroundColor: "grey",
+                        marginRight: "20px",
+                        marginLeft: "20px",
+                        marginTop: "30px",
+                        border: ".5px solid black",
+                        backgroundColor: "#C6C4C4",
+                        minHeight: "2vh",
+                        minWidth: "4vw",
+                        color: "black",
+                      }}
+                      type="submit"
+                    >
+                      submit
+                    </Button>
+                    <Button
+                      className="addEmployeeBtn"
+                      onClick={() => setpost(!post)}
+                      style={{
+                        backgroundColor: "grey",
+                        marginRight: "20px",
+                        marginLeft: "20px",
+                        marginTop: "30px",
+                        border: ".5px solid black",
+                        backgroundColor: "#C6C4C4",
+                        minHeight: "2vh",
+                        minWidth: "4vw",
+                        color: "black",
+                      }}
+                    >
+                      Cancel
+                    </Button>
                   </div>
                 </form>
-
               </Dialog>
             )}
             <TableContainer component={Paper}>
@@ -203,22 +242,16 @@ New            </Button>
               >
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="center">
+                    <StyledTableCell className="tableTitle" align="center">
                       id
                     </StyledTableCell>
-                    <StyledTableCell
-                      align="center"
-                    >
+                    <StyledTableCell align="center" className="tableTitle">
                       Team
                     </StyledTableCell>
-                    <StyledTableCell
-                      align="center"
-                    >
+                    <StyledTableCell align="center" className="tableTitle">
                       Assigned Project
                     </StyledTableCell>
-                    <StyledTableCell
-                      align="center"
-                    >
+                    <StyledTableCell align="center" className="tableTitle">
                       Actions
                     </StyledTableCell>
                   </TableRow>

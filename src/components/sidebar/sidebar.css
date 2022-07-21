@@ -1,40 +1,11 @@
 #header {
     position: absolute;
     left:0px;
-    top: 0px;
+    top: 12vh;
     width: 220px;
-  }
-  .rotate {
-    animation: rotation 15s infinite linear;
-    border: 1px solid transparent;
-    border-radius: 50%;
-    width:80px;
-    margin-left: 65px;
-   
-  }
-  
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
-  }
-
-  #header .pro-sidebar {
-    height: 100vh;
+    /* height: 100vh; */
   }
  
-  MenuItem{
-    color:black;
-  }
-  .taz{
-    width: 2.5rem;
-    position: absolute;
-    top: 4%;
-    left: 39.5%;
-  }
   #header .closemenu {
     color: #000;
     position: absolute;

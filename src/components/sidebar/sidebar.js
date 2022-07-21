@@ -35,15 +35,15 @@ const SideBar = () => {
       <div id="header">
           {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
-          <SidebarHeader>
-          <div className="logotext">
+          {/* <SidebarHeader> */}
+         {/* <div className="logotext"> */}
               {/* small and big change using menucollapse state */}
               {/* <p>{menuCollapse ? "Logo" : "Logo"}</p> */}
-              <img className="rotate"src={require('./malek.png')}/> 
-              <img className="taz" src={require('./tazkarje.png')}/>
+              {/* <img className="rotate"src={require('./malek.png')}/>  */}
+              {/* <img className="taz" src={require('./tazkarje.png')}/> */}
               {/* <h1 icon={<FiHome/>}></h1> */}
-            </div>
-            <div className="closemenu" onClick={menuIconClick}>
+            {/* </div> */}
+            {/* <div className="closemenu" onClick={menuIconClick}> */}
 
                 {/* changing menu collapse icon on click */}
               {/* {menuCollapse ? (
@@ -51,8 +51,8 @@ const SideBar = () => {
               ) : (
                 <FiArrowLeftCircle/>
               )} */}
-            </div>
-          </SidebarHeader>
+            {/* </div> */}
+          {/* </SidebarHeader> */}
           <SidebarContent>
             <Menu iconShape="square">
               <MenuItem active={window.location.pathname === "/home" ? true : false} icon={<FiHome />}>
