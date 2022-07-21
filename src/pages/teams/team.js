@@ -25,6 +25,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import { Link } from "react-router-dom";
+import { AddCircle } from "@mui/icons-material";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -159,15 +160,14 @@ const Teams = () => {
     <>
       <div className="teamContainer">
         <div className="teamcontainer">
-          <h1 className="tableteams" style={{ marginTop: "50px" }}>
+          <h1 className="tableteams">
             Teams Control
           </h1>
-          <>
-            <Button
+          <Button
             className="addEmployeeBtn"
               style={{
                 position: "absolute",
-                top: "2vh",
+                top: "15vh",
                 right: "6vw",
                 border: "1px solid black",
                 backgroundColor: "#C6C4C4",
@@ -175,8 +175,10 @@ const Teams = () => {
               }}
               onClick={() => setpost(!post)}
             >
-              New Team{" "}
+      <AddCircle/>
             </Button>
+          <>
+          
             {post && (
               <Dialog open={post} onClose={() => setpost(!post)}>
                 <DialogTitle>Add Team</DialogTitle>

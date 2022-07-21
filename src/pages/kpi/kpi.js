@@ -28,6 +28,7 @@ import {
   Dialog,
 } from "@mui/material";
 import axios from "axios";
+import { AddCircle } from "@mui/icons-material";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -172,7 +173,7 @@ const KPIS = () => {
             color: "black",
           }}
         >
-          New Kpi
+      <AddCircle/>
         </Button>
         {open && (
           <Dialog
@@ -244,7 +245,7 @@ const KPIS = () => {
             </DialogContent>
           </Dialog>
         )}
-        <h1 className="control">KPI's Control</h1>
+        <h1 className="control"style={{marginTop:'10vh',marginLeft:'4vw'}}>KPI's Control</h1>
         <TableContainer component={Paper}>
           <Table
             sx={{ margin: "auto", width: "85vw" }}

@@ -394,7 +394,6 @@ const Team = ({ name, project, id, pivotId }) => {
                       marginRight: "20px",
                       marginLeft: "20px",
                       marginTop: "30px",
-
                       border: ".5px solid black",
                       backgroundColor: "#C6C4C4",
                       minHeight: "2vh",
@@ -411,7 +410,6 @@ const Team = ({ name, project, id, pivotId }) => {
                       marginRight: "20px",
                       marginLeft: "20px",
                       marginTop: "30px",
-
                       border: ".5px solid black",
                       backgroundColor: "#C6C4C4",
                       minHeight: "2vh",

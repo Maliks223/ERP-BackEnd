@@ -1,10 +1,12 @@
 .tableteams{
- margin-left: 40%;
+ margin-left: 2vw;
+
 } 
 
 
  .teamContainer{
-    height: 100vh;
-    margin-left: 13.5vw;
+    height: 100%;
+    margin-left: 11.5vw;
+    margin-top: 15vh;
     
 }

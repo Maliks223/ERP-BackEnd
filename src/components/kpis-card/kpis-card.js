@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import KPIForm from "../kpi-form/kpiForm";
+import EmployeeAssignForm from "../KPI_assign/Employee_assign_form";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,6 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const KPIRow = ({ data }) => {
+  const[openassign,setopenassign]=useState(false);
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
   const handleClickOpen = () => {
@@ -86,6 +88,25 @@ const KPIRow = ({ data }) => {
         <Button onClick={handleClickOpenDelete}>
           <DeleteIcon color="error" />
         </Button>
+        <Button onClick={()=>{setopenassign(!openassign)}}
+         className="addEmployeeBtn"
+         style={{
+           backgroundColor: "grey",
+           marginRight: "20px",
+           marginLeft: "20px",
+          
+
+           border: ".5px solid black",
+           backgroundColor: "#C6C4C4",
+           minHeight: "2vh",
+           minWidth: "4vw",
+           color: "black",
+         }}>
+          assign to employee
+                  </Button>
+                  <Dialog open={openassign}onClose={()=>setopenassign(!openassign)}>
+                    <EmployeeAssignForm id={id} />
+                  </Dialog>
         <Dialog open={openDelete} onClose={handleCloseDelete}>
           <DialogTitle>Delete</DialogTitle>
           <DialogContent>

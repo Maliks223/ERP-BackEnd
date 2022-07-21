@@ -12,6 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import EmployeeForm from "../employee-form/employee-form";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
+import './employeeCard.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

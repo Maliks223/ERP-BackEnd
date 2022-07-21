@@ -9,7 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import EmployeeRow from "../../components/employee-card/employeeCard";
-import { Button, Dialog } from "@mui/material";
+import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -20,9 +20,11 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import { AddCircle } from "@mui/icons-material";
+import TextField from "@mui/material/TextField";
+import DialogActions from "@mui/material/DialogActions";
+import FileUploader from "../../components/File_uploader/fileUploader";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -111,13 +113,14 @@ const Employees = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [post, setpost] = useState(false);
+
   //post employee
-  const [firstname, setfirstname] = useState("");
-  const [lastname, setlastname] = useState("");
-  const [email, setemail] = useState("");
-  const [phonenumber, setphonenumber] = useState("");
-  const [image, setimage] = useState(null);
-  const [team, setteam] = useState("");
+  const [firstname, setfirstname] = useState([]);
+  const [lastname, setlastname] = useState([]);
+  const [email, setemail] = useState([]);
+  const [phonenumber, setphonenumber] = useState([]);
+  const [file, setFile] = useState(null);
+  const [team, setteam] = useState([]);
 
   //get team
   const [getteam, setgetteam] = useState([]);
@@ -148,6 +151,9 @@ const Employees = () => {
   useEffect(() => {
     fetchEmployees();
   }, []);
+ 
+
+
   //teams
   const Request = async () => {
     const res = await axios
@@ -161,27 +167,153 @@ const Employees = () => {
     Request();
   }, []);
 
+   //post employee
+const Postemployee=async(e)=>{
+  e.preventDefault();
+
+const data=new FormData();
+data.append("firstname",firstname);
+data.append("lastname",lastname);
+data.append("email",email);
+data.append("phonenumber",phonenumber);
+data.append("image",file);
+data.append("team_id",team);
+
+
+  const responsee=await axios.post("http://localhost:8000/api/employees",data)
+  .catch((err)=>console.log(err));
+  const res = await responsee.json();
+  console.log(res);
+  
+}
+
   return (
     <div className="employeeWraper">
       <div className="employee-page">
         <div className="postproject">
-          <h1 className="projectsTitle">Employees Control</h1>
-          <Button
+          <h1 className="projectsTitle"style={{position:'absolute',top:'13vh',left:'15vw'}}>Employees Control</h1>
+          <Button 
+          onClick={()=>setpost(!post)}
             className="addEmployeeBtn"
             sx={{
               backgroundColor: "grey",
               border: ".5px solid black",
               backgroundColor: "#C6C4C4",
-              marginTop: "130px",
-              marginRight: "-32vw",
+              position: "absolute",
+              top: "14vh",
+              right: "6vw",
               maxHeight: "4vh",
               maxWidth: "10vw",
               color: "black",
             }}
           >
-            Add Employee
+      <AddCircle/>
           </Button>
-        </div>
+          </div>
+<div>
+          {post &&
+          <Dialog open={post}onClose={()=>setpost(!post)}>
+            <DialogTitle>Add Employee</DialogTitle>
+            <DialogContent>
+            <form onSubmit={(e)=>{Postemployee();}}>
+
+        <TextField
+          autoFocus
+          margin="dense"
+          name="firstname"
+          label="First Name"
+          type="text"
+          fullWidth
+          variant="standard"
+         onChange={(e)=>{setfirstname(e.target.value)}}
+        />
+        <TextField
+          autoFocus
+          margin="dense"
+          name="lastname"
+          label="Last Name"
+          type="text"
+          fullWidth
+          variant="standard"
+          onChange={(e)=>{setlastname(e.target.value)}}
+          />
+        <TextField
+          autoFocus
+          margin="dense"
+          name="email"
+          label="Email Address"
+          type="email"
+          fullWidth
+          variant="standard"
+          onChange={(e)=>{setemail(e.target.value)}}
+          />
+        <TextField
+          autoFocus
+          margin="dense"
+          name="phonenumber"
+          label="Phone Number"
+          type="tel"
+          fullWidth
+          variant="standard"
+          onChange={(e)=>{setphonenumber(e.target.value)}}
+          sx={{ marginBottom: "24px" }}
+        />
+        <FileUploader onFileSelect={(file) => setFile(file)} />
+        <select
+                 onChange={(e)=>{setteam(e.target.value)}}
+
+          style={{
+            width: "15vw",
+            padding: "3px 3px 10px 3px",
+            margin: "36px 36px 75px 36px",
+            display: "flex",
+            flexDirection: "column",
+          }}>
+            <option>Teams</option>
+          {getteam.map((e,i)=>{
+            return(
+            <option key={i} value={e.id}>{e.name}</option>)
+          })
+          
+}
+        </select>
+        <Button
+type="submit"
+className="addEmployeeBtn"
+          sx={{
+            backgroundColor: "#C6C4C4",
+            minHeight: "4vh",
+            minWidth: "10vw",
+            fontWeight: "600",
+            color: "rgba(0, 0, 0, 0.614)",
+            marginBottom: "24px",
+          }}
+          // onClick={handleEdit}
+        >
+          Confirm
+        </Button>
+      
+        <Button
+          className="addEmployeeBtn"
+          sx={{
+            backgroundColor: "#C6C4C4",
+            minHeight: "4vh",
+            minWidth: "10vw",
+            fontWeight: "600",
+            color: "rgba(0, 0, 0, 0.614)",
+            marginBottom: "24px",
+          }}
+          onClick={()=>setpost(!post)}
+        >
+          Cancel
+        </Button>
+
+        </form>
+      </DialogContent>
+     
+     
+          </Dialog>
+          }</div>
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
@@ -237,8 +369,8 @@ const Employees = () => {
                     page * rowsPerPage + rowsPerPage
                   )
                 : data
-              ).map((employee) => (
-                <EmployeeRow data={employee} />
+              ).map((employee,i) => (
+                <EmployeeRow key={i} data={employee} />
               ))}
             </TableBody>
             <TableFooter>
