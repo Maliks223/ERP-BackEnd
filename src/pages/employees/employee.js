@@ -168,24 +168,25 @@ const Employees = () => {
   }, []);
 
    //post employee
-const Postemployee=async(e)=>{
-  e.preventDefault();
+const Postemployee=async()=>{
 
 const data=new FormData();
-data.append("firstname",firstname);
-data.append("lastname",lastname);
-data.append("email",email);
-data.append("phonenumber",phonenumber);
-data.append("image",file);
-data.append("team_id",team);
+data.append("firstname", firstname);
+data.append("lastname", lastname);
+data.append("email", email);
+data.append("phonenumber", phonenumber);
+data.append("image", file);
+data.append("team_id", team);
 
-
-  const responsee=await axios.post("http://localhost:8000/api/employees",data)
+  const responsee=await fetch("http://localhost:8000/api/employees",{method:"POST",content: "application/json",
+  body:data})
   .catch((err)=>console.log(err));
-  const res = await responsee.json();
-  console.log(res);
-  
+  // const res = await responsee.json();
+  // console.log(res);
 }
+
+  
+
 
   return (
     <div className="employeeWraper">
@@ -210,8 +211,7 @@ data.append("team_id",team);
       <AddCircle/>
           </Button>
           </div>
-<div>
-          {post &&
+          {post && 
           <Dialog open={post}onClose={()=>setpost(!post)}>
             <DialogTitle>Add Employee</DialogTitle>
             <DialogContent>
@@ -313,7 +313,7 @@ className="addEmployeeBtn"
      
      
           </Dialog>
-          }</div>
+          }
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
