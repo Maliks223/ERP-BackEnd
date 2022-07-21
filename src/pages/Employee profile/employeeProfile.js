@@ -6,11 +6,13 @@ import './employeeProfile.css';
 import KPIAssignForm from "../../components/KPI_assign/KPI_assign_form";
 import EditEmployeeTeam from "../../components/Edit_Employee_team/editEmployeeTeam";
 import BarCharts from "../../components/LineGraph/LineGraph";
+import CardId from "../../components/employeeProfileCard/employeeProfileCard";
 
 const EmployeeProfile = () => {
     const [open, setOpen] = useState(false);
     const [openTeam, setOpenTeam] = useState(false);
     const [employee, setEmployee] = useState();
+    const [filtered, setFiltered] = useState([]);
 
 
     const handleClickOpen = () => {
@@ -38,6 +40,7 @@ const EmployeeProfile = () => {
         const response = await fetch(`http://localhost:8000/api/employees/${data.id}`);
         const res = await response.json();
         setEmployee(res.data[0]);
+        setFiltered(res.filtered);
         console.log(res);
     }
 
@@ -48,15 +51,10 @@ const EmployeeProfile = () => {
 
     return (
         <>
+
             {employee &&
                 <div className="employee-profile">
-
-                    <img className='profile-image' src={`http://localhost:8000/storage/uploads/${employee.image}`} />
-                    <h3>{employee.firstname} {`  `}{employee.lastname}</h3>
-                    <h3>Email: {employee.email}</h3>
-                    <h3>Phone Number: {employee.phonenumber}</h3>
-                    <h3>Team: {employee.teams.name}</h3>
-
+                    <CardId data={employee} />
                     <Button onClick={handleClickOpenTeam} >Edit Employee Team</Button>
                     <Dialog open={openTeam} onClose={handleCloseTeam}>
                         <DialogTitle> Edit</DialogTitle>
@@ -73,8 +71,10 @@ const EmployeeProfile = () => {
                         </DialogContent>
                     </Dialog>
 
-                    <BarCharts kpis={employee.kpis} />
-
+                    {filtered &&
+                        filtered.map(list => {
+                            return <BarCharts kpis={list} />
+                        })}
                     {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
                     <Dialog open={openTeam} onClose={handleCloseTeam}>
                         <DialogTitle> Edit</DialogTitle>
