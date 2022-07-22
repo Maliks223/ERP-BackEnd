@@ -7,13 +7,15 @@ import KPIAssignForm from "../../components/KPI_assign/KPI_assign_form";
 import EditEmployeeTeam from "../../components/Edit_Employee_team/editEmployeeTeam";
 import BarCharts from "../../components/LineGraph/LineGraph";
 import CardId from "../../components/employeeProfileCard/employeeProfileCard";
+import RoleProject from "../../components/Role_Project/RoleProjectForm";
 
 const EmployeeProfile = () => {
     const [open, setOpen] = useState(false);
     const [openTeam, setOpenTeam] = useState(false);
+    const [openRoles, setOpenRoles] = useState(false);
     const [employee, setEmployee] = useState();
     const [filtered, setFiltered] = useState([]);
-
+    const [roles, setRoles] = useState([]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -31,21 +33,45 @@ const EmployeeProfile = () => {
         setOpenTeam(false);
     };
 
+    const handleClickOpenRoles = () => {
+        setOpenRoles(true);
+    };
+
+    const handleCloseRoles = () => {
+        setOpenRoles(false);
+    };
+
     const location = useLocation();
     const data = location.state?.data;
 
 
 
     const fetchEmployee = async () => {
-        const response = await fetch(`http://localhost:8000/api/employees/${data.id}`);
-        const res = await response.json();
-        setEmployee(res.data[0]);
-        setFiltered(res.filtered);
-        console.log(res);
+        try {
+            const response = await fetch(`http://localhost:8000/api/employees/${data.id}`);
+            const res = await response.json();
+            setEmployee(res.data[0]);
+            setFiltered(res.filtered);
+        }
+        catch (err) {
+            console.log('error', err);
+        }
+    }
+
+    const fetchRoles = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/employeerole/${data.id}`);
+            const res = await response.json();
+            setRoles(res);
+        }
+        catch (err) {
+            console.log('error', err);
+        }
     }
 
     useEffect(() => {
         fetchEmployee();
+        fetchRoles();
     }, []);
 
 
@@ -71,17 +97,19 @@ const EmployeeProfile = () => {
                         </DialogContent>
                     </Dialog>
 
+                    <Button onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
+                    <Dialog open={openRoles} onClose={handleCloseRoles}>
+                        <DialogTitle> Assign a Role in Project</DialogTitle>
+                        <DialogContent>
+                            <RoleProject id={employee.id}/>
+                        </DialogContent>
+                    </Dialog>
+
                     {filtered &&
                         filtered.map(list => {
                             return <BarCharts kpis={list} />
                         })}
-                    {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
-                    <Dialog open={openTeam} onClose={handleCloseTeam}>
-                        <DialogTitle> Edit</DialogTitle>
-                        <DialogContent>
-                            <EditEmployeeTeam data={data} />
-                        </DialogContent>
-                    </Dialog> */}
+
                 </div>}
         </>
 
