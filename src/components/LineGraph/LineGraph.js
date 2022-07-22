@@ -33,11 +33,7 @@ const BarCharts = (props) => {
                             label: "Rate",
                             data: kpis.map((employee) => employee.rate),
                             backgroundColor: [
-                                "#ffbb11",
-                                "#ecf0f1",
-                                "#50AF95",
-                                "#f3ba2f",
-                                "#2a71d0"
+                                "#013B75"
                             ]
                         }
                     ]
