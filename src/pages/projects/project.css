@@ -1,15 +1,9 @@
-.projectsWrapper {
-  width: 90vw;
-  margin-left: 250px;
+.projectcontainer {
+  margin-left:22vh;
+  margin-top: 20vh;
 }
 
-.projectsTitle {
-  display: flex;
-  justify-content: center;
-  font-size: 36px;
-  margin-top: 72px;
-  margin-bottom: 72px;
-}
+
 
 .deleteTeamForm {
   width: 50%;

@@ -1,6 +1,8 @@
 .employeeWraper {
-  height: 100vh;
-  margin-left: 13.5vw;
+  height: 100%;
+  margin-left: 11.5vw;
+  margin-top: 20.5vh;
+  /* margin-top: 30.vh; */
   /* background-color: #f7f6f6; */
 }
 
@@ -11,10 +13,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: end;
+  /* padding-top: 32px; */
 }
 .emplo {
   display: flex;
 }
+
 
 .addEmployeeBtn:hover {
   background-color: #0a4f70 !important;

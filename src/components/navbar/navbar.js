@@ -16,7 +16,7 @@ export default function NavBar() {
                                 src={`http://localhost:8000/storage/uploads/${user.profile_image}`}
                                 alt={user.name}
                             />
-                            <input class="searchinput" type="text" placeholder="Search"/>
+                            <input className="searchinput" type="text" placeholder="Search"/>
                             <div className="logotext">
               <img className="rotate"src={require('./malek.png')}/> 
               <img className="taz" src={require('./tazkarje.png')}/>

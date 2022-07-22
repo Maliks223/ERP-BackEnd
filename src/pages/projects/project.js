@@ -24,6 +24,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import { Link } from "react-router-dom";
+import { AddCircle } from "@mui/icons-material";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -156,19 +157,19 @@ const Projects = (props) => {
   };
 
   return (
-    <div className="projectsWrapper">
+    // <div className="projectsWrapper">
       <div className="projectcontainer">
         <>
           <div className="postproject">
-            <h1 className="projectsTitle">Projects Control</h1>
+            <h1 className="projectsTitle" style={{position:'absolute',top:'13vh',left:'15vw'}}>Projects Control</h1>
             <Button
             className="addEmployeeBtn"
             style={{
-              backgroundColor: "grey",
               border: ".5px solid black",
               backgroundColor: "#C6C4C4",
-              marginTop:"130px",
-              marginRight:"48px",
+              position: "absolute",
+              top: "14vh",
+              right: "6vw",
               maxHeight: "4vh",
               maxWidth: "10vw",
               color: "black",
@@ -178,7 +179,7 @@ const Projects = (props) => {
               setPost(!post);
             }}
           >
-            Create new project
+      <AddCircle/>
           </Button>
           </div>
 
@@ -220,7 +221,7 @@ const Projects = (props) => {
           )}
           <TableContainer component={Paper}>
             <Table
-              sx={{ margin: "auto", width: "80vw" }}
+              sx={{ margin: "auto", width: "85vw" }}
               aria-label="customized table"
             >
               <TableHead>
@@ -293,7 +294,7 @@ const Projects = (props) => {
       
         </>
       </div>
-    </div>
+    // </div>
   );
 };
 export default Projects;

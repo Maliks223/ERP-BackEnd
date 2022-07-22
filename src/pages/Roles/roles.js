@@ -26,8 +26,10 @@ import {
   DialogContent,
   TextField,
   DialogTitle,
+  Icon,
 } from "@mui/material";
 import axios from "axios";
+import { AddCircle, ControlPoint } from "@mui/icons-material";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -161,17 +163,17 @@ const Roles = () => {
                     className="addEmployeeBtn"
         style={{
           position: "absolute",
-          top: "2vh",
+          top: "14vh",
           right: "6vw",
           border: "1px solid black",
-          backgroundColor: "//#endregionC6C4C4",
+          backgroundColor: "#C6C4C4",
           color: "black",
         }}
         onClick={() => {
           setopendialog(!opendialog);
         }}
       >
-        New Role
+      <AddCircle/>
       </Button>
       {opendialog && (
         <Dialog open={opendialog} onClose={() => setopendialog(!opendialog)}>
@@ -249,7 +251,7 @@ const Roles = () => {
       )}
 
       <div className="rolecontainer">
-        <h1 style={{ marginLeft: "35vw", marginTop: "50px" }}>Roles Control</h1>
+        <h1 style={{ marginLeft: "2vw"}}>Roles Control</h1>
         <TableContainer component={Paper}>
           <Table sx={{ width: "85vw" }} aria-label="customized table">
             <TableHead>

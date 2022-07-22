@@ -1,4 +1,4 @@
-import { Button, DialogActions, InputLabel, MenuItem, Select, Slider, TextField } from "@mui/material";
+import { Button, DialogActions, DialogContent, DialogTitle, InputLabel, MenuItem, Select, Slider, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 
@@ -56,9 +56,12 @@ const EmployeeAssignForm = (props) => {
 
     return (
         <>
+        <DialogContent style={{margin:'35px'}}>
+            <DialogTitle style={{marginBottom:'50px',marginRight:'100px'}}>Assign this Kpi to Employee</DialogTitle>
             <InputLabel>Employees List</InputLabel>
             <Select
-                label='Employees List'
+            style={{width:'70%'}}
+               label='Employees List'
                 value={employee}
                 onChange={handleEmployeeChange}
             >
@@ -68,6 +71,9 @@ const EmployeeAssignForm = (props) => {
                     )
                 })}
             </Select>
+
+            <InputLabel style={{marginTop:'20px'}}>Range</InputLabel>
+
             <Slider
                 aria-label="Rate"
                 defaultValue={0}
@@ -79,13 +85,16 @@ const EmployeeAssignForm = (props) => {
                 max={10}
                 onChange={handleRateChange}
             />
+            <InputLabel style={{marginTop:'20px'}}>Date</InputLabel>
             <TextField
+                        style={{width:'70%'}}
                 type='date'
                 onChange={handleDateChange}
             />
             <DialogActions>
                 <Button onClick={handleAssign}>Submit</Button>
             </DialogActions>
+            </DialogContent>
         </>
     )
 }

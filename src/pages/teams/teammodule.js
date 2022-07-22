@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Team = ({ name, project, id, pivotId }) => {
+const Team = ({ name, project, id, pivotId ,members}) => {
   const [Name, setname] = useState(name);
   const [edit, setEdit] = useState(false);
   const [projects, setproject] = useState([]);
@@ -42,6 +42,8 @@ const Team = ({ name, project, id, pivotId }) => {
   const [opendelete, handleclosedelete] = useState(false);
   const [deleteproject, setdeleteproject] = useState(false);
   const [pivotid, setpivot] = useState(0);
+  const[show,setshow]=useState(false);
+  
 
   const [assignproject, setassignproject] = useState(false);
 
@@ -100,6 +102,8 @@ const Team = ({ name, project, id, pivotId }) => {
           {id}
         </StyledTableCell>
         <StyledTableCell align="center">{name}</StyledTableCell>
+        <StyledTableCell align="center">{members.length}</StyledTableCell>
+
         <StyledTableCell align="center">
           {project.length !== 0 ? project : "No Projects Assigned"}
         </StyledTableCell>
@@ -287,6 +291,46 @@ const Team = ({ name, project, id, pivotId }) => {
               </form>
             </DialogContent>
           </Dialog>
+          <Button 
+                              className="addEmployeeBtn"
+
+          style={{
+                  backgroundColor: "grey",
+                  marginRight: "20px",
+                  marginLeft: "20px",
+                  border: ".5px solid black",
+                  backgroundColor: "#C6C4C4",
+                  minHeight: "2vh",
+                  minWidth: "4vw",
+                  color: "black",
+                }} onClick={()=>{setshow(!show)}}>Show Members</Button>
+          <Dialog open={show}onClose={()=>setshow(!show)}>
+            <DialogTitle style={{margin:'30px'}}>Members of {name}'s team</DialogTitle>
+              <div>{members.map((member,i)=>{
+                return(
+                  <h4 key={i} style={{paddingLeft:'20px'}}>{i+1}{". "}{member.firstname}{" "}{member.lastname}</h4>
+                )
+              })}</div>
+              <DialogActions>
+<Button  className="addEmployeeBtn"
+                    style={{
+                      backgroundColor: "grey",
+                      marginRight: "20px",
+                      marginLeft: "20px",
+                      marginTop: "30px",
+
+                      border: ".5px solid black",
+                      backgroundColor: "#C6C4C4",
+                      minHeight: "2vh",
+                      minWidth: "4vw",
+                      color: "black",
+                    }} onClick={()=>setshow(!show)}>Close</Button>
+              </DialogActions>
+          
+            <DialogContent>
+
+            </DialogContent>
+          </Dialog>
         </StyledTableCell>
 
         {edit && (
@@ -394,7 +438,6 @@ const Team = ({ name, project, id, pivotId }) => {
                       marginRight: "20px",
                       marginLeft: "20px",
                       marginTop: "30px",
-
                       border: ".5px solid black",
                       backgroundColor: "#C6C4C4",
                       minHeight: "2vh",
@@ -411,7 +454,6 @@ const Team = ({ name, project, id, pivotId }) => {
                       marginRight: "20px",
                       marginLeft: "20px",
                       marginTop: "30px",
-
                       border: ".5px solid black",
                       backgroundColor: "#C6C4C4",
                       minHeight: "2vh",
