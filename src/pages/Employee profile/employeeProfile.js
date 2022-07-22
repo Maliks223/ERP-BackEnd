@@ -98,15 +98,16 @@ const EmployeeProfile = () => {
                         </DialogContent>
                     </Dialog>
 
-                    {/* {employee.team && */}
-                        <Button onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
+
+                    <Button onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
                     <Dialog open={openRoles} onClose={handleCloseRoles}>
                         <DialogTitle> Assign a Role in Project</DialogTitle>
                         <DialogContent>
                             <RoleProject id={employee.id} />
                         </DialogContent>
                     </Dialog>
-                    {/* } */}
+
+
 
 
 
@@ -115,7 +116,8 @@ const EmployeeProfile = () => {
                             return <BarCharts kpis={list} />
                         })}
 
-                </div>}
+                </div>
+            }
         </>
 
     )

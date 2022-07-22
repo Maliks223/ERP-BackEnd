@@ -7,10 +7,18 @@ import "./home.css";
 
 
 const Home = () => {
-    const admin = localStorage.getItem("admin");
-    const json = JSON.parse(admin);
-    console.log("json", json);
-    const [user, setuser] = useState(json);
+    const id = localStorage.getItem("id");
+    const [user, setuser] = useState([]);
+
+    const fetchAdmin =async ()=>{
+        const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`);
+        const response = await res.json();
+        setuser(response);
+    }   
+
+    useEffect(()=>{
+        fetchAdmin();
+    },[])
 
     return (
         <>
