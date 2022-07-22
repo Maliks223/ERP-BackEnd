@@ -161,7 +161,7 @@ const Admin = (props) => {
       <div className="projectcontainer">
         <>
           <div className="postproject">
-            <h1 className="projectsTitle">Projects Control</h1>
+            <h1 className="projectsTitle">Admins Control</h1>
             <Button
             className="addEmployeeBtn"
             style={{
