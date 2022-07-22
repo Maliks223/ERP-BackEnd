@@ -167,15 +167,14 @@ const Teams = () => {
             className="addEmployeeBtn"
               style={{
                 position: "absolute",
-                top: "15vh",
+                top: "13.5vh",
                 right: "6vw",
-                border: "1px solid black",
-                backgroundColor: "#C6C4C4",
+                fontSize:'20px',
                 color: "black",
               }}
               onClick={() => setpost(!post)}
             >
-      <AddCircle/>
+      <AddCircle style={{fontSize:'50px'}}/>
             </Button>
           <>
           
@@ -193,7 +192,7 @@ const Teams = () => {
                   <TextField
                     name="name"
                     id="name"
-                    label="Project"
+                    label="Team"
                     onChange={(e) => {
                       setname(e.target.value);
                     }}

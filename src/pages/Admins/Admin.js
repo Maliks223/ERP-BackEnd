@@ -24,7 +24,9 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 // import { Link } from "react-router-dom";
-import AdminRow from "./adminsmodule";
+import Admin from "./adminsmodule";
+import FileUploader from "../../components/File_uploader/fileUploader";
+import { AddCircle } from "@mui/icons-material";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -115,12 +117,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Admin = (props) => {
+const Admins = (props) => {
   const [admins, setAdmins] = useState([]);
   const [postname, setpostname] = useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [post, setPost] = useState(false);
+  const[name,setname]=useState([]);
+  const[email,setemail]=useState([]);
+  const[image,setimage]=useState(null);
+  const[password,setpassword]=useState([]);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -149,9 +155,13 @@ const Admin = (props) => {
 
   const handlePost = async () => {
     const data = new FormData();
-    data.append("name", postname);
+    data.append("name", name);
+    data.append("email", email);
+    data.append("profile_image",image);
+    data.append("password",password);
 
-    await Axios.post("http://localhost:8000/api/project", data).catch((err) =>
+
+    await Axios.post("http://localhost:8000/api/register", data).catch((err) =>
       console.log(err)
     );
   };
@@ -161,16 +171,15 @@ const Admin = (props) => {
       <div className="projectcontainer">
         <>
           <div className="postproject">
-            <h1 className="projectsTitle">Admins Control</h1>
+            <h1 className="projectsTitle" style={{position:'absolute',top:'13vh',left:'15vw'}}>Admins Control</h1>
             <Button
             className="addEmployeeBtn"
             style={{
-              backgroundColor: "grey",
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
-              marginTop:"130px",
-              marginRight:"48px",
-              maxHeight: "4vh",
+          
+              position: "absolute",
+              top: "13vh",
+              right: "6vw",
+              maxHeight: "6vh",
               maxWidth: "10vw",
               color: "black",
             }}
@@ -179,7 +188,7 @@ const Admin = (props) => {
               setPost(!post);
             }}
           >
-            Create new project
+      <AddCircle style={{fontSize:'50px'}}/>
           </Button>
           </div>
 
@@ -195,23 +204,63 @@ const Admin = (props) => {
               </DialogTitle>
 
               <DialogContent>
-                <form
+                <form style={{display:'flex',flexDirection:"column",justifyContent:"space-between"}}
                   onSubmit={(e) => {
                     handlePost();
                   }}
                 >
                   <TextField
+                  style={{marginTop:"10px"}}
                     name="name"
-                    placeholder="projectName"
+                    placeholder="name"
+                    label="name"
                     //   onFocus={true}
                     type="text"
                     onChange={(e) => {
-                      setpostname(e.target.value);
+                      setname(e.target.value);
                     }}
                   />
+                   <TextField
+                                     style={{marginTop:"10px"}}
+
+                    name="name"
+                    placeholder="email"
+                    label="email"
+                    //   onFocus={true}
+                    type="text"
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
+                  />
+                   <TextField
+                                     style={{marginTop:"10px",marginBottom:"10px"}}
+
+                    name="name"
+                    label="password"
+                    placeholder="password"
+                    //   onFocus={true}
+                    type="password"
+                    onChange={(e) => {
+                      setpassword(e.target.value);
+                    }}
+                  />
+                  <FileUploader   onFileSelect={(image) => setimage(image)} />
+
                   <Button
+                   className="addEmployeeBtn"
+                   style={{
+                     backgroundColor: "grey",
+                     marginRight: "20px",
+                     marginLeft: "15px",
+
+                     marginTop: "30px",
+                     border: ".5px solid black",
+                     backgroundColor: "#C6C4C4",
+                     minHeight: "2vh",
+                     minWidth: "4vw",
+                     color: "black",
+                   }}
                     type="submit"
-                    style={{ marginTop: "80px", marginRight: "20px" }}
                   >
                     submit
                   </Button>
@@ -221,7 +270,7 @@ const Admin = (props) => {
           )}
           <TableContainer component={Paper}>
             <Table
-              sx={{ margin: "auto", width: "80vw" }}
+              sx={{ margin: "auto", width: "85vw" }}
               aria-label="customized table"
             >
               <TableHead>
@@ -249,7 +298,12 @@ const Admin = (props) => {
                   : admins
                 ).map((admin, index) => {
                   return (
-                  <AdminRow key={index} data={admin} />
+                  <Admin key={index} 
+                  id={admin.id}
+                  name={admin.name}
+                  image={admin.profile_image}
+                  email={admin.email}
+               />
                   );
                 })}
               </TableBody>
@@ -286,4 +340,4 @@ const Admin = (props) => {
     </div>
   );
 };
-export default Admin;
+export default Admins;

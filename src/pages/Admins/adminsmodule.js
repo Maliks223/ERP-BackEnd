@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -10,7 +10,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Avatar } from "@mui/material";
-
+import TextField from "@mui/material/TextField";
+import axios from "axios";
+import FileUploader from "../../components/File_uploader/fileUploader";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -31,9 +33,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const AdminRow = ({ data }) => {
+const Admin = ({ id, email, name, image }) => {
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -50,7 +53,9 @@ const AdminRow = ({ data }) => {
     setOpenDelete(false);
   };
 
-  const { profile_image, name, email, id } = data;
+  const [names, setname] = useState("");
+  const [emails, setemail] = useState("");
+  const [file, setFile] = useState(null);
 
   const handleDelete = async () => {
     try {
@@ -64,12 +69,31 @@ const AdminRow = ({ data }) => {
       return "error ya kaptin";
     }
   };
+  const handleEdit = async (id) => {
+    const data = new FormData();
+    data.append("name", names);
+    data.append("email", emails);
+    data.append("profile_image", file);
+    data.append("_method", "PUT");
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/users/${id}`, {
+        method: "POST",
+        content: "application/json",
+        body: data,
+      });
+      const res = await response.json();
+      console.log(res);
+    } catch {
+      return "err";
+    }
+  };
   return (
     <StyledTableRow key={id}>
       <StyledTableCell component="th" scope="row" align="center">
         <Avatar
           alt={name}
-          src={`http://localhost:8000/storage/uploads/${profile_image}`}
+          src={`http://localhost:8000/storage/uploads/${image}`}
         />
       </StyledTableCell>
       <StyledTableCell
@@ -95,7 +119,55 @@ const AdminRow = ({ data }) => {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
           <DialogContent>
-            {/* <EmployeeForm data={data} /> */}
+            <form
+              style={{ display: "flex", flexDirection: "column" }}
+              onSubmit={(e) => handleEdit(id)}
+            >
+              <TextField
+                style={{ marginTop: "20px", marginBottom: "20px" }}
+                name="name"
+                placeholder="name"
+                label="name"
+                defaultValue={name}
+                //   onFocus={true}
+                type="text"
+                onChange={(e) => {
+                  setname(e.target.value);
+                }}
+              />
+              <TextField
+                name="name"
+                defaultValue={email}
+                placeholder="email"
+                label="email"
+                //   onFocus={true}
+                type="text"
+                onChange={(e) => {
+                  setemail(e.target.value);
+                }}
+              />
+              <FileUploader onFileSelect={(file) => setFile(file)} />
+              <DialogActions>
+                <Button
+                  type="submit"
+                  className="addEmployeeBtn"
+                  style={{
+                    backgroundColor: "grey",
+                    marginRight: "20px",
+                    marginLeft: "15px",
+
+                    marginTop: "30px",
+                    border: ".5px solid black",
+                    backgroundColor: "#C6C4C4",
+                    minHeight: "2vh",
+                    minWidth: "4vw",
+                    color: "black",
+                  }}
+                >
+                  submit
+                </Button>
+              </DialogActions>
+            </form>
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
@@ -142,10 +214,9 @@ const AdminRow = ({ data }) => {
             </Button>
           </DialogActions>
         </Dialog>
-       
       </StyledTableCell>
     </StyledTableRow>
   );
 };
 
-export default AdminRow;
+export default Admin;

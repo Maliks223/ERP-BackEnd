@@ -166,14 +166,12 @@ const KPIS = () => {
           className="addEmployeeBtn"
           style={{
             position: "absolute",
-            top: "15vh",
+            top: "13.5vh",
             right: "6vw",
-            border: "1px solid black",
-            backgroundColor: "#C6C4C4",
             color: "black",
           }}
         >
-      <AddCircle/>
+      <AddCircle style={{fontSize:'50px'}}/>
         </Button>
         {open && (
           <Dialog

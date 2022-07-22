@@ -312,7 +312,8 @@ const Team = ({ name, project, id, pivotId ,members}) => {
                 )
               })}</div>
               <DialogActions>
-<Button  className="addEmployeeBtn"
+              <Button 
+               className="addEmployeeBtn"
                     style={{
                       backgroundColor: "grey",
                       marginRight: "20px",

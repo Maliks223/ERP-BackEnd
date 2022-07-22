@@ -165,8 +165,7 @@ const Projects = (props) => {
             <Button
             className="addEmployeeBtn"
             style={{
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
+            
               position: "absolute",
               top: "14vh",
               right: "6vw",
@@ -179,7 +178,7 @@ const Projects = (props) => {
               setPost(!post);
             }}
           >
-      <AddCircle/>
+      <AddCircle style={{fontSize:'50px'}}/>
           </Button>
           </div>
 
@@ -210,8 +209,19 @@ const Projects = (props) => {
                     }}
                   />
                   <Button
+                   className="addEmployeeBtn"
+                   style={{
+                     backgroundColor: "grey",
+                     marginRight: "20px",
+                    
+                     marginTop: "120px",
+                     border: ".5px solid black",
+                     backgroundColor: "#C6C4C4",
+                     minHeight: "2vh",
+                     minWidth: "4vw",
+                     color: "black",
+                   }}
                     type="submit"
-                    style={{ marginTop: "80px", marginRight: "20px" }}
                   >
                     submit
                   </Button>

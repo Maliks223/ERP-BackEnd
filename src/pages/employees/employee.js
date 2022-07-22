@@ -198,8 +198,7 @@ data.append("team_id", team);
             className="addEmployeeBtn"
             sx={{
               backgroundColor: "grey",
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
+          
               position: "absolute",
               top: "14vh",
               right: "6vw",
@@ -208,7 +207,7 @@ data.append("team_id", team);
               color: "black",
             }}
           >
-      <AddCircle/>
+      <AddCircle style={{fontSize:'50px'}}/>
           </Button>
           </div>
           {post && 

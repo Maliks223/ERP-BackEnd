@@ -1,16 +1,29 @@
 .employee-profile {
-  width: 85vw;
+  width: 65vw;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   /* justify-content: end; */
   height: 80vh;
-  margin-top: 10vh;
+  /* margin-top: 10vh; */
   /* padding-top:10vh; */
 }
-.profile-image{
+
+/* .profile-image{
     width: 200px;
     height: 200px;
     border-radius: 50%;
+} */
+
+
+.car{
+  display: flex;
+  flex: column;
+  margin-top: 15vh;
+  margin-left:8vw;
+  border: 1px solid black;
+  height:40vh;
+  width:40vw;
+  background-color: rgb(237, 237, 237);
 }
 

@@ -163,17 +163,16 @@ const Roles = () => {
                     className="addEmployeeBtn"
         style={{
           position: "absolute",
-          top: "14vh",
+          top: "13.5vh",
           right: "6vw",
-          border: "1px solid black",
-          backgroundColor: "#C6C4C4",
+        
           color: "black",
         }}
         onClick={() => {
           setopendialog(!opendialog);
         }}
       >
-      <AddCircle/>
+      <AddCircle style={{fontSize:'50px'}}/>
       </Button>
       {opendialog && (
         <Dialog open={opendialog} onClose={() => setopendialog(!opendialog)}>
