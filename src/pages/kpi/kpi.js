@@ -259,6 +259,9 @@ const KPIS = () => {
                 <StyledTableCell className="tableTitle" align="center">
                   Kpi Name
                 </StyledTableCell>
+                <StyledTableCell className="tableTitle" align="center">
+                  Assigned to
+                </StyledTableCell>
                 {/* <StyledTableCell align="center">Description</StyledTableCell> */}
                 <StyledTableCell className="tableTitle" align="center">
                   Actions

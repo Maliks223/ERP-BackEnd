@@ -34,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const EmployeeRow = ({ data }) => {
+const EmployeeRow = ({ data  }) => {
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
   const handleClickOpen = () => {
@@ -53,7 +53,7 @@ const EmployeeRow = ({ data }) => {
     setOpenDelete(false);
   };
 
-  const { id, firstname, lastname, email, team_id, image } = data;
+  const { id, firstname, lastname, email, team_id, image ,teams} = data;
 
   const handleDelete = async () => {
     try {
@@ -104,7 +104,7 @@ const EmployeeRow = ({ data }) => {
         align="center"
         sx={{ color: "black" }}
       >
-        {team_id ? team_id : "Not in a Team"}
+        {team_id ? teams.name : "Not in a Team"}
       </StyledTableCell>
       <StyledTableCell align="center">
         <Button onClick={handleClickOpen}>

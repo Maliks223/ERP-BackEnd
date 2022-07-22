@@ -52,7 +52,15 @@ const KPIRow = ({ data }) => {
     setOpenDelete(false);
   };
 
-  const { id, name } = data;
+  const { id, name ,employees} = data;
+
+  const getemployees=async()=>{
+return(
+  <div>
+  {employees.map((emplo,i)=>{return(<h4 key={i}>{emplo.firstname}{" "}{emplo.lastname}</h4>)})}
+  </div>
+)
+  }
 
   const handleDelete = async () => {
     try {
@@ -75,6 +83,9 @@ const KPIRow = ({ data }) => {
       </StyledTableCell>
       {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
       <StyledTableCell align="center">{name}</StyledTableCell>
+      <StyledTableCell align="center">{employees.length!==0 ? <div> {employees.map((emplo,i)=>{return(<h4 key={i}>{emplo.firstname}{" "}{emplo.lastname}</h4>)})}</div>
+ :"Not Assigned Yet"}</StyledTableCell>
+
       <StyledTableCell align="center">
         <Button onClick={handleClickOpen}>
           <EditIcon color="success" />

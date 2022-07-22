@@ -251,6 +251,9 @@ const Teams = () => {
                       Team
                     </StyledTableCell>
                     <StyledTableCell align="center" className="tableTitle">
+                      Members
+                    </StyledTableCell>
+                    <StyledTableCell align="center" className="tableTitle">
                       Assigned Project
                     </StyledTableCell>
                     <StyledTableCell align="center" className="tableTitle">
@@ -272,6 +275,7 @@ const Teams = () => {
                         key={index}
                         name={teamm.name}
                         id={teamm.id}
+                        members={teamm.employees}
                         pivotId={teamm.project}
                         project={teamm.project.map((teammm, index) => {
                           return <div key={index}>{teammm.name}</div>;
