@@ -14,6 +14,7 @@ const EmployeeProfile = () => {
     const [openTeam, setOpenTeam] = useState(false);
     const [openRoles, setOpenRoles] = useState(false);
     const [employee, setEmployee] = useState();
+
     const [filtered, setFiltered] = useState([]);
     const [roles, setRoles] = useState([]);
 
@@ -97,13 +98,17 @@ const EmployeeProfile = () => {
                         </DialogContent>
                     </Dialog>
 
-                    <Button onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
+                    {/* {employee.team && */}
+                        <Button onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
                     <Dialog open={openRoles} onClose={handleCloseRoles}>
                         <DialogTitle> Assign a Role in Project</DialogTitle>
                         <DialogContent>
-                            <RoleProject id={employee.id}/>
+                            <RoleProject id={employee.id} />
                         </DialogContent>
                     </Dialog>
+                    {/* } */}
+
+
 
                     {filtered &&
                         filtered.map(list => {
