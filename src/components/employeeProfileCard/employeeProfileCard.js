@@ -15,7 +15,7 @@ const CardId = ({ data }) => {
                     <h2>{firstname} {`  `}{lastname}</h2>
                     <h3>Email: {email}</h3>
                     <h3>Phone Number: {phonenumber}</h3>
-                    <h3>Team: {teams.name}</h3>
+                    <h3>Team: {teams && teams.name}</h3>
                     {/* <div class="area">
                     </div> */}
                 </article>
