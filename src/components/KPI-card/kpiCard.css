@@ -1,0 +1,8 @@
+.kpiCard-container{
+    height: 5vh;
+    width: 10vw;
+    background-color: #376F8A;
+    opacity: 0.5;
+    display: flex;
+    flex-direction: column;
+}

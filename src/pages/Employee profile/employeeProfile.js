@@ -8,14 +8,16 @@ import EditEmployeeTeam from "../../components/Edit_Employee_team/editEmployeeTe
 import BarCharts from "../../components/LineGraph/LineGraph";
 import CardId from "../../components/employeeProfileCard/employeeProfileCard";
 import RoleProject from "../../components/Role_Project/RoleProjectForm";
+import KPICard from "../../components/KPI-card/kpiCard";
 
 const EmployeeProfile = () => {
     const [open, setOpen] = useState(false);
     const [openTeam, setOpenTeam] = useState(false);
     const [openRoles, setOpenRoles] = useState(false);
     const [employee, setEmployee] = useState();
-
+    const [team, setTeam] = useState({});
     const [filtered, setFiltered] = useState([]);
+    const [latest, setLatest] = useState([]);
     const [roles, setRoles] = useState([]);
 
     const handleClickOpen = () => {
@@ -51,8 +53,11 @@ const EmployeeProfile = () => {
         try {
             const response = await fetch(`http://localhost:8000/api/employees/${data.id}`);
             const res = await response.json();
+            console.log(res);
             setEmployee(res.data[0]);
+            setTeam(res.data[0].teams)
             setFiltered(res.filtered);
+            setLatest(res.latest_Kpi);
         }
         catch (err) {
             console.log('error', err);
@@ -99,16 +104,24 @@ const EmployeeProfile = () => {
                     </Dialog>
 
 
-                    <Button onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
-                    <Dialog open={openRoles} onClose={handleCloseRoles}>
-                        <DialogTitle> Assign a Role in Project</DialogTitle>
-                        <DialogContent>
-                            <RoleProject id={employee.id} />
-                        </DialogContent>
-                    </Dialog>
+                    {team &&
+                        <>
+                            <Button onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
+                            <Dialog open={openRoles} onClose={handleCloseRoles}>
+                                <DialogTitle> Assign a Role in Project</DialogTitle>
+                                <DialogContent>
+                                    <RoleProject id={employee.id} team={employee.teams} />
+                                </DialogContent>
+                            </Dialog>
+                        </>
+                    }
 
 
 
+                    {latest &&
+                        latest.map(kpi => {
+                            return <KPICard title={kpi.kpi_name} rate={kpi.rate} />
+                        })}
 
 
                     {filtered &&
@@ -116,8 +129,8 @@ const EmployeeProfile = () => {
                             return <BarCharts kpis={list} />
                         })}
 
-                </div>
-            }
+
+                </div>}
         </>
 
     )

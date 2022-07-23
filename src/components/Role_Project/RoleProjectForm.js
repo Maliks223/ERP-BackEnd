@@ -15,11 +15,13 @@ const RoleProject = (props) => {
         setRole(e.target.value);
     }
 
+    console.log('id',props.team.id);
+
     const fetchProjects = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/api/project`);
+            const response = await fetch(`http://localhost:8000/api/teams/${props.team.id}`);
             const data = await response.json();
-            setProjects(data);
+            setProjects(data[0].projects);
         }
         catch (err) {
             console.log('err', err);

@@ -23,7 +23,6 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
-// import { Link } from "react-router-dom";
 import AdminRow from "./adminsmodule";
 
 function TablePaginationActions(props) {
@@ -135,16 +134,18 @@ const Admin = (props) => {
     setPage(0);
   };
 
-  const Request = async () => {
-    const res = await Axios.get("http://localhost:8000/api/users").catch(
-      (err) => console.log(err)
-    );
-    const data = await res.data;
-    console.log(data);
-    return data;
+  const fetchAdmins = async () => {
+    try {
+      const res = await fetch("http://localhost:8000/api/users")
+      const data = await res.json();
+      setAdmins(data);
+    }
+    catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
-    Request().then((data) => setAdmins(data));
+    fetchAdmins()
   }, []);
 
   const handlePost = async () => {
@@ -163,24 +164,24 @@ const Admin = (props) => {
           <div className="postproject">
             <h1 className="projectsTitle">Admins Control</h1>
             <Button
-            className="addEmployeeBtn"
-            style={{
-              backgroundColor: "grey",
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
-              marginTop:"130px",
-              marginRight:"48px",
-              maxHeight: "4vh",
-              maxWidth: "10vw",
-              color: "black",
-            }}
-            id="icons"
-            onClick={() => {
-              setPost(!post);
-            }}
-          >
-            Create new project
-          </Button>
+              className="addEmployeeBtn"
+              style={{
+                backgroundColor: "grey",
+                border: ".5px solid black",
+                backgroundColor: "#C6C4C4",
+                marginTop: "130px",
+                marginRight: "48px",
+                maxHeight: "4vh",
+                maxWidth: "10vw",
+                color: "black",
+              }}
+              id="icons"
+              onClick={() => {
+                setPost(!post);
+              }}
+            >
+              Create new project
+            </Button>
           </div>
 
           {post && (
@@ -243,13 +244,13 @@ const Admin = (props) => {
               <TableBody>
                 {(rowsPerPage > 0
                   ? admins.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                   : admins
                 ).map((admin, index) => {
                   return (
-                  <AdminRow key={index} data={admin} />
+                    <AdminRow key={index} data={admin} />
                   );
                 })}
               </TableBody>
@@ -280,7 +281,7 @@ const Admin = (props) => {
               </TableFooter>
             </Table>
           </TableContainer>
-      
+
         </>
       </div>
     </div>
