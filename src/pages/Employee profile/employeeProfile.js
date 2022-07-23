@@ -53,7 +53,6 @@ const EmployeeProfile = () => {
         try {
             const response = await fetch(`http://localhost:8000/api/employees/${data.id}`);
             const res = await response.json();
-            console.log(res);
             setEmployee(res.data[0]);
             setTeam(res.data[0].teams)
             setFiltered(res.filtered);
