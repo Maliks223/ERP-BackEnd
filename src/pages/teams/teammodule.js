@@ -102,7 +102,7 @@ const Team = ({ name, project, id, pivotId ,members}) => {
           {id}
         </StyledTableCell>
         <StyledTableCell align="center">{name}</StyledTableCell>
-        <StyledTableCell align="center">{members.length}</StyledTableCell>
+        <StyledTableCell align="center">{members && members.length}</StyledTableCell>
 
         <StyledTableCell align="center">
           {project.length !== 0 ? project : "No Projects Assigned"}

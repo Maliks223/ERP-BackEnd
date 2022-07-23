@@ -275,9 +275,9 @@ const Teams = () => {
                         name={teamm.name}
                         id={teamm.id}
                         members={teamm.employees}
-                        pivotId={teamm.project}
-                        project={teamm.project.map((teammm, index) => {
-                          return <div key={index}>{teammm.name}</div>;
+                        pivotId={teamm.projects}
+                        project={teamm.projects.map((teammm, index) => {
+                          return (<div key={index}>{teammm.name}</div>);
                         })}
                       />
                     );
