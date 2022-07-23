@@ -43,8 +43,6 @@ const SideBar = () => {
       console.log(response);
       localStorage.removeItem('token');
       localStorage.removeItem('id');
-      navigate('/login');
-      window.location.reload();
     }
     catch (err) {
       console.log(err);
@@ -70,7 +68,7 @@ const SideBar = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem onClick={logout} icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem onClick={logout} icon={<FiLogOut />}>Logout<Link to='/login' /></MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>
