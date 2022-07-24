@@ -158,11 +158,11 @@ const Projects = (props) => {
 
   return (
     // <div className="projectsWrapper">
-      <div className="projectcontainer">
-        <>
-          <div className="postproject">
-            <h1 className="projectsTitle" style={{position:'absolute',top:'13vh',left:'15vw'}}>Projects Control</h1>
-            <Button
+    <div className="projectcontainer">
+      <>
+        <div className="postproject">
+          <h1 className="projectsTitle" style={{ position: 'absolute', top: '13vh', left: '15vw' }}>Projects Control</h1>
+          <Button
             className="addEmployeeBtn"
             style={{
             
@@ -180,130 +180,119 @@ const Projects = (props) => {
           >
       <AddCircle style={{fontSize:'50px'}}/>
           </Button>
-          </div>
+        </div>
 
-          {post && (
-            <Dialog
-              open={post}
-              onClose={() => {
-                setPost(!post);
-              }}
-            >
-              <DialogTitle style={{ marginBottom: "40px" }}>
-                Create Project
-              </DialogTitle>
+        {post && (
+          <Dialog
+            open={post}
+            onClose={() => {
+              setPost(!post);
+            }}
+          >
+            <DialogTitle style={{ marginBottom: "40px" }}>
+              Create Project
+            </DialogTitle>
 
-              <DialogContent>
-                <form
-                  onSubmit={(e) => {
-                    handlePost();
+            <DialogContent>
+              <form
+                onSubmit={(e) => {
+                  handlePost();
+                }}
+              >
+                <TextField
+                  name="name"
+                  placeholder="projectName"
+                  //   onFocus={true}
+                  type="text"
+                  onChange={(e) => {
+                    setpostname(e.target.value);
                   }}
+                />
+                <Button
+                  type="submit"
+                  style={{ marginTop: "80px", marginRight: "20px" }}
                 >
-                  <TextField
-                    name="name"
-                    placeholder="projectName"
-                    //   onFocus={true}
-                    type="text"
-                    onChange={(e) => {
-                      setpostname(e.target.value);
-                    }}
+                  submit
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
+        )}
+        <TableContainer component={Paper}>
+          <Table
+            sx={{ margin: "auto", width: "85vw" }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell className="tableTitle" align="center">
+                  id
+                </StyledTableCell>
+                <StyledTableCell className="tableTitle" align="center">
+                  Project name
+                </StyledTableCell>
+                <StyledTableCell className="tableTitle" align="center">
+                  Team
+                </StyledTableCell>
+                <StyledTableCell className="tableTitle" align="center">
+                  Actions
+                </StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? projects.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+                : projects
+              ).map((project, index) => {
+                return (
+                  <Project
+                    key={index}
+                    name={project.name}
+                    id={project.id}
+                    pivotId={project.team}
+                    //  pivotId={project.team.map((pivots,index)=>{
+                    //   return <div key={index}>{pivots.pivot.id}</div>
+                    //  })}
+                    teamz={project.team.map((teams, index) => {
+                      return <div key={index}>{teams.name}</div>;
+                    })}
                   />
-                  <Button
-                   className="addEmployeeBtn"
-                   style={{
-                     backgroundColor: "grey",
-                     marginRight: "20px",
-                    
-                     marginTop: "120px",
-                     border: ".5px solid black",
-                     backgroundColor: "#C6C4C4",
-                     minHeight: "2vh",
-                     minWidth: "4vw",
-                     color: "black",
-                   }}
-                    type="submit"
-                  >
-                    submit
-                  </Button>
-                </form>
-              </DialogContent>
-            </Dialog>
-          )}
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ margin: "auto", width: "85vw" }}
-              aria-label="customized table"
-            >
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell className="tableTitle" align="center">
-                    id
-                  </StyledTableCell>
-                  <StyledTableCell className="tableTitle" align="center">
-                    Project name
-                  </StyledTableCell>
-                  <StyledTableCell className="tableTitle" align="center">
-                    Team
-                  </StyledTableCell>
-                  <StyledTableCell className="tableTitle" align="center">
-                    Actions
-                  </StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? projects.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                  : projects
-                ).map((project, index) => {
-                  return (
-                    <Project
-                      key={index}
-                      name={project.name}
-                      id={project.id}
-                      pivotId={project.team}
-                      //  pivotId={project.team.map((pivots,index)=>{
-                      //   return <div key={index}>{pivots.pivot.id}</div>
-                      //  })}
-                      teamz={project.team.map((teams, index) => {
-                        return <div key={index}>{teams.name}</div>;
-                      })}
-                    />
-                  );
-                })}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[
-                      5,
-                      10,
-                      25,
-                      { label: "All", value: -1 },
-                    ]}
-                    colSpan={3}
-                    count={projects.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        "aria-label": "rows per page",
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
-      
-        </>
-      </div>
+                );
+              })}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[
+                    5,
+                    10,
+                    25,
+                    { label: "All", value: -1 },
+                  ]}
+                  colSpan={3}
+                  count={projects.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    inputProps: {
+                      "aria-label": "rows per page",
+                    },
+                    native: true,
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+
+      </>
+    </div>
     // </div>
   );
 };

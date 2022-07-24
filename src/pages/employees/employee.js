@@ -151,7 +151,7 @@ const Employees = () => {
   useEffect(() => {
     fetchEmployees();
   }, []);
- 
+
 
 
   //teams
@@ -167,34 +167,36 @@ const Employees = () => {
     Request();
   }, []);
 
-   //post employee
-const Postemployee=async()=>{
+  //post employee
+  const Postemployee = async () => {
 
-const data=new FormData();
-data.append("firstname", firstname);
-data.append("lastname", lastname);
-data.append("email", email);
-data.append("phonenumber", phonenumber);
-data.append("image", file);
-data.append("team_id", team);
+    const data = new FormData();
+    data.append("firstname", firstname);
+    data.append("lastname", lastname);
+    data.append("email", email);
+    data.append("phonenumber", phonenumber);
+    data.append("image", file);
+    data.append("team_id", team);
 
-  const responsee=await fetch("http://localhost:8000/api/employees",{method:"POST",content: "application/json",
-  body:data})
-  .catch((err)=>console.log(err));
-  // const res = await responsee.json();
-  // console.log(res);
-}
+    const responsee = await fetch("http://localhost:8000/api/employees", {
+      method: "POST", content: "application/json",
+      body: data
+    })
+      .catch((err) => console.log(err));
+    // const res = await responsee.json();
+    // console.log(res);
+  }
 
-  
+
 
 
   return (
     <div className="employeeWraper">
       <div className="employee-page">
         <div className="postproject">
-          <h1 className="projectsTitle"style={{position:'absolute',top:'13vh',left:'15vw'}}>Employees Control</h1>
-          <Button 
-          onClick={()=>setpost(!post)}
+          <h1 className="projectsTitle" style={{ position: 'absolute', top: '13vh', left: '15vw' }}>Employees Control</h1>
+          <Button
+            onClick={() => setpost(!post)}
             className="addEmployeeBtn"
             sx={{
               backgroundColor: "grey",
@@ -209,110 +211,110 @@ data.append("team_id", team);
           >
       <AddCircle style={{fontSize:'50px'}}/>
           </Button>
-          </div>
-          {post && 
-          <Dialog open={post}onClose={()=>setpost(!post)}>
+        </div>
+        {post &&
+          <Dialog open={post} onClose={() => setpost(!post)}>
             <DialogTitle>Add Employee</DialogTitle>
             <DialogContent>
-            <form onSubmit={(e)=>{Postemployee();}}>
+              <form onSubmit={(e) => { Postemployee(); }}>
 
-        <TextField
-          autoFocus
-          margin="dense"
-          name="firstname"
-          label="First Name"
-          type="text"
-          fullWidth
-          variant="standard"
-         onChange={(e)=>{setfirstname(e.target.value)}}
-        />
-        <TextField
-          autoFocus
-          margin="dense"
-          name="lastname"
-          label="Last Name"
-          type="text"
-          fullWidth
-          variant="standard"
-          onChange={(e)=>{setlastname(e.target.value)}}
-          />
-        <TextField
-          autoFocus
-          margin="dense"
-          name="email"
-          label="Email Address"
-          type="email"
-          fullWidth
-          variant="standard"
-          onChange={(e)=>{setemail(e.target.value)}}
-          />
-        <TextField
-          autoFocus
-          margin="dense"
-          name="phonenumber"
-          label="Phone Number"
-          type="tel"
-          fullWidth
-          variant="standard"
-          onChange={(e)=>{setphonenumber(e.target.value)}}
-          sx={{ marginBottom: "24px" }}
-        />
-        <FileUploader onFileSelect={(file) => setFile(file)} />
-        <select
-                 onChange={(e)=>{setteam(e.target.value)}}
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="firstname"
+                  label="First Name"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                  onChange={(e) => { setfirstname(e.target.value) }}
+                />
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="lastname"
+                  label="Last Name"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                  onChange={(e) => { setlastname(e.target.value) }}
+                />
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="email"
+                  label="Email Address"
+                  type="email"
+                  fullWidth
+                  variant="standard"
+                  onChange={(e) => { setemail(e.target.value) }}
+                />
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="phonenumber"
+                  label="Phone Number"
+                  type="tel"
+                  fullWidth
+                  variant="standard"
+                  onChange={(e) => { setphonenumber(e.target.value) }}
+                  sx={{ marginBottom: "24px" }}
+                />
+                <FileUploader onFileSelect={(file) => setFile(file)} />
+                <select
+                  onChange={(e) => { setteam(e.target.value) }}
 
-          style={{
-            width: "15vw",
-            padding: "3px 3px 10px 3px",
-            margin: "36px 36px 75px 36px",
-            display: "flex",
-            flexDirection: "column",
-          }}>
-            <option>Teams</option>
-          {getteam.map((e,i)=>{
-            return(
-            <option key={i} value={e.id}>{e.name}</option>)
-          })
-          
-}
-        </select>
-        <Button
-type="submit"
-className="addEmployeeBtn"
-          sx={{
-            backgroundColor: "#C6C4C4",
-            minHeight: "4vh",
-            minWidth: "10vw",
-            fontWeight: "600",
-            color: "rgba(0, 0, 0, 0.614)",
-            marginBottom: "24px",
-          }}
-          // onClick={handleEdit}
-        >
-          Confirm
-        </Button>
-      
-        <Button
-          className="addEmployeeBtn"
-          sx={{
-            backgroundColor: "#C6C4C4",
-            minHeight: "4vh",
-            minWidth: "10vw",
-            fontWeight: "600",
-            color: "rgba(0, 0, 0, 0.614)",
-            marginBottom: "24px",
-          }}
-          onClick={()=>setpost(!post)}
-        >
-          Cancel
-        </Button>
+                  style={{
+                    width: "15vw",
+                    padding: "3px 3px 10px 3px",
+                    margin: "36px 36px 75px 36px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}>
+                  <option>Teams</option>
+                  {getteam.map((e, i) => {
+                    return (
+                      <option key={i} value={e.id}>{e.name}</option>)
+                  })
 
-        </form>
-      </DialogContent>
-     
-     
+                  }
+                </select>
+                <Button
+                  type="submit"
+                  className="addEmployeeBtn"
+                  sx={{
+                    backgroundColor: "#C6C4C4",
+                    minHeight: "4vh",
+                    minWidth: "10vw",
+                    fontWeight: "600",
+                    color: "rgba(0, 0, 0, 0.614)",
+                    marginBottom: "24px",
+                  }}
+                // onClick={handleEdit}
+                >
+                  Confirm
+                </Button>
+
+                <Button
+                  className="addEmployeeBtn"
+                  sx={{
+                    backgroundColor: "#C6C4C4",
+                    minHeight: "4vh",
+                    minWidth: "10vw",
+                    fontWeight: "600",
+                    color: "rgba(0, 0, 0, 0.614)",
+                    marginBottom: "24px",
+                  }}
+                  onClick={() => setpost(!post)}
+                >
+                  Cancel
+                </Button>
+
+              </form>
+            </DialogContent>
+
+
           </Dialog>
-          }
+        }
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
@@ -364,11 +366,11 @@ className="addEmployeeBtn"
             <TableBody sx={{ Color: "black" }}>
               {(rowsPerPage > 0
                 ? data.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
                 : data
-              ).map((employee,i) => (
+              ).map((employee, i) => (
                 <EmployeeRow key={i} data={employee} />
               ))}
             </TableBody>

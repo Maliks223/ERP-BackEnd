@@ -23,10 +23,8 @@ function App() {
         <Routes>
           {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
           <Route path="login" element={<Login />} />
-          <Route index path="home" element={<Home />} />
+          <Route index path="" element={<Home />} />
           <Route path="" element={<Dashboard />}>
-           
-            <Route path="home" element={<Home />} />
             <Route path="employees" element={<Employees />} />
             <Route path="employees/id=:id" element={<EmployeeProfile />} />
             <Route path="projects" element={<Projects />} />
@@ -34,7 +32,6 @@ function App() {
             <Route path="teams" element={<Teams />} />
             <Route path="admin" element={<Admin />} />
             <Route path="roles" element={<Roles />} />
-
           </Route>
         </Routes>
       </Router>

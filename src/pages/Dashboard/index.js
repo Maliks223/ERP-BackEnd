@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from '../../components/sidebar/sidebar';
 import './index.css';
@@ -12,11 +12,14 @@ const Dashboard = () => {
       navigate('/login')
     }
   };
-  redirect();
+
+  useEffect(() => {
+    redirect();
+  });
 
   return (
     <div className='dash-container'>
-      <NavBar/>
+      <NavBar />
       <SideBar />
       <Outlet />
     </div>

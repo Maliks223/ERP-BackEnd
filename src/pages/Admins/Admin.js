@@ -141,16 +141,18 @@ const Admins = (props) => {
     setPage(0);
   };
 
-  const Request = async () => {
-    const res = await Axios.get("http://localhost:8000/api/users").catch(
-      (err) => console.log(err)
-    );
-    const data = await res.data;
-    console.log(data);
-    return data;
+  const fetchAdmins = async () => {
+    try {
+      const res = await fetch("http://localhost:8000/api/users")
+      const data = await res.json();
+      setAdmins(data);
+    }
+    catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
-    Request().then((data) => setAdmins(data));
+    fetchAdmins()
   }, []);
 
   const handlePost = async () => {
@@ -190,6 +192,25 @@ const Admins = (props) => {
           >
       <AddCircle style={{fontSize:'50px'}}/>
           </Button>
+          <Button
+              className="addEmployeeBtn"
+              style={{
+                backgroundColor: "grey",
+                border: ".5px solid black",
+                backgroundColor: "#C6C4C4",
+                marginTop: "130px",
+                marginRight: "48px",
+                maxHeight: "4vh",
+                maxWidth: "10vw",
+                color: "black",
+              }}
+              id="icons"
+              onClick={() => {
+                setPost(!post);
+              }}
+            >
+              Create new project
+            </Button>
           </div>
 
           {post && (
@@ -292,9 +313,9 @@ const Admins = (props) => {
               <TableBody>
                 {(rowsPerPage > 0
                   ? admins.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                   : admins
                 ).map((admin, index) => {
                   return (
@@ -334,7 +355,7 @@ const Admins = (props) => {
               </TableFooter>
             </Table>
           </TableContainer>
-      
+
         </>
       </div>
     </div>
