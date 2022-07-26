@@ -1,5 +1,6 @@
 
 import { Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import Menu from "../../components/circular navigation/circular";
 import "./home.css";
@@ -7,6 +8,8 @@ import "./home.css";
 
 
 const Home = () => {
+    const navigate = useNavigate();
+
     const id = localStorage.getItem("id");
     const [user, setuser] = useState([]);
 
@@ -17,6 +20,9 @@ const Home = () => {
     }   
 
     useEffect(()=>{
+        if (!localStorage.token) {
+            navigate('/login')
+          }
         fetchAdmin();
     },[])
 

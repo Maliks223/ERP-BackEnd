@@ -69,21 +69,11 @@ const RoleForm = ({ data }) => {
         <Button
           onClick={handleEdit}
           className="addEmployeeBtn"
-          style={{
-            backgroundColor: "grey",
-            marginRight: "20px",
-            marginLeft: "20px",
-            marginTop: "30px",
-            border: ".5px solid black",
-            backgroundColor: "#C6C4C4",
-            minHeight: "2vh",
-            minWidth: "4vw",
-            color: "black",
-          }}
+          variant="contained"
+          sx = {{backgroundColor:"var(--blue)"}}
         >
-          Edit
+          confirm edit
         </Button>
-        {/* <Button onClick={}>Cancek</Button> */}
       </DialogActions>
     </>
   );

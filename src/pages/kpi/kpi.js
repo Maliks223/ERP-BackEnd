@@ -19,6 +19,8 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 import {
   DialogActions,
   DialogContent,
@@ -51,7 +53,6 @@ function TablePaginationActions(props) {
   };
 
   return (
-  
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
         onClick={handleFirstPageButtonClick}
@@ -100,8 +101,6 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -135,18 +134,18 @@ const KPIS = () => {
     fetchEmployees();
   }, []);
 
-   // Avoid a layout jump when reaching the last page with empty rows.
-   const emptyRows =
-   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
- const handleChangePage = (event, newPage) => {
-   setPage(newPage);
- };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
- const handleChangeRowsPerPage = (event) => {
-   setRowsPerPage(parseInt(event.target.value, 10));
-   setPage(0);
- };
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   const Postkpi = async () => {
     const data = new FormData();
@@ -161,18 +160,20 @@ const KPIS = () => {
   return (
     <>
       <div className="kpiContainer">
-        <Button
+        <Fab
           onClick={() => setclose(!open)}
-          className="addEmployeeBtn"
-          style={{
+          color="primary"
+          aria-label="add"
+          sx={{
             position: "absolute",
-            top: "13.5vh",
+            top: "13vh",
             right: "6vw",
-            color: "black",
+            backgroundColor: "var(--blue)",
           }}
         >
-      <AddCircle style={{fontSize:'50px'}}/>
-        </Button>
+          <AddIcon />
+        </Fab>
+
         {open && (
           <Dialog
             open={open}
@@ -180,7 +181,7 @@ const KPIS = () => {
               setclose(!open);
             }}
           >
-            <DialogTitle>Add New KPI</DialogTitle>
+            <DialogTitle sx={{margin:"auto"}}>Add New KPI</DialogTitle>
             <DialogContent>
               <form
                 onSubmit={() => {
@@ -201,36 +202,28 @@ const KPIS = () => {
                 />
                 <DialogActions>
                   <Button
+                  variant="contained"
                     className="addEmployeeBtn"
                     type="submit"
                     style={{
-                      backgroundColor: "grey",
                       marginRight: "20px",
                       marginLeft: "20px",
                       marginTop: "30px",
-
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
+                      backgroundColor: "var(--blue)",
+                      minWidth: "8vw",
                     }}
                   >
                     Submit
                   </Button>
                   <Button
+                  variant="contained"
                     className="addEmployeeBtn"
                     style={{
-                      backgroundColor: "grey",
                       marginRight: "20px",
                       marginLeft: "20px",
                       marginTop: "30px",
-
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
+                      backgroundColor: "var(--blue)",
+                      minWidth: "8vw",
                     }}
                     onClick={() => {
                       setclose(!open);
@@ -243,7 +236,12 @@ const KPIS = () => {
             </DialogContent>
           </Dialog>
         )}
-        <h1 className="control"style={{marginTop:'10vh',marginLeft:'4vw'}}>KPI's Control</h1>
+        <h1
+          className="control"
+          style={{ marginTop: "10vh", marginLeft: "4vw" }}
+        >
+          KPI's Control
+        </h1>
         <TableContainer component={Paper}>
           <Table
             sx={{ margin: "auto", width: "85vw" }}

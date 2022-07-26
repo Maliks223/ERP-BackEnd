@@ -25,6 +25,8 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import { Link } from "react-router-dom";
 import { AddCircle } from "@mui/icons-material";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -161,25 +163,27 @@ const Projects = (props) => {
     <div className="projectcontainer">
       <>
         <div className="postproject">
-          <h1 className="projectsTitle" style={{ position: 'absolute', top: '13vh', left: '15vw' }}>Projects Control</h1>
-          <Button
-            className="addEmployeeBtn"
-            style={{
-            
-              position: "absolute",
-              top: "14vh",
-              right: "6vw",
-              maxHeight: "4vh",
-              maxWidth: "10vw",
-              color: "black",
-            }}
-            id="icons"
+          <h1
+            className="projectsTitle"
+            style={{ position: "absolute", top: "13vh", left: "15vw" }}
+          >
+            Projects Control
+          </h1>
+          <Fab
             onClick={() => {
               setPost(!post);
             }}
+            color="primary"
+            aria-label="add"
+            sx={{
+              position: "absolute",
+              top: "13vh",
+              right: "6vw",
+              backgroundColor: "var(--blue)",
+            }}
           >
-      <AddCircle style={{fontSize:'50px'}}/>
-          </Button>
+            <AddIcon />
+          </Fab>
         </div>
 
         {post && (
@@ -209,8 +213,10 @@ const Projects = (props) => {
                   }}
                 />
                 <Button
+                variant="contained"
                   type="submit"
-                  style={{ marginTop: "80px", marginRight: "20px" }}
+                  className="addEmployeeBtn"
+                  style={{ marginTop: "80px", marginRight: "20px", backgroundColor:"var(--blue)" }}
                 >
                   submit
                 </Button>
@@ -242,9 +248,9 @@ const Projects = (props) => {
             <TableBody>
               {(rowsPerPage > 0
                 ? projects.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                 : projects
               ).map((project, index) => {
                 return (
@@ -266,12 +272,7 @@ const Projects = (props) => {
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[
-                    5,
-                    10,
-                    25,
-                    { label: "All", value: -1 },
-                  ]}
+                  rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                   colSpan={3}
                   count={projects.length}
                   rowsPerPage={rowsPerPage}
@@ -290,7 +291,6 @@ const Projects = (props) => {
             </TableFooter>
           </Table>
         </TableContainer>
-
       </>
     </div>
     // </div>

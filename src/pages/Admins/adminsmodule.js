@@ -152,19 +152,14 @@ const Admin = ({ id, email, name, image }) => {
                   type="submit"
                   className="addEmployeeBtn"
                   style={{
-                    backgroundColor: "grey",
-                    marginRight: "20px",
-                    marginLeft: "15px",
-
-                    marginTop: "30px",
-                    border: ".5px solid black",
-                    backgroundColor: "#C6C4C4",
-                    minHeight: "2vh",
-                    minWidth: "4vw",
-                    color: "black",
+                    backgroundColor: "var(--blue)",
+                    marginRight: "90px",
+                    marginTop: "36px",
+                    width: "8vw",
                   }}
+                  variant="contained"
                 >
-                  submit
+                  Submit
                 </Button>
               </DialogActions>
             </form>
@@ -182,33 +177,32 @@ const Admin = ({ id, email, name, image }) => {
             sx={{ display: "flex", justifyContent: "space-around" }}
           >
             <Button
-              className="addEmployeeBtn"
-              sx={{
-                marginTop: "24px",
-                backgroundColor: "#C6C4C4",
-                minHeight: "3vh",
-                minWidth: "6vw",
-                fontWeight: "600",
-                color: "rgba(0, 0, 0, 0.614)",
-                marginBottom: "24px",
-              }}
               onClick={handleDelete}
               color="error"
+              className="addEmployeeBtnY"
+              variant="contained"
+              style={{
+                backgroundColor: "grey",
+                marginRight: "30px",
+                marginBottom: "30px",
+                marginLeft: "15px",
+                backgroundColor: "red",
+                minWidth: "8vw",
+                transition: "0.1s ease-in-out",
+              }}
             >
               Yes
             </Button>
             <Button
-              className="addEmployeeBtn"
-              sx={{
-                marginTop: "24px",
-                backgroundColor: "#C6C4C4",
-                minHeight: "3vh",
-                minWidth: "6vw",
-                fontWeight: "600",
-                color: "rgba(0, 0, 0, 0.614)",
-                marginBottom: "24px",
-              }}
               onClick={handleCloseDelete}
+              variant="contained"
+              className="addEmployeeBtn"
+              style={{
+                backgroundColor: "var(--blue)",
+                marginBottom: "30px",
+                marginRight: "15px",
+                minWidth: "8vw",
+              }}
             >
               No
             </Button>

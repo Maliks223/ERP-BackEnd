@@ -7,6 +7,7 @@ import NavBar from '../../components/navbar/navbar';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
   const redirect = () => {
     if (!localStorage.token) {
       navigate('/login')
@@ -15,7 +16,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     redirect();
-  });
+  }, []);
 
   return (
     <div className='dash-container'>

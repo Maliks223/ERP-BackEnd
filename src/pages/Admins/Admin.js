@@ -27,6 +27,8 @@ import TablePagination from "@mui/material/TablePagination";
 import Admin from "./adminsmodule";
 import FileUploader from "../../components/File_uploader/fileUploader";
 import { AddCircle } from "@mui/icons-material";
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -123,10 +125,10 @@ const Admins = (props) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [post, setPost] = useState(false);
-  const[name,setname]=useState([]);
-  const[email,setemail]=useState([]);
-  const[image,setimage]=useState(null);
-  const[password,setpassword]=useState([]);
+  const [name, setname] = useState([]);
+  const [email, setemail] = useState([]);
+  const [image, setimage] = useState(null);
+  const [password, setpassword] = useState([]);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -143,25 +145,23 @@ const Admins = (props) => {
 
   const fetchAdmins = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/users")
+      const res = await fetch("http://localhost:8000/api/users");
       const data = await res.json();
       setAdmins(data);
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
-    fetchAdmins()
+    fetchAdmins();
   }, []);
 
   const handlePost = async () => {
     const data = new FormData();
     data.append("name", name);
     data.append("email", email);
-    data.append("profile_image",image);
-    data.append("password",password);
-
+    data.append("profile_image", image);
+    data.append("password", password);
 
     await Axios.post("http://localhost:8000/api/register", data).catch((err) =>
       console.log(err)
@@ -173,44 +173,22 @@ const Admins = (props) => {
       <div className="projectcontainer">
         <>
           <div className="postproject">
-            <h1 className="projectsTitle" style={{position:'absolute',top:'13vh',left:'15vw'}}>Admins Control</h1>
-            <Button
-            className="addEmployeeBtn"
-            style={{
-          
-              position: "absolute",
-              top: "13vh",
-              right: "6vw",
-              maxHeight: "6vh",
-              maxWidth: "10vw",
-              color: "black",
-            }}
-            id="icons"
-            onClick={() => {
-              setPost(!post);
-            }}
-          >
-      <AddCircle style={{fontSize:'50px'}}/>
-          </Button>
-          <Button
-              className="addEmployeeBtn"
-              style={{
-                backgroundColor: "grey",
-                border: ".5px solid black",
-                backgroundColor: "#C6C4C4",
-                marginTop: "130px",
-                marginRight: "48px",
-                maxHeight: "4vh",
-                maxWidth: "10vw",
-                color: "black",
-              }}
-              id="icons"
+            <h1
+              className="projectsTitle"
+              style={{ position: "absolute", top: "13vh", left: "15vw" }}
+            >
+              Admins Control
+            </h1>
+            <Fab
+              color="primary"
+              aria-label="add"
+              sx={{ position: "absolute", top: "13vh", right: "6vw", backgroundColor:"#0a4f70" }}
               onClick={() => {
                 setPost(!post);
               }}
             >
-              Create new project
-            </Button>
+              <AddIcon />
+            </Fab>
           </div>
 
           {post && (
@@ -220,18 +198,23 @@ const Admins = (props) => {
                 setPost(!post);
               }}
             >
-              <DialogTitle style={{ marginBottom: "40px" }}>
-                Create Project
+              <DialogTitle style={{ marginLeft:"96px" }}>
+                Add New Admin
               </DialogTitle>
 
-              <DialogContent>
-                <form style={{display:'flex',flexDirection:"column",justifyContent:"space-between"}}
+              <DialogContent sx = {{ marginTop:"36px"}}>
+                <form
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
                   onSubmit={(e) => {
                     handlePost();
                   }}
                 >
                   <TextField
-                  style={{marginTop:"10px"}}
+                    style={{ marginTop: "10px" }}
                     name="name"
                     placeholder="name"
                     label="name"
@@ -241,9 +224,8 @@ const Admins = (props) => {
                       setname(e.target.value);
                     }}
                   />
-                   <TextField
-                                     style={{marginTop:"10px"}}
-
+                  <TextField
+                    style={{ marginTop: "10px" }}
                     name="name"
                     placeholder="email"
                     label="email"
@@ -253,9 +235,8 @@ const Admins = (props) => {
                       setemail(e.target.value);
                     }}
                   />
-                   <TextField
-                                     style={{marginTop:"10px",marginBottom:"10px"}}
-
+                  <TextField
+                    style={{ marginTop: "10px", marginBottom: "10px" }}
                     name="name"
                     label="password"
                     placeholder="password"
@@ -265,26 +246,9 @@ const Admins = (props) => {
                       setpassword(e.target.value);
                     }}
                   />
-                  <FileUploader   onFileSelect={(image) => setimage(image)} />
+                  <FileUploader onFileSelect={(image) => setimage(image)} />
 
-                  <Button
-                   className="addEmployeeBtn"
-                   style={{
-                     backgroundColor: "grey",
-                     marginRight: "20px",
-                     marginLeft: "15px",
-
-                     marginTop: "30px",
-                     border: ".5px solid black",
-                     backgroundColor: "#C6C4C4",
-                     minHeight: "2vh",
-                     minWidth: "4vw",
-                     color: "black",
-                   }}
-                    type="submit"
-                  >
-                    submit
-                  </Button>
+                  <Button sx = {{backgroundColor:"var(--blue)", marginTop:"36px", marginBottom:"36px", width:"10vw", marginLeft:"80px"}} className="addEmployeeBtn" type="submit" variant="contained">Submit</Button>
                 </form>
               </DialogContent>
             </Dialog>
@@ -313,18 +277,19 @@ const Admins = (props) => {
               <TableBody>
                 {(rowsPerPage > 0
                   ? admins.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
                   : admins
                 ).map((admin, index) => {
                   return (
-                  <Admin key={index} 
-                  id={admin.id}
-                  name={admin.name}
-                  image={admin.profile_image}
-                  email={admin.email}
-               />
+                    <Admin
+                      key={index}
+                      id={admin.id}
+                      name={admin.name}
+                      image={admin.profile_image}
+                      email={admin.email}
+                    />
                   );
                 })}
               </TableBody>
@@ -355,7 +320,6 @@ const Admins = (props) => {
               </TableFooter>
             </Table>
           </TableContainer>
-
         </>
       </div>
     </div>

@@ -26,6 +26,8 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import { Link } from "react-router-dom";
 import { AddCircle } from "@mui/icons-material";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -160,24 +162,21 @@ const Teams = () => {
     <>
       <div className="teamContainer">
         <div className="teamcontainer">
-          <h1 className="tableteams">
-            Teams Control
-          </h1>
-          <Button
-            className="addEmployeeBtn"
-              style={{
-                position: "absolute",
-                top: "13.5vh",
-                right: "6vw",
-                fontSize:'20px',
-                color: "black",
-              }}
-              onClick={() => setpost(!post)}
-            >
-      <AddCircle style={{fontSize:'50px'}}/>
-            </Button>
+          <h1 className="tableteams">Teams Control</h1>
+          <Fab
+            onClick={() => setpost(!post)}
+            color="primary"
+            aria-label="add"
+            sx={{
+              position: "absolute",
+              top: "13vh",
+              right: "6vw",
+              backgroundColor: "var(--blue)",
+            }}
+          >
+            <AddIcon />
+          </Fab>
           <>
-          
             {post && (
               <Dialog open={post} onClose={() => setpost(!post)}>
                 <DialogTitle>Add Team</DialogTitle>
@@ -200,16 +199,13 @@ const Teams = () => {
                   <div>
                     <Button
                       className="addEmployeeBtn"
-                      style={{
-                        backgroundColor: "grey",
+                      sx={{
+                        backgroundColor: "var(--blue)",
                         marginRight: "20px",
-                        marginLeft: "20px",
-                        marginTop: "30px",
-                        border: ".5px solid black",
-                        backgroundColor: "#C6C4C4",
-                        minHeight: "2vh",
-                        minWidth: "4vw",
-                        color: "black",
+                        marginLeft: "10px",
+                        marginTop: "36px",
+                        width: "8vw",
+                        color: "white",
                       }}
                       type="submit"
                     >
@@ -218,16 +214,13 @@ const Teams = () => {
                     <Button
                       className="addEmployeeBtn"
                       onClick={() => setpost(!post)}
-                      style={{
-                        backgroundColor: "grey",
+                      sx={{
+                        backgroundColor: "var(--blue)",
                         marginRight: "20px",
-                        marginLeft: "20px",
-                        marginTop: "30px",
-                        border: ".5px solid black",
-                        backgroundColor: "#C6C4C4",
-                        minHeight: "2vh",
-                        minWidth: "4vw",
-                        color: "black",
+                        marginLeft: "10px",
+                        marginTop: "36px",
+                        width: "8vw",
+                        color: "white",
                       }}
                     >
                       Cancel
@@ -277,7 +270,7 @@ const Teams = () => {
                         members={teamm.employees}
                         pivotId={teamm.projects}
                         project={teamm.projects.map((teammm, index) => {
-                          return (<div key={index}>{teammm.name}</div>);
+                          return <div key={index}>{teammm.name}</div>;
                         })}
                       />
                     );

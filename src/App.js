@@ -21,8 +21,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
           <Route index path="" element={<Home />} />
           <Route path="" element={<Dashboard />}>
             <Route path="employees" element={<Employees />} />

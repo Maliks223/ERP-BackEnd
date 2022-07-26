@@ -3,7 +3,8 @@
     left:0px;
     top: 12vh;
     width: 220px;
-    height: 88vh;
+    height: 87vh;
+    border-top: 3px solid var(--blue);
   }
  
   #header .closemenu {

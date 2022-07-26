@@ -123,15 +123,12 @@ const Project = ({ id, name, teamz, pivotId }) => {
           </Button>
           <Button
             className="addEmployeeBtn"
+            variant="contained"
             style={{
-              backgroundColor: "grey",
               marginRight: "20px",
               marginLeft: "20px",
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
-              minHeight: "2vh",
-              minWidth: "4vw",
-              color: "black",
+              backgroundColor: "var(--blue)",
+              Width: "8vw",
             }}
             id="icons"
             onClick={() => {
@@ -146,14 +143,12 @@ const Project = ({ id, name, teamz, pivotId }) => {
               setdeleteteam(!deleteteam);
             }}
             className="addEmployeeBtn"
+            variant="contained"
             style={{
               backgroundColor: "grey",
               // marginRight: "65px",
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
-              minHeight: "2vh",
-              minWidth: "4vw",
-              color: "black",
+              backgroundColor: "var(--blue)",
+              Width: "8vw",
             }}
           >
             delete team
@@ -178,6 +173,9 @@ const Project = ({ id, name, teamz, pivotId }) => {
                   margin: "36px 36px 75px 36px",
                   display: "flex",
                   flexDirection: "column",
+                  backgroundColor:"var(--blue)",
+                  color:"white",
+                  fontSize:"18px"
                 }}
               >
                 <option>Teams</option>
@@ -190,16 +188,14 @@ const Project = ({ id, name, teamz, pivotId }) => {
               </select>
               <Button
                 type="submit"
-                className="addEmployeeBtn"
+                variant="contained"
+                className="addEmployeeBtnY"
+                color="error"
                 style={{
-                  backgroundColor: "grey",
-                  marginLeft: "120px",
+                  marginLeft: "105px",
                   marginBottom: "36px",
-                  border: ".5px solid black",
-                  backgroundColor: "#C6C4C4",
-                  minHeight: "2vh",
-                  minWidth: "4vw",
-                  color: "black",
+                  backgroundColor: "red",
+                  minWidth: "8vw",
                 }}
               >
                 delete team
@@ -223,15 +219,16 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 handleDelete(id);
               }}
               color="error"
-              className="addEmployeeBtn"
+              className="addEmployeeBtnY"
+              variant = "contained"
               style={{
                 backgroundColor: "grey",
-                // marginRight: "65px",
-                border: ".5px solid black",
-                backgroundColor: "#C6C4C4",
-                minHeight: "2vh",
-                minWidth: "4vw",
-                color: "black",
+                marginRight: "30px",
+                marginBottom: "30px",
+                marginLeft:"15px",
+                backgroundColor: "red",
+                minWidth: "8vw",
+                transition:"0.1s ease-in-out"
               }}
             >
               Yes
@@ -240,15 +237,13 @@ const Project = ({ id, name, teamz, pivotId }) => {
               onClick={(e) => {
                 handleclosedelete(!opendelete);
               }}
+              variant = "contained"
               className="addEmployeeBtn"
               style={{
-                backgroundColor: "grey",
-                // marginRight: "65px",
-                border: ".5px solid black",
-                backgroundColor: "#C6C4C4",
-                minHeight: "2vh",
-                minWidth: "4vw",
-                color: "black",
+                backgroundColor: "var(--blue)",
+                marginBottom: "30px",
+                marginRight:"15px",
+                minWidth: "8vw",
               }}
             >
               No
@@ -274,14 +269,13 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 <DialogActions>
                   <Button
                     className="addEmployeeBtn"
+                    variant="contained"
                     style={{
-                      backgroundColor: "grey",
-                      marginRight: "65px",
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
+                      backgroundColor: "var(--blue)",
+                      marginRight: "30px",
+                      marginTop: "28px",
+                      minWidth: "8vw",
+                      
                     }}
                     type="submit"
                   >
@@ -312,6 +306,10 @@ const Project = ({ id, name, teamz, pivotId }) => {
                     margin: "36px 36px 75px 36px",
                     display: "flex",
                     flexDirection: "column",
+                    color:"white",
+                    backgroundColor:"var(--blue)",
+                    fontSize:"18px"
+
                   }}
                 >
                   <option>Teams</option>
@@ -326,15 +324,12 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 <DialogActions>
                   <Button
                     className="addEmployeeBtn"
+                    variant="contained"
                     style={{
-                      backgroundColor: "grey",
                       margin: "auto",
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
-                    }}
+                      backgroundColor: "var(--blue)",
+                      minWidth: "8vw",
+                      }}
                     type="submit"
                   >
                     Submit

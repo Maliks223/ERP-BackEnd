@@ -127,53 +127,50 @@ const EmployeeRow = ({ data  }) => {
           <DialogActions
             sx={{ display: "flex", justifyContent: "space-around" }}
           >
-            <Button
-              className="addEmployeeBtn"
-              sx={{
-                marginTop: "24px",
-                backgroundColor: "#C6C4C4",
-                minHeight: "3vh",
-                minWidth: "6vw",
-                fontWeight: "600",
-                color: "rgba(0, 0, 0, 0.614)",
-                marginBottom: "24px",
-              }}
+                <Button
               onClick={handleDelete}
               color="error"
+              className="addEmployeeBtnY"
+              variant="contained"
+              style={{
+                backgroundColor: "grey",
+                marginRight: "30px",
+                marginBottom: "30px",
+                marginLeft: "15px",
+                backgroundColor: "red",
+                minWidth: "8vw",
+                transition: "0.1s ease-in-out",
+              }}
             >
               Yes
             </Button>
             <Button
-              className="addEmployeeBtn"
-              sx={{
-                marginTop: "24px",
-                backgroundColor: "#C6C4C4",
-                minHeight: "3vh",
-                minWidth: "6vw",
-                fontWeight: "600",
-                color: "rgba(0, 0, 0, 0.614)",
-                marginBottom: "24px",
-              }}
               onClick={handleCloseDelete}
+              variant="contained"
+              className="addEmployeeBtn"
+              style={{
+                backgroundColor: "var(--blue)",
+                marginBottom: "30px",
+                marginRight: "15px",
+                minWidth: "8vw",
+              }}
             >
               No
             </Button>
           </DialogActions>
         </Dialog>
         <Button
+        variant="contained"
           className="addEmployeeBtn"
           style={{
-            backgroundColor: "grey",
+            backgroundColor: "var(--white)",
             marginLeft: "20px",
             textDecoration: "none",
-            // border: ".5px solid black",
-            backgroundColor: "#C6C4C4",
-            minHeight: "2vh",
-            minWidth: "4vw",
-            // color: "black",
+            minWidth: "8vw",
+            color: "white",
           }}
         >
-          <Link to={`/employees/id=${id}`} state={{ data: data }}>
+          <Link sx = {{color:"white"}} to={`/employees/id=${id}`} state={{ data: data }}>
             View More
           </Link>
         </Button>

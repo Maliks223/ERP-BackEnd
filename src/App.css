@@ -1,0 +1,16 @@
+:root {
+    --blue:#0a4f70;
+    --grey:#c0bebe;
+    --white:#c6c4c4;
+    --black:black;
+}
+
+.addEmployeeBtn:hover {
+    background-color: var(--grey)!important;
+    color: var(--black);
+  }
+
+  .addEmployeeBtnY:hover{
+    transform: scale(1.05);
+    transition: 0.1s ease-in-out;
+  }

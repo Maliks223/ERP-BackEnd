@@ -55,8 +55,9 @@ const KPIAssignForm = (props) => {
 
     return (
         <>
-            <InputLabel>KPIs List</InputLabel>
+            <InputLabel sx={{marginLeft:"80px", marginBottom:"10px"}} >KPIs List</InputLabel>
             <Select
+            sx={{width:"20vw", marginLeft:"80px"}}
                 label='KPIs List'
                 value={kpi}
                 onChange={handelKPIChange}
@@ -68,6 +69,7 @@ const KPIAssignForm = (props) => {
                 })}
             </Select>
             <Slider
+            sx={{margin:"20px 0px 20px 0px"}}
                 aria-label="Rate"
                 defaultValue={0}
                 valueLabelDisplay="auto"
@@ -78,11 +80,12 @@ const KPIAssignForm = (props) => {
                 onChange={handleRateChange}
             />
             <TextField
+             sx={{width:"20vw", marginLeft:"80px", marginBottom:"26px"}}
                 type='date'
                 onChange={handleDateChange}
             />
             <DialogActions>
-                <Button onClick={handleAssign}>Submit</Button>
+                <Button variant="contained" className="addEmployeeBtn" sx = {{backgroundColor:"var(--blue)", width:"8vw", margin:"auto"}} onClick={handleAssign}>Submit</Button>
             </DialogActions>
         </>
     )

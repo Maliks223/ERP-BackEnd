@@ -101,17 +101,12 @@ return(
         </Button>
         <Button onClick={()=>{setopenassign(!openassign)}}
          className="addEmployeeBtn"
+         variant="contained"
          style={{
-           backgroundColor: "grey",
            marginRight: "20px",
            marginLeft: "20px",
-          
-
-           border: ".5px solid black",
-           backgroundColor: "#C6C4C4",
-           minHeight: "2vh",
-           minWidth: "4vw",
-           color: "black",
+           backgroundColor: "var(--blue)",
+           minWidth: "8vw",
          }}>
           assign to employee
                   </Button>
@@ -124,38 +119,32 @@ return(
             Are you sure you want to Delete this KpI?
           </DialogContent>
           <DialogActions>
-            <Button
-              className="addEmployeeBtn"
-              onClick={handleDelete}
+          <Button
+            onClick={handleDelete}
+            color="error"
+              className="addEmployeeBtnY"
+              variant = "contained"
               style={{
                 backgroundColor: "grey",
-                marginRight: "20px",
-                marginLeft: "20px",
-                marginTop: "30px",
-
-                border: ".5px solid black",
-                backgroundColor: "#C6C4C4",
-                minHeight: "2vh",
-                minWidth: "4vw",
-                color: "black",
+                marginRight: "30px",
+                marginBottom: "30px",
+                marginLeft:"15px",
+                backgroundColor: "red",
+                minWidth: "8vw",
+                transition:"0.1s ease-in-out"
               }}
-            >
+              >
               Yes
             </Button>
             <Button
-              className="addEmployeeBtn"
               onClick={handleCloseDelete}
+              variant = "contained"
+              className="addEmployeeBtn"
               style={{
-                backgroundColor: "grey",
-                marginRight: "20px",
-                marginLeft: "20px",
-                marginTop: "30px",
-
-                border: ".5px solid black",
-                backgroundColor: "#C6C4C4",
-                minHeight: "2vh",
-                minWidth: "4vw",
-                color: "black",
+                backgroundColor: "var(--blue)",
+                marginBottom: "30px",
+                marginRight:"15px",
+                minWidth: "8vw",
               }}
             >
               No

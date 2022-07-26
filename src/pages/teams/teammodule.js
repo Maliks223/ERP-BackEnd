@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Team = ({ name, project, id, pivotId ,members}) => {
+const Team = ({ name, project, id, pivotId, members }) => {
   const [Name, setname] = useState(name);
   const [edit, setEdit] = useState(false);
   const [projects, setproject] = useState([]);
@@ -42,8 +42,7 @@ const Team = ({ name, project, id, pivotId ,members}) => {
   const [opendelete, handleclosedelete] = useState(false);
   const [deleteproject, setdeleteproject] = useState(false);
   const [pivotid, setpivot] = useState(0);
-  const[show,setshow]=useState(false);
-  
+  const [show, setshow] = useState(false);
 
   const [assignproject, setassignproject] = useState(false);
 
@@ -102,7 +101,9 @@ const Team = ({ name, project, id, pivotId ,members}) => {
           {id}
         </StyledTableCell>
         <StyledTableCell align="center">{name}</StyledTableCell>
-        <StyledTableCell align="center">{members && members.length}</StyledTableCell>
+        <StyledTableCell align="center">
+          {members && members.length}
+        </StyledTableCell>
 
         <StyledTableCell align="center">
           {project.length !== 0 ? project : "No Projects Assigned"}
@@ -134,44 +135,35 @@ const Team = ({ name, project, id, pivotId ,members}) => {
             </DialogContent>
             <DialogActions>
               <Button
-                className="addEmployeeBtn"
-                type="submit"
-                style={{
-                  backgroundColor: "grey",
-                  marginRight: "20px",
-                  marginLeft: "20px",
-                  marginTop: "30px",
-
-                  border: ".5px solid black",
-                  backgroundColor: "#C6C4C4",
-                  minHeight: "2vh",
-                  minWidth: "4vw",
-                  color: "black",
-                }}
                 onClick={(e) => {
                   handleDelete(id);
                 }}
                 color="error"
+                className="addEmployeeBtnY"
+                variant="contained"
+                style={{
+                  backgroundColor: "grey",
+                  marginRight: "30px",
+                  marginBottom: "30px",
+                  marginLeft: "15px",
+                  backgroundColor: "red",
+                  minWidth: "8vw",
+                  transition: "0.1s ease-in-out",
+                }}
               >
                 Yes
               </Button>
               <Button
-                className="addEmployeeBtn"
-                type="submit"
-                style={{
-                  backgroundColor: "grey",
-                  marginRight: "20px",
-                  marginLeft: "20px",
-                  marginTop: "30px",
-
-                  border: ".5px solid black",
-                  backgroundColor: "#C6C4C4",
-                  minHeight: "2vh",
-                  minWidth: "4vw",
-                  color: "black",
-                }}
                 onClick={(e) => {
                   handleclosedelete(!opendelete);
+                }}
+                variant="contained"
+                className="addEmployeeBtn"
+                style={{
+                  backgroundColor: "var(--blue)",
+                  marginBottom: "30px",
+                  marginRight: "15px",
+                  minWidth: "8vw",
                 }}
               >
                 No
@@ -179,42 +171,31 @@ const Team = ({ name, project, id, pivotId ,members}) => {
             </DialogActions>
           </Dialog>
           <Button
+            onClick={() => setassignproject(!assignproject)}
+            sx={{
+              backgroundColor: "var(--blue)",
+              width: "8.6vw",
+              marginRight: "8px",
+            }}
             className="addEmployeeBtn"
             type="submit"
-            style={{
-              backgroundColor: "grey",
-              marginRight: "20px",
-              marginLeft: "20px",
-
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
-              minHeight: "2vh",
-              minWidth: "4vw",
-              color: "black",
-            }}
-            onClick={() => setassignproject(!assignproject)}
+            variant="contained"
           >
-            assign a project
+            Assign a project
           </Button>
           <Button
-            className="addEmployeeBtn"
-            type="submit"
-            style={{
-              backgroundColor: "grey",
-              marginRight: "20px",
-              marginLeft: "20px",
-
-              border: ".5px solid black",
-              backgroundColor: "#C6C4C4",
-              minHeight: "2vh",
-              minWidth: "4vw",
-              color: "black",
+            sx={{
+              backgroundColor: "var(--blue)",
+              width: "8.6vw",
+              marginRight: "8px",
             }}
+            className="addEmployeeBtn"
             onClick={(e) => {
               setdeleteproject(!deleteproject);
             }}
+            variant="contained"
           >
-            delete project
+            Delete project
           </Button>
           <Dialog
             open={deleteproject}
@@ -222,16 +203,21 @@ const Team = ({ name, project, id, pivotId ,members}) => {
               setdeleteproject(!deleteproject);
             }}
           >
-            <DialogTitle>Delete Assigned project</DialogTitle>
+            <DialogTitle sx={{ width: "15vw", margin: "auto" }}>
+              Delete Assigned project
+            </DialogTitle>
             <DialogContent>
               <form onSubmit={(e) => handleDeleteProjectTeam(pivotId)}>
                 <select
                   style={{
                     width: "15vw",
+                    backgroundColor: "var(--blue)",
+                    color: "white",
                     padding: "3px 3px 10px 3px",
                     margin: "36px 36px 75px 36px",
                     display: "flex",
                     flexDirection: "column",
+                    fontSize: "18px",
                   }}
                   name="team"
                   id="team"
@@ -250,40 +236,31 @@ const Team = ({ name, project, id, pivotId ,members}) => {
                 </select>
                 <DialogActions>
                   <Button
-                    className="addEmployeeBtn"
+                    onClick={() => {
+                      setdeleteproject(deleteproject);
+                    }}
+                    color="error"
+                    className="addEmployeeBtnY"
+                    variant="contained"
                     style={{
                       backgroundColor: "grey",
-                      marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
-
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
+                      marginRight: "30px",
+                      marginBottom: "30px",
+                      marginLeft: "15px",
+                      backgroundColor: "red",
+                      minWidth: "8vw",
+                      transition: "0.1s ease-in-out",
                     }}
-                    type="submit"
                   >
-                    delete Project
+                    Delete project
                   </Button>
                   <Button
-                    className="addEmployeeBtn"
-                    style={{
-                      backgroundColor: "grey",
-                      marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
-
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
-                    }}
                     onClick={() => {
                       setdeleteproject(!deleteproject);
                     }}
+                    className="addEmployeeBtn"
+                    sx={{ backgroundColor: "var(--blue)", width: "8vw", marginBottom:"30px" }}
+                    variant="contained"
                   >
                     Cancel
                   </Button>
@@ -291,46 +268,47 @@ const Team = ({ name, project, id, pivotId ,members}) => {
               </form>
             </DialogContent>
           </Dialog>
-          <Button 
-                              className="addEmployeeBtn"
+          <Button
+            className="addEmployeeBtn"
+            sx={{ backgroundColor: "var(--blue)", width: "8.6vw" }}
+            onClick={() => {
+              setshow(!show);
+            }}
+            variant="contained"
+          >
+            Show Members
+          </Button>
+          <Dialog open={show} onClose={() => setshow(!show)}>
+            <DialogTitle style={{ margin: "30px" }}>
+              Members of {name}'s team
+            </DialogTitle>
+            <div>
+              {members.map((member, i) => {
+                return (
+                  <h4 key={i} style={{ paddingLeft: "20px" }}>
+                    {i + 1}
+                    {". "}
+                    {member.firstname} {member.lastname}
+                  </h4>
+                );
+              })}
+            </div>
+            <DialogActions>
+              <Button
+                className="addEmployeeBtn"
+                sx={{
+                  backgroundColor: "var(--blue)",
+                  width: "8.6vw",
+                  margin: "auto",
+                }}
+                onClick={() => setshow(!show)}
+                variant="contained"
+              >
+                close
+              </Button>
+            </DialogActions>
 
-          style={{
-                  backgroundColor: "grey",
-                  marginRight: "20px",
-                  marginLeft: "20px",
-                  border: ".5px solid black",
-                  backgroundColor: "#C6C4C4",
-                  minHeight: "2vh",
-                  minWidth: "4vw",
-                  color: "black",
-                }} onClick={()=>{setshow(!show)}}>Show Members</Button>
-          <Dialog open={show}onClose={()=>setshow(!show)}>
-            <DialogTitle style={{margin:'30px'}}>Members of {name}'s team</DialogTitle>
-              <div>{members.map((member,i)=>{
-                return(
-                  <h4 key={i} style={{paddingLeft:'20px'}}>{i+1}{". "}{member.firstname}{" "}{member.lastname}</h4>
-                )
-              })}</div>
-              <DialogActions>
-              <Button 
-               className="addEmployeeBtn"
-                    style={{
-                      backgroundColor: "grey",
-                      marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
-
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
-                    }} onClick={()=>setshow(!show)}>Close</Button>
-              </DialogActions>
-          
-            <DialogContent>
-
-            </DialogContent>
+            <DialogContent></DialogContent>
           </Dialog>
         </StyledTableCell>
 
@@ -356,35 +334,15 @@ const Team = ({ name, project, id, pivotId ,members}) => {
                   <Button
                     className="addEmployeeBtn"
                     type="submit"
-                    style={{
-                      backgroundColor: "grey",
-                      marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
-
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
-                    }}
+                    variant="contained"
+                    sx={{ backgroundColor: "var(--blue)", width: "8vw" }}
                   >
-                    submit
+                    Confirm Edit
                   </Button>
                   <Button
                     className="addEmployeeBtn"
-                    style={{
-                      backgroundColor: "grey",
-                      marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
-
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
-                    }}
+                    variant="contained"
+                    sx={{ backgroundColor: "var(--blue)", width: "8vw" }}
                     onClick={() => {
                       setEdit(!edit);
                     }}
@@ -419,6 +377,9 @@ const Team = ({ name, project, id, pivotId ,members}) => {
                     margin: "36px 36px 75px 36px",
                     display: "flex",
                     flexDirection: "column",
+                    backgroundColor: "var(--blue)",
+                    color: "white",
+                    fontSize: "18px",
                   }}
                   name="project"
                   onChange={(e) => setprojectz(e.target.value)}
@@ -432,35 +393,22 @@ const Team = ({ name, project, id, pivotId ,members}) => {
                 </select>
                 <DialogActions>
                   <Button
-                    type="submit"
                     className="addEmployeeBtn"
-                    style={{
-                      backgroundColor: "grey",
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "var(--blue)",
+                      width: "8vw",
                       marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
                     }}
                   >
                     submit
                   </Button>
                   <Button
                     className="addEmployeeBtn"
-                    style={{
-                      backgroundColor: "grey",
-                      marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
-                    }}
+                    type="submit"
+                    variant="contained"
+                    sx={{ backgroundColor: "var(--blue)", width: "8vw" }}
                     onClick={() => {
                       setassignproject(!assignproject);
                     }}

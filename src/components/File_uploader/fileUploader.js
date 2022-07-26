@@ -10,7 +10,7 @@ const FileUploader = ({ onFileSelect }) => {
     return (
         <div className="file-uploader">
             <input
-                style={{ marginLeft: "1rem" }}
+                style={{ marginLeft: "94px", marginTop:"36px" }}
                 type="file"
                 onChange={handleFileInput}
             />

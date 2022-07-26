@@ -55,17 +55,14 @@ const KPIForm = ({ data }) => {
       <DialogActions>
         <Button
           className="addEmployeeBtn"
+          variant="contained"
           onClick={handleEdit}
           style={{
-            backgroundColor: "grey",
-            marginRight: "20px",
+            marginRight: "35px",
             marginLeft: "20px",
             marginTop: "30px",
-            border: ".5px solid black",
-            backgroundColor: "#C6C4C4",
-            minHeight: "2vh",
-            minWidth: "4vw",
-            color: "black",
+            backgroundColor: "var(--blue)",
+            minWidth: "8vw",
           }}
         >
           Edit

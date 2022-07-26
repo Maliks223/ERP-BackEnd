@@ -25,6 +25,9 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import FileUploader from "../../components/File_uploader/fileUploader";
 import axios from "axios";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -152,8 +155,6 @@ const Employees = () => {
     fetchEmployees();
   }, []);
 
-
-
   //teams
   const Request = async () => {
     const res = await axios
@@ -169,7 +170,6 @@ const Employees = () => {
 
   //post employee
   const Postemployee = async () => {
-
     const data = new FormData();
     data.append("firstname", firstname);
     data.append("lastname", lastname);
@@ -179,45 +179,47 @@ const Employees = () => {
     data.append("team_id", team);
 
     const responsee = await fetch("http://localhost:8000/api/employees", {
-      method: "POST", content: "application/json",
-      body: data
-    })
-      .catch((err) => console.log(err));
+      method: "POST",
+      content: "application/json",
+      body: data,
+    }).catch((err) => console.log(err));
     // const res = await responsee.json();
     // console.log(res);
-  }
-
-
-
+  };
 
   return (
     <div className="employeeWraper">
       <div className="employee-page">
         <div className="postproject">
-          <h1 className="projectsTitle" style={{ position: 'absolute', top: '13vh', left: '15vw' }}>Employees Control</h1>
-          <Button
+          <h1
+            className="projectsTitle"
+            style={{ position: "absolute", top: "13vh", left: "15vw" }}
+          >
+            Employees Control
+          </h1>
+          <Fab
             onClick={() => setpost(!post)}
-            className="addEmployeeBtn"
+            color="primary"
+            aria-label="add"
             sx={{
-              backgroundColor: "grey",
-          
               position: "absolute",
-              top: "14vh",
+              top: "13vh",
               right: "6vw",
-              maxHeight: "4vh",
-              maxWidth: "10vw",
-              color: "black",
+              backgroundColor: "var(--blue)",
             }}
           >
-      <AddCircle style={{fontSize:'50px'}}/>
-          </Button>
+            <AddIcon />
+          </Fab>
         </div>
-        {post &&
+        {post && (
           <Dialog open={post} onClose={() => setpost(!post)}>
             <DialogTitle>Add Employee</DialogTitle>
             <DialogContent>
-              <form onSubmit={(e) => { Postemployee(); }}>
-
+              <form
+                onSubmit={(e) => {
+                  Postemployee();
+                }}
+              >
                 <TextField
                   autoFocus
                   margin="dense"
@@ -226,7 +228,9 @@ const Employees = () => {
                   type="text"
                   fullWidth
                   variant="standard"
-                  onChange={(e) => { setfirstname(e.target.value) }}
+                  onChange={(e) => {
+                    setfirstname(e.target.value);
+                  }}
                 />
                 <TextField
                   autoFocus
@@ -236,7 +240,9 @@ const Employees = () => {
                   type="text"
                   fullWidth
                   variant="standard"
-                  onChange={(e) => { setlastname(e.target.value) }}
+                  onChange={(e) => {
+                    setlastname(e.target.value);
+                  }}
                 />
                 <TextField
                   autoFocus
@@ -246,7 +252,9 @@ const Employees = () => {
                   type="email"
                   fullWidth
                   variant="standard"
-                  onChange={(e) => { setemail(e.target.value) }}
+                  onChange={(e) => {
+                    setemail(e.target.value);
+                  }}
                 />
                 <TextField
                   autoFocus
@@ -256,65 +264,68 @@ const Employees = () => {
                   type="tel"
                   fullWidth
                   variant="standard"
-                  onChange={(e) => { setphonenumber(e.target.value) }}
+                  onChange={(e) => {
+                    setphonenumber(e.target.value);
+                  }}
                   sx={{ marginBottom: "24px" }}
                 />
                 <FileUploader onFileSelect={(file) => setFile(file)} />
                 <select
-                  onChange={(e) => { setteam(e.target.value) }}
-
+                  onChange={(e) => {
+                    setteam(e.target.value);
+                  }}
                   style={{
                     width: "15vw",
                     padding: "3px 3px 10px 3px",
-                    margin: "36px 36px 75px 36px",
+                    margin: "36px 36px 75px 116px",
                     display: "flex",
                     flexDirection: "column",
-                  }}>
+                    backgroundColor: "var(--blue)",
+                    color: "white",
+                    fontSize: "18px",
+                  }}
+                >
                   <option>Teams</option>
                   {getteam.map((e, i) => {
                     return (
-                      <option key={i} value={e.id}>{e.name}</option>)
-                  })
-
-                  }
+                      <option key={i} value={e.id}>
+                        {e.name}
+                      </option>
+                    );
+                  })}
                 </select>
                 <Button
                   type="submit"
                   className="addEmployeeBtn"
+                  variant="contained"
                   sx={{
-                    backgroundColor: "#C6C4C4",
-                    minHeight: "4vh",
-                    minWidth: "10vw",
-                    fontWeight: "600",
-                    color: "rgba(0, 0, 0, 0.614)",
+                    backgroundColor:"var(--blue)",
+                    minWidth: "8vw",
                     marginBottom: "24px",
+                    marginLeft:"86px"
                   }}
-                // onClick={handleEdit}
+                  // onClick={handleEdit}
                 >
                   Confirm
                 </Button>
 
                 <Button
+                  variant="contained"
                   className="addEmployeeBtn"
                   sx={{
-                    backgroundColor: "#C6C4C4",
-                    minHeight: "4vh",
-                    minWidth: "10vw",
-                    fontWeight: "600",
-                    color: "rgba(0, 0, 0, 0.614)",
+                    backgroundColor:"var(--blue)",
+                    minWidth: "8vw",
                     marginBottom: "24px",
+                    marginLeft:"86px"
                   }}
                   onClick={() => setpost(!post)}
                 >
                   Cancel
                 </Button>
-
               </form>
             </DialogContent>
-
-
           </Dialog>
-        }
+        )}
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
@@ -366,9 +377,9 @@ const Employees = () => {
             <TableBody sx={{ Color: "black" }}>
               {(rowsPerPage > 0
                 ? data.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                 : data
               ).map((employee, i) => (
                 <EmployeeRow key={i} data={employee} />

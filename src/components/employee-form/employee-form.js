@@ -97,13 +97,12 @@ const EmployeeForm = ({ data }) => {
       <DialogActions>
         <Button
           className="addEmployeeBtn"
+          variant="contained"
           sx={{
-            backgroundColor: "#C6C4C4",
-            minHeight: "4vh",
-            minWidth: "10vw",
-            fontWeight: "600",
-            color: "rgba(0, 0, 0, 0.614)",
-            marginBottom: "24px",
+            backgroundColor: "var(--blue)",
+            minWidth: "8vw",
+            margin:"auto",
+            marginBottom:"16px"
           }}
           onClick={handleEdit}
         >

@@ -19,6 +19,8 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 import {
   DialogActions,
   Dialog,
@@ -159,21 +161,23 @@ const Roles = () => {
 
   return (
     <>
-      <Button
-                    className="addEmployeeBtn"
-        style={{
+      <Fab
+        className="addIconWrapper"
+        color="primary"
+        aria-label="add"
+        sx={{
           position: "absolute",
-          top: "13.5vh",
+          top: "13vh",
           right: "6vw",
-        
-          color: "black",
+          backgroundColor: "var(--blue)",
         }}
         onClick={() => {
           setopendialog(!opendialog);
         }}
       >
-      <AddCircle style={{fontSize:'50px'}}/>
-      </Button>
+        <AddIcon className="addIcon" />
+      </Fab>
+      <AddCircle style={{ fontSize: "50px" }} />
       {opendialog && (
         <Dialog open={opendialog} onClose={() => setopendialog(!opendialog)}>
           <DialogTitle>Add New Role</DialogTitle>
@@ -212,36 +216,24 @@ const Roles = () => {
                 <Button
                   className="addEmployeeBtn"
                   type="submit"
-                  style={{
-                    backgroundColor: "grey",
-                    marginRight: "20px",
-                    marginLeft: "20px",
-                    marginTop: "30px",
-                    border: ".5px solid black",
-                    backgroundColor: "#C6C4C4",
-                    minHeight: "2vh",
-                    minWidth: "4vw",
-                    color: "black",
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "var(--blue)",
+                    marginTop: "16px",
+                    marginRight: "24px",
+                    width: "4.5vw",
                   }}
                 >
-                  post
+                  Post
                 </Button>
+
                 <Button
                   onCLick={() => setopendialog(!opendialog)}
                   className="addEmployeeBtn"
-                  style={{
-                    backgroundColor: "grey",
-                    marginRight: "20px",
-                    marginLeft: "20px",
-                    marginTop: "30px",
-                    border: ".5px solid black",
-                    backgroundColor: "#C6C4C4",
-                    minHeight: "2vh",
-                    minWidth: "4vw",
-                    color: "black",
-                  }}
+                  variant="contained"
+                  sx={{ backgroundColor: "var(--blue)", marginTop: "16px" }}
                 >
-                  Cancel
+                  cancel
                 </Button>
               </DialogActions>
             </form>
@@ -250,7 +242,9 @@ const Roles = () => {
       )}
 
       <div className="rolecontainer">
-        <h1 style={{ marginLeft: "2vw"}}>Roles Control</h1>
+        <h1 style={{ marginLeft: "2vw", marginBottom: "36px" }}>
+          Roles Control
+        </h1>
         <TableContainer component={Paper}>
           <Table sx={{ width: "85vw" }} aria-label="customized table">
             <TableHead>

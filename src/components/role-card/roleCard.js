@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import RoleForm from "../role-form/roleForm";
+// import Button from '@mui/material/Button';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -92,38 +93,33 @@ const RoleRow = ({ data }) => {
             Are you sure you want to Delete this Role?
           </DialogContent>
           <DialogActions>
-            <Button
-              onClick={handleDelete}
-              className="addEmployeeBtn"
+          <Button
+            onClick={handleDelete}
+            
+              color="error"
+              className="addEmployeeBtnY"
+              variant = "contained"
               style={{
                 backgroundColor: "grey",
-                marginRight: "20px",
-                marginLeft: "20px",
-                marginTop: "30px",
-
-                border: ".5px solid black",
-                backgroundColor: "#C6C4C4",
-                minHeight: "2vh",
-                minWidth: "4vw",
-                color: "black",
+                marginRight: "30px",
+                marginBottom: "30px",
+                marginLeft:"15px",
+                backgroundColor: "red",
+                minWidth: "8vw",
+                transition:"0.1s ease-in-out"
               }}
-            >
+              >
               Yes
             </Button>
             <Button
-              className="addEmployeeBtn"
               onClick={handleCloseDelete}
+              variant = "contained"
+              className="addEmployeeBtn"
               style={{
-                backgroundColor: "grey",
-                marginRight: "20px",
-                marginLeft: "20px",
-                marginTop: "30px",
-
-                border: ".5px solid black",
-                backgroundColor: "#C6C4C4",
-                minHeight: "2vh",
-                minWidth: "4vw",
-                color: "black",
+                backgroundColor: "var(--blue)",
+                marginBottom: "30px",
+                marginRight:"15px",
+                minWidth: "8vw",
               }}
             >
               No
@@ -131,18 +127,12 @@ const RoleRow = ({ data }) => {
           </DialogActions>
         </Dialog>
         <Button
-                      className="addEmployeeBtn"
-         style={{
-          backgroundColor: "grey",
-          marginRight: "20px",
-          marginLeft: "20px",
-
-          border: ".5px solid black",
-          backgroundColor: "#C6C4C4",
-          minHeight: "2vh",
-          minWidth: "4vw",
-          color: "black",
-        }}>Assign to Employee</Button>
+          className="addEmployeeBtn"
+          variant="contained"
+          sx={{ marginLeft: "30px", backgroundColor: "var(--blue)" }}
+        >
+          Assign to Employee
+        </Button>
       </StyledTableCell>
     </StyledTableRow>
   );
