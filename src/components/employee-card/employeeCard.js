@@ -163,14 +163,14 @@ const EmployeeRow = ({ data  }) => {
         variant="contained"
           className="addEmployeeBtn"
           style={{
-            backgroundColor: "var(--white)",
+            backgroundColor: "var(--blue)",
             marginLeft: "20px",
             textDecoration: "none",
             minWidth: "8vw",
             color: "white",
           }}
         >
-          <Link sx = {{color:"white"}} to={`/employees/id=${id}`} state={{ data: data }}>
+          <Link style = {{color:"white", textDecoration:"none"}} to={`/employees/id=${id}`} state={{ data: data }}>
             View More
           </Link>
         </Button>

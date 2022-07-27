@@ -11,7 +11,7 @@
        
   }
   i{
-    color: #C6C4C4;
+    color: var(--grey);
   }
 
   .inputz{
@@ -20,18 +20,19 @@
   }
   
   .menu {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
-    margin-left: -25px;
-    margin-top: -25px;
+    margin-left: -85px;
+    margin-top: 80px;
   }
   
   .btn {
+    transition: .1s ease-in-out;
     background-color: blue;
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border-radius: 70px;
     position: absolute;
     overflow: hidden;
@@ -43,7 +44,7 @@
   .material-icons.md-36 { font-size: 36px; color: #03A9F4 }
   
   .btn {
-    background:  rgb(1, 1, 55);
+    background:var(--blue);
     font-size: 15px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -61,7 +62,8 @@
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   }
   .btn:hover{
-    background-color: #4e788c;
+    transition: .1s ease-in-out;
+    transform: scale(1.09);
   }
   
   .btn:not(:first-child) {

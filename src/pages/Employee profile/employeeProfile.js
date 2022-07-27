@@ -159,7 +159,6 @@ const EmployeeProfile = () => {
             <div className="scroly">
               <h1 style={{ position: "absolute", top: "11vh", fontWeight:"lighter", marginBottom:"24px" }}>latest kpis</h1>
 
-<<<<<<< HEAD
               <ol className="late">
                 {latest &&
                   latest.map((kpi) => {
@@ -198,77 +197,12 @@ const EmployeeProfile = () => {
           </div>
 
           {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
-=======
-                        <CardId data={employee} />
-                        <Button
-                            className="profile"
-                            sx={{
-                                // border: ".5px solid black",
-                                backgroundColor: "#0A4f70",
-                                // minHeight: "2vh",
-                                // minWidth: "4vw",
-                                color: "white"
-                                , position: 'absolute', top: '67vh', left: '15.8vw'
-                            }} onClick={handleClickOpenTeam} >Edit Employee Team</Button>
-                        <Dialog open={openTeam} onClose={handleCloseTeam}>
-                            <DialogTitle> Edit</DialogTitle>
-                            <DialogContent>
-                                <EditEmployeeTeam data={data} />
-                            </DialogContent>
-                        </Dialog>
-
-                        <Button className="profile" onClick={handleClickOpen} sx={{ position: 'absolute', left: '15.8vw', top: '73.2vh', backgroundColor: '#0A4f70', color: "white" }} >assign KPI</Button>
-                        <Dialog open={open} onClose={handleClose}>
-                            <DialogTitle> Assign a KPI</DialogTitle>
-                            <DialogContent>
-                                <KPIAssignForm id={employee.id} />
-                            </DialogContent>
-                        </Dialog>
-
-                    </div>
-                    {team &&
-                        <>
-                            <Button className="profile" sx={{ position: 'absolute', left: '15.8vw', top: '61vh', backgroundColor: '#0A4f70', color: "white" }} onClick={handleClickOpenRoles} >Assign a Role in Project</Button>
-                            <Dialog open={openRoles} onClose={handleCloseRoles}>
-                                <DialogTitle> Assign a Role in Project</DialogTitle>
-                                <DialogContent>
-                                    <RoleProject id={employee.id} team={employee.teams} />
-                                </DialogContent>
-                            </Dialog>
-                        </>
-                    }
-                    <div className="combin">
-                        <div className="scroly">
-                            <h1 style={{ position: 'absolute', top: '12vh' }}>latest kpis</h1>
-
-                            <ol className="late">
-                                {latest &&
-                                    latest.map(kpi => {
-                                        return <li sx={{ margin: '50px' }}><KPICard title={kpi.kpi_name} rate={kpi.rate} /></li>
-                                    })}
-                            </ol>
-                        </div>
-                        <div className="car">
-                            <h1 style={{ position: 'absolute', top: '42.5vh', left: '42.5vw' }}>All Kpis</h1>
-                            <Carousel autoPlay={true} infiniteLoop={true} interval="3000" transitionTime="1000" swipeable={true} showArrows={true} showThumbs={true} width={742} className="hero-carousel">
-                                {filtered &&
-                                    filtered.map((list) => {
-                                        return (
-                                            <BarCharts kpis={list} />
-                                        )
-                                    })}
-                            </Carousel>
-                        </div>
-                    </div>
-                    {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
->>>>>>> edits1
                     <Dialog open={openTeam} onClose={handleCloseTeam}>
                         <DialogTitle> Edit</DialogTitle>
                         <DialogContent>
                             <EditEmployeeTeam data={data} />
                         </DialogContent>
                     </Dialog> */}
-<<<<<<< HEAD
         </div>
       )}
     </>
@@ -276,13 +210,3 @@ const EmployeeProfile = () => {
 };
 
 export default EmployeeProfile;
-=======
-                </div>}
-        </>
-
-    )
-}
-
-
-export default EmployeeProfile;
->>>>>>> edits1

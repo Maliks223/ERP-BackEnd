@@ -1,0 +1,30 @@
+.companyDataWrapper{
+    width: 25vw;
+    position: absolute;
+    top: 13%;
+    left: 67%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 26px;
+    font-size: 24px;
+}
+
+ .companyData{
+    font-weight: 500;
+    color: var(--blue);
+    display: flex;
+    padding: 26px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: red;
+    height: 15vh;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 20vw;
+    border-radius: 10px;
+    background-color: var(--grey);
+    border: 1px solid var(--blue);
+} 

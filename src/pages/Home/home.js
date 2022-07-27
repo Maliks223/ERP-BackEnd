@@ -8,6 +8,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Menu from "../../components/circular navigation/circular";
 import "./home.css";
 import AdminEdit from "../../components/Admin_edit/admin_edit";
+import NavBar from "../../components/navbar/navbar.js"
+import CompanyData from '../../components/CompanyData/companyData.js';
 
 
 
@@ -36,10 +38,18 @@ const Home = () => {
 
     return (
         <>
+        <NavBar/>
             <div className="background"></div>
             <div className="homecontainer">
                 <div className="menuloc">
                     <Menu />
+                </div>
+                <div className="companyDataWrapper">
+                    My company Information
+                <CompanyData title={"Employees"} number={20}/>
+                <CompanyData title={"Teams"} number={4}/>
+                <CompanyData title={"Projects"} number={8}/>
+
                 </div>
                 <div className="profileCard">
                     <div className="direction">

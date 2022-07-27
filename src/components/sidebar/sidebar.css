@@ -1,12 +1,10 @@
 #header {
-<<<<<<< HEAD
     position: absolute;
     left:0px;
     top: 12vh;
     width: 220px;
-    height: 87vh;
+    height: 84vh;
     border-top: 3px solid var(--blue);
-=======
   position: absolute;
   left: 0px;
   top: 12vh;
@@ -84,6 +82,5 @@
 @media only screen and (max-width: 720px) {
   html {
     overflow: hidden;
->>>>>>> edits1
   }
 }
