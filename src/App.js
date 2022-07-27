@@ -21,7 +21,6 @@ function App() {
     <>
       <Router>
         <Routes>
-          {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
           <Route path="login" element={<Login />} />
           <Route index path="" element={<Home />} />
           <Route path="" element={<Dashboard />}>
@@ -33,6 +32,7 @@ function App() {
             <Route path="admin" element={<Admin />} />
             <Route path="roles" element={<Roles />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </>

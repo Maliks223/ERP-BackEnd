@@ -12,7 +12,7 @@
   color: #51c5dd;
 }
 .background {
-  background-image: url('./back.jpg');
+  background-image: url("./back.jpg");
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
@@ -21,20 +21,20 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
-
 }
 
-.profile_image {
-  border: 1px solid transparent;
-  border-radius: 50%;
+.profile-image {
+  /* border: 1px solid transparent; */
+  /* border-radius: 50%; */
+  height: 20vh;
+  width: 15vw;
 }
 .name {
   padding-right: 137px;
 }
 
-.secondiv{
-  display: flex;  
+.secondiv {
+  display: flex;
 }
 .role {
   padding-right: 140px;
@@ -44,34 +44,44 @@
   position: absolute;
   border: 1px solid transparent;
   border-radius: 30px;
-
   background-color: rgba(0, 0, 0, 0.11);
   backdrop-filter: blur(5px);
   color: rgb(1, 1, 55);
-  width: 40%;
+  height: 40vh;
+  width: 40vw;
   top: 25%;
   left: 30%;
-
 }
-.but{
-  padding:3px 8px;
+.but {
+  padding: 3px 8px;
   position: absolute;
-  left:600px;
-  top:250px;
-  border:1px solid black;
+  left: 600px;
+  top: 250px;
+  border: 1px solid black;
   border-radius: 3px;
-  color:white;
+  color: white;
   font-size: 15px;
   background-color: rgb(1, 1, 55);
 }
 .cardcontent {
-  width:80%;
+  width: 90%;
   display: flex;
   flex-direction: row;
-align-items: center;
-  justify-content:space-between ;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .cardcontent {
-  padding: 60px 20px 60px 50px;
+  padding: 60px 20px 60px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.direction{
+  display: flex;
+  flex-direction: column;
+}
+
+.direction:first-child{
+  align-items: end;
 }
