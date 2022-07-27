@@ -63,9 +63,11 @@ const Menu = () => {
               </Link>
             </div>
             <div title="Admins" class="btn">
-              <i>
-                <RiAdminLine style={{ fontSize: "30px" }} />
-              </i>
+              <Link to="/admin">
+                <i>
+                  <RiAdminLine style={{ fontSize: "30px" }} />
+                </i>
+              </Link>
             </div>
             <div title="Roles" class="btn">
               <Link to="/roles">

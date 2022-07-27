@@ -33,6 +33,7 @@ function App() {
             <Route path="admin" element={<Admin />} />
             <Route path="roles" element={<Roles />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </>
