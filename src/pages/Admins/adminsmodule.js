@@ -99,7 +99,7 @@ const Admin = ({ id, email, name, image }) => {
       <StyledTableCell
         className="tableInfo"
         align="center"
-        sx={{ color: "black" }}
+        sx={{ color: "black", fontSize:"18px!important" }}
       >
         {name}
       </StyledTableCell>
@@ -107,14 +107,14 @@ const Admin = ({ id, email, name, image }) => {
       <StyledTableCell
         className="tableInfo"
         align="center"
-        sx={{ color: "black" }}
+        sx={{ color: "black", fontSize:"18px!important" }}
       >
         {email}
       </StyledTableCell>
 
       <StyledTableCell align="center">
         <Button onClick={handleClickOpen}>
-          <EditIcon sx={{ transform: "scale(1.5)" }} color="success" />
+          <EditIcon color="success" />
         </Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
@@ -166,7 +166,7 @@ const Admin = ({ id, email, name, image }) => {
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
-          <DeleteIcon sx={{ transform: "scale(1.5)" }} color="error" />
+          <DeleteIcon color="error" />
         </Button>
         <Dialog open={openDelete} onClose={handleCloseDelete}>
           <DialogTitle>Delete</DialogTitle>
