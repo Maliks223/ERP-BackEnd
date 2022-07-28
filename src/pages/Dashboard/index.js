@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     redirect();
-  }, []);
+  });
 
   return (
     <div className='dash-container'>

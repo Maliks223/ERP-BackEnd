@@ -16,11 +16,11 @@ import { BiBody } from "react-icons/bi";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./sidebar.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const SideBar = () => {
-
+  const navigate = useNavigate();
   const logout = async () => {
     try {
       const res = await fetch(`http://localhost:8000/api/logout`, {
@@ -33,6 +33,7 @@ const SideBar = () => {
       console.log(response);
       localStorage.removeItem('token');
       localStorage.removeItem('id');
+      navigate('/login');
     }
     catch (err) {
       console.log(err);
