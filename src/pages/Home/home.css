@@ -5,58 +5,44 @@
   z-index: 99;
 }
 
-.welcome {
-  position: absolute;
-  top: 2%;
-  left: 37%;
-  color: #51c5dd;
-}
 .background {
   background-color: white;
-  background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
-  /* background-size: 100% 100%; */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
+
 
 .profile-image {
+  position: absolute;
+  z-index: 1000;
+  top: -27%;
+  left: 35%;
   object-fit: cover;
-  /* border: 1px solid transparent; */
+  border: 2px solid var(--blue);
   border-radius: 50%;
-  max-height: 20vh;
-  max-width: 15vw;
 }
-.name {
-  padding-right: 137px;
-}
-
-.secondiv {
-  display: flex;
-}
-.role {
-  padding-right: 140px;
+.userInfo{
+  position: absolute;
+  top: 35%;
+  left:23%;
 }
 
 .profileCard {
   padding: 18px;
   position: absolute;
-  border: 1px solid var(--blue);
+  border: 2px solid var(--blue);
   border-radius: 10px;
-  background-color: var(--white);
+  background-color: rgb(220, 213, 213);
   color: var(--blue);
-  height: 45vh;
+  height: 40vh;
   width: 40vw;
   top: 30%;
-  left: 22%;
+  left: 35%;
 }
 .but {
   padding: 3px 8px;
   position: absolute;
-  left: 600px;
+  /* left: 600px; */
   top: 250px;
   border: 1px solid black;
   border-radius: 3px;

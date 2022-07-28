@@ -11,7 +11,10 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-const EmployeeAssignForm = (props) => {
+
+const EmployeeAssignForm = ({data,handleClose}) => {
+  // const handleClose = props.handleClose;
+  const {id} =data;
   const [employees, setEmployees] = useState([]);
   const [employee, setEmployee] = useState(0);
   const [rate, setRate] = useState(0);
@@ -39,7 +42,7 @@ const EmployeeAssignForm = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("employee_id", employee);
-    formData.append("kpi_id", props.id);
+    formData.append("kpi_id", id);
     formData.append("rate", rate);
     formData.append("KPI_date", KPI_date);
     try {
@@ -67,7 +70,12 @@ const EmployeeAssignForm = (props) => {
         </DialogTitle>
         <InputLabel>Employees List</InputLabel>
         <Select
-          style={{ width: "70%", marginLeft: "36px",marginTop: "36px", marginBottom: "36px",}}
+          style={{
+            width: "70%",
+            marginLeft: "36px",
+            marginTop: "36px",
+            marginBottom: "36px",
+          }}
           label="Employees List"
           value={employee}
           onChange={handleEmployeeChange}
@@ -84,6 +92,7 @@ const EmployeeAssignForm = (props) => {
         <InputLabel style={{ marginTop: "20px" }}>Range</InputLabel>
 
         <Slider
+          sx={{ color: "var(--blue)" }}
           aria-label="Rate"
           defaultValue={0}
           // getAriaValueText={valuetext}
@@ -110,10 +119,24 @@ const EmployeeAssignForm = (props) => {
             variant="contained"
             className="addEmployeeBtn"
             sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+              marginTop: "36px",
+              marginRight: "36px",
+              marginLeft: "120px",
+            }}
+            onClick = {handleClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
               marginTop: "36px",
               backgroundColor: "var(--blue)",
-              width: "8vw",
-              marginRight: "120px",
+              minWidth: "8vw",
+              marginRight: "60px",
             }}
             onClick={handleAssign}
           >

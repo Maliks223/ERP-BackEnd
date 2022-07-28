@@ -108,16 +108,16 @@ const EmployeeRow = ({ data  }) => {
       </StyledTableCell>
       <StyledTableCell align="center">
         <Button onClick={handleClickOpen}>
-          <EditIcon sx={{ transform: "scale(1.5)" }} color="success" />
+          <EditIcon  color="success" />
         </Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
           <DialogContent>
-            <EmployeeForm data={data} />
+            <EmployeeForm handleClose={handleClose} data={data} />
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
-          <DeleteIcon sx={{ transform: "scale(1.5)" }} color="error" />
+          <DeleteIcon color="error" />
         </Button>
         <Dialog open={openDelete} onClose={handleCloseDelete}>
           <DialogTitle>Delete</DialogTitle>

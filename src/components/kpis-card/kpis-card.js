@@ -33,9 +33,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const KPIRow = ({ data }) => {
-  const[openassign,setopenassign]=useState(false);
+  const [openassign, setopenassign] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const [openDelete, setOpenDelete] = React.useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+
+
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -52,15 +55,21 @@ const KPIRow = ({ data }) => {
     setOpenDelete(false);
   };
 
-  const { id, name ,employees} = data;
+  const { id, name, employees } = data;
 
-  const getemployees=async()=>{
-return(
-  <div>
-  {employees.map((emplo,i)=>{return(<h4 key={i}>{emplo.firstname}{" "}{emplo.lastname}</h4>)})}
-  </div>
-)
-  }
+  const getemployees = async () => {
+    return (
+      <div>
+        {employees.map((emplo, i) => {
+          return (
+            <h4 key={i}>
+              {emplo.firstname} {emplo.lastname}
+            </h4>
+          );
+        })}
+      </div>
+    );
+  };
 
   const handleDelete = async () => {
     try {
@@ -83,8 +92,22 @@ return(
       </StyledTableCell>
       {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
       <StyledTableCell align="center">{name}</StyledTableCell>
-      <StyledTableCell align="center">{employees.length!==0 ? <div> {employees.map((emplo,i)=>{return(<h4 key={i}>{emplo.firstname}{" "}{emplo.lastname}</h4>)})}</div>
- :"Not Assigned Yet"}</StyledTableCell>
+      <StyledTableCell align="center">
+        {employees.length !== 0 ? (
+          <div>
+            {" "}
+            {employees.map((emplo, i) => {
+              return (
+                <h4 key={i}>
+                  {emplo.firstname} {emplo.lastname}
+                </h4>
+              );
+            })}
+          </div>
+        ) : (
+          "Not Assigned Yet"
+        )}
+      </StyledTableCell>
 
       <StyledTableCell align="center">
         <Button onClick={handleClickOpen}>
@@ -93,57 +116,61 @@ return(
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
           <DialogContent>
-            <KPIForm data={data} />
+            <KPIForm data={data} handleClose={handleClose} />
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
           <DeleteIcon color="error" />
         </Button>
-        <Button onClick={()=>{setopenassign(!openassign)}}
-         className="addEmployeeBtn"
-         variant="contained"
-         style={{
-           marginRight: "20px",
-           marginLeft: "20px",
-           backgroundColor: "var(--blue)",
-           minWidth: "8vw",
-         }}>
+        <Button
+          onClick={() => {
+            setopenassign(!openassign);
+          }}
+          className="addEmployeeBtn"
+          variant="contained"
+          style={{
+            marginRight: "20px",
+            marginLeft: "20px",
+            backgroundColor: "var(--blue)",
+            minWidth: "8vw",
+          }}
+        >
           assign to employee
-                  </Button>
-                  <Dialog open={openassign}onClose={()=>setopenassign(!openassign)}>
-                    <EmployeeAssignForm id={id} />
-                  </Dialog>
+        </Button>
+        <Dialog open={openassign} onClose={() => setopenassign(!openassign)}>
+          <EmployeeAssignForm data={data}  />
+        </Dialog>
         <Dialog open={openDelete} onClose={handleCloseDelete}>
           <DialogTitle>Delete</DialogTitle>
           <DialogContent>
             Are you sure you want to Delete this KpI?
           </DialogContent>
           <DialogActions>
-          <Button
-            onClick={handleDelete}
-            color="error"
+            <Button
+              onClick={handleDelete}
+              color="error"
               className="addEmployeeBtnY"
-              variant = "contained"
+              variant="contained"
               style={{
                 backgroundColor: "grey",
                 marginRight: "30px",
                 marginBottom: "30px",
-                marginLeft:"15px",
+                marginLeft: "15px",
                 backgroundColor: "red",
                 minWidth: "8vw",
-                transition:"0.1s ease-in-out"
+                transition: "0.1s ease-in-out",
               }}
-              >
+            >
               Yes
             </Button>
             <Button
               onClick={handleCloseDelete}
-              variant = "contained"
+              variant="contained"
               className="addEmployeeBtn"
               style={{
                 backgroundColor: "var(--blue)",
                 marginBottom: "30px",
-                marginRight:"15px",
+                marginRight: "15px",
                 minWidth: "8vw",
               }}
             >

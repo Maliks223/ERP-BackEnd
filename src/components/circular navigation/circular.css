@@ -15,16 +15,16 @@
   }
 
   .inputz{
-    position: absolute; 
     display: none
   }
   
   .menu {
     /* margin: 0 auto; */
     position: absolute;
+    transform: scale(1.1);
     top: 60%;
     left: 50%;
-    margin-left: -85px;
+    margin-left: -105px;
     margin-top: 80px;
   }
   

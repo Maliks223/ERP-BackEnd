@@ -44,13 +44,13 @@ const Home = () => {
                 <div className="menuloc">
                     <Menu />
                 </div>
-                <div className="companyDataWrapper">
+                {/* <div className="companyDataWrapper">
                     My company Information
                 <CompanyData title={"Employees"} number={20}/>
                 <CompanyData title={"Teams"} number={4}/>
                 <CompanyData title={"Projects"} number={8}/>
 
-                </div>
+                </div> */}
                 <div className="profileCard">
                     <div className="direction">
                         <Button onClick={handleClickOpen} >
@@ -70,13 +70,10 @@ const Home = () => {
                                     alt={user.name}
                                 />
                             </div>
-                            <div className="seconddiv">
+                            <div className="userInfo">
 
-                                <h2 className="name">Name : {user.name}</h2>
+                                <h2>Name : {user.name}</h2>
                                 <h2>Email : {user.email}</h2>
-                                {/* <h2 className="role">
-                                Role : {user.role === 0 ? "Admin" : "Super Admin"}
-                            </h2> */}
                             </div>
                         </div>
                     </div>

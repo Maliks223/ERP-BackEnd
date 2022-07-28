@@ -5,9 +5,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import FileUploader from "../File_uploader/fileUploader";
 
-const EmployeeForm = ({ data }) => {
+const EmployeeForm = ({ data, handleClose }) => {
   const { id } = data;
-
   const [image, setFile] = useState(null);
   const [inputs, setInputs] = useState({
     firstname: "",
@@ -50,7 +49,7 @@ const EmployeeForm = ({ data }) => {
 
   return (
     <>
-      <DialogContent>
+      <DialogContent >
         <TextField
           autoFocus
           margin="dense"
@@ -95,14 +94,28 @@ const EmployeeForm = ({ data }) => {
         <FileUploader onFileSelect={(file) => setFile(file)} />
       </DialogContent>
       <DialogActions>
+      <Button
+          variant="contained"
+          className="addEmployeeBtn"
+          sx={{
+            marginRight: "16px",
+            backgroundColor: "var(--blue)",
+            minWidth: "8vw",
+            marginBottom: "17px",
+          }}
+          onClick = {handleClose}
+        >
+          Cancel
+        </Button>
         <Button
           className="addEmployeeBtn"
           variant="contained"
           sx={{
             backgroundColor: "var(--blue)",
             minWidth: "8vw",
-            margin:"auto",
-            marginBottom:"16px"
+            // margin: "auto",
+            marginRight: "106px",
+            marginBottom: "16px",
           }}
           onClick={handleEdit}
         >

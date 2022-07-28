@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 
-const KPIForm = ({ data }) => {
+const KPIForm = ({ data, handleClose }) => {
   const { id } = data;
 
   const [inputs, setInputs] = useState({
@@ -45,7 +45,7 @@ const KPIForm = ({ data }) => {
           autoFocus
           margin="dense"
           name="name"
-          label="First Name"
+          label="KPI Name"
           type="text"
           fullWidth
           variant="standard"
@@ -53,21 +53,29 @@ const KPIForm = ({ data }) => {
         />
       </DialogContent>
       <DialogActions>
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+            }}
+           onClick={handleClose}
+          >
+            Cancel
+          </Button>
         <Button
           className="addEmployeeBtn"
           variant="contained"
           onClick={handleEdit}
           style={{
-            marginRight: "35px",
             marginLeft: "20px",
-            marginTop: "30px",
             backgroundColor: "var(--blue)",
             minWidth: "8vw",
           }}
         >
           Edit
         </Button>
-        {/* <Button onClick={exit()}>Cancek</Button> */}
       </DialogActions>
     </>
   );

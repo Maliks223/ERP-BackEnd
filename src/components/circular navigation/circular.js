@@ -27,12 +27,6 @@ const Menu = () => {
         <div class="menu">
           <input type="checkbox" className="inputz" id="toggle" />
           <label id="show-menu" for="toggle">
-            {/* <div class="btn" stye={{ color: "white" }}>
-              <i>
-                <FiHome style={{ fontSize: "30px" }} />
-              </i>
-              <i>Home</i>
-            </div> */}
 
             <div title="Employees" class="btn">
               <Link to="/employees">
