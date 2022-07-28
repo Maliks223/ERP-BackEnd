@@ -35,23 +35,35 @@
 }
 .late{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 50px;
+  margin: auto;
+  margin-left: 40px;
+  margin-bottom: 18px;
   list-style-type: none;;
-  /* justify-content: space-around;
-  align-content: space-around; */
 }
 .scroly{
+  border-radius: 10px;
   padding: 20px;
   margin-top: 13vh;
-  margin-left: 7.8vw;
-  overflow-x: scroll;
+  margin-left: 4vw;
+  /* overflow-x: scroll; */
   overflow-y: hidden;
   /* white-space: nowrap; */
-  width: 37.8vw;
-  border: 3px solid grey;
+  width: 17.8vw;
+  height: 66vh;
+  border: 2px solid var(--blue);
+  background-color: var(--white);
 
 
 
+}
+
+.scroly h1 {
+  margin-left: 90px;
+  font-weight: lighter;
+  font-size: 36px;
 }
 
 ::-webkit-scrollbar-track {

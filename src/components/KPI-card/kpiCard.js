@@ -10,7 +10,7 @@ const KPICard = (props) => {
             <div className="kpiCard-container">
                 <h3>{props.title}</h3>
                 <Slider 
-
+                    sx = {{color:"white"}}
                     aria-label="Rate"
                     defaultValue={props.rate}
                     valueLabelDisplay="auto"

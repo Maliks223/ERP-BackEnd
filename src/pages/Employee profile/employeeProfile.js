@@ -157,21 +157,24 @@ const EmployeeProfile = () => {
           )}
           <div className="combin">
             <div className="scroly">
-              <h1 style={{ position: "absolute", top: "11vh", fontWeight:"lighter", marginBottom:"24px" }}>latest kpis</h1>
 
+                <h1 >Latest KPIs</h1>
               <ol className="late">
                 {latest &&
                   latest.map((kpi) => {
                     return (
+                      <>
                       <li sx={{ margin: "50px", borderRadius:"10px" }}>
                         <KPICard title={kpi.kpi_name} rate={kpi.rate} />
+                      
                       </li>
+                      </>
                     );
                   })}
               </ol>
             </div>
 
-            <div className="car">
+            {/* <div className="car">
               <h1
                 style={{ position: "absolute", top: "42.5vh", left: "42.5vw", fontWeight:"lighter" }}
               >
@@ -193,7 +196,7 @@ const EmployeeProfile = () => {
                     return <BarCharts kpis={list} />;
                   })}
               </Carousel>
-            </div>
+            </div> */}
           </div>
 
           {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
