@@ -192,7 +192,8 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 className="addEmployeeBtnY"
                 color="error"
                 style={{
-                  marginLeft: "105px",
+                  marginLeft: "15px",
+                  marginRight: "25px",
                   marginBottom: "36px",
                   backgroundColor: "red",
                   minWidth: "8vw",
@@ -204,7 +205,8 @@ const Project = ({ id, name, teamz, pivotId }) => {
                     className="addEmployeeBtn"
                     variant="contained"
                     style={{
-                      margin: "auto",
+                      marginBottom:"36px",
+                      // margin: "auto",
                       backgroundColor: "var(--blue)",
                       minWidth: "8vw",
                     }}
@@ -212,7 +214,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
                       setdeleteteam(false)
                     }}
                   >
-                    Close
+                    Cancel
                   </Button>
             </form>
           </Dialog>
@@ -376,7 +378,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
                       setassignteam(false)
                     }}
                   >
-                    Close
+                    cancel
                   </Button>
                 </DialogActions>
               </form>

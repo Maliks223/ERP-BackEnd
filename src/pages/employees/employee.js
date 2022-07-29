@@ -27,6 +27,7 @@ import FileUploader from "../../components/File_uploader/fileUploader";
 import axios from "axios";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
+import NotificationBar from "../../components/notificationBar/notificationBar";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -112,6 +113,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
+  const [note, setNote] = useState(true);
   const [data, setData] = useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -189,6 +191,7 @@ const Employees = () => {
 
   return (
     <div className="employeeWraper">
+      <NotificationBar />
       <div className="employee-page">
         <div className="postproject">
           <h1
@@ -299,24 +302,27 @@ const Employees = () => {
                   className="addEmployeeBtn"
                   variant="contained"
                   sx={{
-                    backgroundColor:"var(--blue)",
+                    backgroundColor: "var(--blue)",
                     minWidth: "8vw",
-                    marginBottom: "24px",
-                    marginLeft:"86px"
+                    marginBottom: "-53px",
+                    marginLeft: "86px",
                   }}
-                  // onClick={handleEdit}
+                  onCLick={()=>{
+                    setNote(true)
+                  }}
                 >
                   Confirm
                 </Button>
+                <NotificationBar note={note} message={"msg1"} />
 
                 <Button
                   variant="contained"
                   className="addEmployeeBtn"
                   sx={{
-                    backgroundColor:"var(--blue)",
+                    backgroundColor: "var(--blue)",
                     minWidth: "8vw",
                     marginBottom: "24px",
-                    marginLeft:"86px"
+                    marginLeft: "272px",
                   }}
                   onClick={() => setpost(!post)}
                 >

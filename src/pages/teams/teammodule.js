@@ -304,7 +304,7 @@ const Team = ({ name, project, id, pivotId, members }) => {
                 onClick={() => setshow(!show)}
                 variant="contained"
               >
-                close
+                cancel
               </Button>
             </DialogActions>
 
@@ -347,7 +347,7 @@ const Team = ({ name, project, id, pivotId, members }) => {
                       setEdit(!edit);
                     }}
                   >
-                    Cancelsss
+                    Cancel
                   </Button>
                 </DialogActions>
               </form>
