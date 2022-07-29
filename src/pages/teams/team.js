@@ -124,11 +124,15 @@ const Teams = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const Post = async () => {
+    try{
     const data = new FormData();
     data.append("name", name);
     const res = await axios
       .post("http://localhost:8000/api/teams", data)
-      .catch((err) => console.log(err));
+   
+    }catch(err){
+        console.log(err);
+      }
   };
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -145,15 +149,20 @@ const Teams = () => {
   };
 
   const Request = async () => {
+    try{
     const res = await axios
       .get("http://localhost:8000/api/teams")
       .catch((err) => console.log(err));
     const data = await res.data;
     console.log(data);
-    return data;
+    setteam(data);
+  
+    }catch(err){
+      console.log(err);
+    }
   };
   useEffect(() => {
-    Request().then((data) => setteam(data));
+    Request();
   }, []);
 
   return (
@@ -165,19 +174,19 @@ const Teams = () => {
           </h1>
           <Button
             className="addEmployeeBtn"
-              style={{
-                position: "absolute",
-                top: "13.5vh",
-                right: "6vw",
-                fontSize:'20px',
-                color: "black",
-              }}
-              onClick={() => setpost(!post)}
-            >
-      <AddCircle style={{fontSize:'50px'}}/>
-            </Button>
+            style={{
+              position: "absolute",
+              top: "13.5vh",
+              right: "6vw",
+              fontSize: '20px',
+              color: "black",
+            }}
+            onClick={() => setpost(!post)}
+          >
+            <AddCircle style={{ fontSize: '50px' }} />
+          </Button>
           <>
-          
+
             {post && (
               <Dialog open={post} onClose={() => setpost(!post)}>
                 <DialogTitle>Add Team</DialogTitle>
@@ -264,9 +273,9 @@ const Teams = () => {
                   {/* <div className="TeamContainer"> */}
                   {(rowsPerPage > 0
                     ? team.slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
                     : team
                   ).map((teamm, index) => {
                     return (

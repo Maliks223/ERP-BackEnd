@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Team = ({ name, project, id, pivotId ,members}) => {
+const Team = ({ name, project, id, pivotId, members }) => {
   const [Name, setname] = useState(name);
   const [edit, setEdit] = useState(false);
   const [projects, setproject] = useState([]);
@@ -42,8 +42,7 @@ const Team = ({ name, project, id, pivotId ,members}) => {
   const [opendelete, handleclosedelete] = useState(false);
   const [deleteproject, setdeleteproject] = useState(false);
   const [pivotid, setpivot] = useState(0);
-  const[show,setshow]=useState(false);
-  
+  const [show, setshow] = useState(false);
 
   const [assignproject, setassignproject] = useState(false);
 
@@ -56,43 +55,52 @@ const Team = ({ name, project, id, pivotId ,members}) => {
   };
 
   const handleEdit = async (id) => {
-    const data = new FormData();
-    data.append("_method", "PATCH");
-    data.append("name", Name);
+    try {
+      const data = new FormData();
+      data.append("_method", "PATCH");
+      data.append("name", Name);
 
-    await axios
-      .post(`http://localhost:8000/api/teams/${id}`, data)
-      .catch((err) => console.log(err));
+      await axios.post(`http://localhost:8000/api/teams/${id}`, data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const Projectteam = async () => {
-    const data = new FormData();
-    data.append("Team_id", id);
-    data.append("Project_id", projectz);
+    try {
+      const data = new FormData();
+      data.append("Team_id", id);
+      data.append("Project_id", projectz);
 
-    await axios
-      .post("http://localhost:8000/api/teamproject", data)
-      .catch((err) => console.log(err));
+      await axios.post("http://localhost:8000/api/teamproject", data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleDeleteProjectTeam = async (e) => {
-    await axios
-      .delete(`http://localhost:8000/api/teamproject/${pivotid}`)
-      .then((response) => response.data)
-      .then((result) => window.location.reload())
-      .catch((err) => console.log(err));
+    try {
+      await axios
+        .delete(`http://localhost:8000/api/teamproject/${pivotid}`)
+        .then((result) => window.location.reload());
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const Request = async () => {
-    const res = await axios
-      .get("http://localhost:8000/api/project")
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    // console.log(data);
-    return data;
+    try {
+      const res = await axios
+        .get("http://localhost:8000/api/project")
+        .catch((err) => console.log(err));
+      const data = await res.data;
+      setproject(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
-    Request().then((data) => setproject(data));
+    Request();
   }, []);
 
   return (
@@ -102,7 +110,9 @@ const Team = ({ name, project, id, pivotId ,members}) => {
           {id}
         </StyledTableCell>
         <StyledTableCell align="center">{name}</StyledTableCell>
-        <StyledTableCell align="center">{members && members.length}</StyledTableCell>
+        <StyledTableCell align="center">
+          {members && members.length}
+        </StyledTableCell>
 
         <StyledTableCell align="center">
           {project.length !== 0 ? project : "No Projects Assigned"}
@@ -291,46 +301,61 @@ const Team = ({ name, project, id, pivotId ,members}) => {
               </form>
             </DialogContent>
           </Dialog>
-          <Button 
-                              className="addEmployeeBtn"
-
-          style={{
+          <Button
+            className="addEmployeeBtn"
+            style={{
+              backgroundColor: "grey",
+              marginRight: "20px",
+              marginLeft: "20px",
+              border: ".5px solid black",
+              backgroundColor: "#C6C4C4",
+              minHeight: "2vh",
+              minWidth: "4vw",
+              color: "black",
+            }}
+            onClick={() => {
+              setshow(!show);
+            }}
+          >
+            Show Members
+          </Button>
+          <Dialog open={show} onClose={() => setshow(!show)}>
+            <DialogTitle style={{ margin: "30px" }}>
+              Members of {name}'s team
+            </DialogTitle>
+            <div>
+              {members.map((member, i) => {
+                return (
+                  <h4 key={i} style={{ paddingLeft: "20px" }}>
+                    {i + 1}
+                    {". "}
+                    {member.firstname} {member.lastname}
+                  </h4>
+                );
+              })}
+            </div>
+            <DialogActions>
+              <Button
+                className="addEmployeeBtn"
+                style={{
                   backgroundColor: "grey",
                   marginRight: "20px",
                   marginLeft: "20px",
+                  marginTop: "30px",
+
                   border: ".5px solid black",
                   backgroundColor: "#C6C4C4",
                   minHeight: "2vh",
                   minWidth: "4vw",
                   color: "black",
-                }} onClick={()=>{setshow(!show)}}>Show Members</Button>
-          <Dialog open={show}onClose={()=>setshow(!show)}>
-            <DialogTitle style={{margin:'30px'}}>Members of {name}'s team</DialogTitle>
-              <div>{members.map((member,i)=>{
-                return(
-                  <h4 key={i} style={{paddingLeft:'20px'}}>{i+1}{". "}{member.firstname}{" "}{member.lastname}</h4>
-                )
-              })}</div>
-              <DialogActions>
-              <Button 
-               className="addEmployeeBtn"
-                    style={{
-                      backgroundColor: "grey",
-                      marginRight: "20px",
-                      marginLeft: "20px",
-                      marginTop: "30px",
+                }}
+                onClick={() => setshow(!show)}
+              >
+                Close
+              </Button>
+            </DialogActions>
 
-                      border: ".5px solid black",
-                      backgroundColor: "#C6C4C4",
-                      minHeight: "2vh",
-                      minWidth: "4vw",
-                      color: "black",
-                    }} onClick={()=>setshow(!show)}>Close</Button>
-              </DialogActions>
-          
-            <DialogContent>
-
-            </DialogContent>
+            <DialogContent></DialogContent>
           </Dialog>
         </StyledTableCell>
 

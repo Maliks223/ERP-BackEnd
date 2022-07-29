@@ -44,39 +44,47 @@ const Project = ({ id, name, teamz, pivotId }) => {
   const [pivotid, setpivot] = useState(0);
 
   const handleSubmit = async (id) => {
-    const data = new FormData();
-    data.append("_method", "PATCH");
-    data.append("name", Name);
+    try {
+      const data = new FormData();
+      data.append("_method", "PATCH");
+      data.append("name", Name);
 
-    await axios
-      .post(`http://localhost:8000/api/project/${id}`, data)
-      .catch((err) => console.log(err));
+      await axios.post(`http://localhost:8000/api/project/${id}`, data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleDelete = async (id) => {
-    await axios
-      .delete(`http://localhost:8000/api/project/${id}`)
-      .then((response) => response.data)
-      .then((result) => window.location.reload())
-      .catch((err) => console.log(err));
+    try {
+      await axios.delete(`http://localhost:8000/api/project/${id}`);
+
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const Projectteam = async () => {
-    const data = new FormData();
-    data.append("Team_id", teamzz);
-    data.append("Project_id", id);
+    try {
+      const data = new FormData();
+      data.append("Team_id", teamzz);
+      data.append("Project_id", id);
 
-    await axios
-      .post("http://localhost:8000/api/teamproject", data)
-      .catch((err) => console.log(err));
+      await axios.post("http://localhost:8000/api/teamproject", data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleDeleteProjectTeam = async (e) => {
-    await axios
-      .delete(`http://localhost:8000/api/teamproject/${pivotid}`)
-      .then((response) => response.data)
-      .then((result) => window.location.reload())
-      .catch((err) => console.log(err));
+    try {
+      await axios.delete(`http://localhost:8000/api/teamproject/${pivotid}`);
+
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const func = (e) => {
@@ -84,12 +92,13 @@ const Project = ({ id, name, teamz, pivotId }) => {
   };
 
   const Request = async () => {
-    const res = await axios
-      .get("http://localhost:8000/api/teams")
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    // console.log(data);
-    setteam(data);
+    try {
+      const res = await axios.get("http://localhost:8000/api/teams");
+      const data = await res.data;
+      setteam(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {

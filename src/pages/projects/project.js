@@ -136,24 +136,28 @@ const Projects = (props) => {
   };
 
   const Request = async () => {
-    const res = await Axios.get("http://localhost:8000/api/project").catch(
-      (err) => console.log(err)
-    );
-    const data = await res.data;
-    console.log(data);
-    return data;
+    try {
+      const res = await Axios.get("http://localhost:8000/api/project");
+      const data = await res.data;
+
+      setprojects(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
-    Request().then((data) => setprojects(data));
+    Request();
   }, []);
 
   const handlePost = async () => {
-    const data = new FormData();
-    data.append("name", postname);
+    try {
+      const data = new FormData();
+      data.append("name", postname);
 
-    await Axios.post("http://localhost:8000/api/project", data).catch((err) =>
-      console.log(err)
-    );
+      await Axios.post("http://localhost:8000/api/project", data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -161,11 +165,15 @@ const Projects = (props) => {
     <div className="projectcontainer">
       <>
         <div className="postproject">
-          <h1 className="projectsTitle" style={{ position: 'absolute', top: '13vh', left: '15vw' }}>Projects Control</h1>
+          <h1
+            className="projectsTitle"
+            style={{ position: "absolute", top: "13vh", left: "15vw" }}
+          >
+            Projects Control
+          </h1>
           <Button
             className="addEmployeeBtn"
             style={{
-            
               position: "absolute",
               top: "14vh",
               right: "6vw",
@@ -178,7 +186,7 @@ const Projects = (props) => {
               setPost(!post);
             }}
           >
-      <AddCircle style={{fontSize:'50px'}}/>
+            <AddCircle style={{ fontSize: "50px" }} />
           </Button>
         </div>
 
@@ -242,9 +250,9 @@ const Projects = (props) => {
             <TableBody>
               {(rowsPerPage > 0
                 ? projects.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                 : projects
               ).map((project, index) => {
                 return (
@@ -266,12 +274,7 @@ const Projects = (props) => {
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[
-                    5,
-                    10,
-                    25,
-                    { label: "All", value: -1 },
-                  ]}
+                  rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                   colSpan={3}
                   count={projects.length}
                   rowsPerPage={rowsPerPage}
@@ -290,7 +293,6 @@ const Projects = (props) => {
             </TableFooter>
           </Table>
         </TableContainer>
-
       </>
     </div>
     // </div>

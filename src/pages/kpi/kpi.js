@@ -51,7 +51,6 @@ function TablePaginationActions(props) {
   };
 
   return (
-  
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
         onClick={handleFirstPageButtonClick}
@@ -100,8 +99,6 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -135,18 +132,18 @@ const KPIS = () => {
     fetchEmployees();
   }, []);
 
-   // Avoid a layout jump when reaching the last page with empty rows.
-   const emptyRows =
-   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
- const handleChangePage = (event, newPage) => {
-   setPage(newPage);
- };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
- const handleChangeRowsPerPage = (event) => {
-   setRowsPerPage(parseInt(event.target.value, 10));
-   setPage(0);
- };
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   const Postkpi = async () => {
     const data = new FormData();
@@ -171,7 +168,7 @@ const KPIS = () => {
             color: "black",
           }}
         >
-      <AddCircle style={{fontSize:'50px'}}/>
+          <AddCircle style={{ fontSize: "50px" }} />
         </Button>
         {open && (
           <Dialog
@@ -243,7 +240,12 @@ const KPIS = () => {
             </DialogContent>
           </Dialog>
         )}
-        <h1 className="control"style={{marginTop:'10vh',marginLeft:'4vw'}}>KPI's Control</h1>
+        <h1
+          className="control"
+          style={{ marginTop: "10vh", marginLeft: "4vw" }}
+        >
+          KPI's Control
+        </h1>
         <TableContainer component={Paper}>
           <Table
             sx={{ margin: "auto", width: "85vw" }}

@@ -3,7 +3,7 @@ import "./login.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,12 +25,10 @@ const Login = () => {
       result = await result.json();
       localStorage.setItem("token", JSON.stringify(result.token));
       localStorage.setItem("id", JSON.stringify(result.admin.id));
-      navigate('/');
-    }
-    catch (err) {
+      navigate("/");
+    } catch (err) {
       console.log(err);
     }
-
   }
 
   return (

@@ -156,12 +156,15 @@ const Employees = () => {
 
   //teams
   const Request = async () => {
+    try{
     const res = await axios
       .get("http://localhost:8000/api/teams")
-      .catch((err) => console.log(err));
     const data = await res.data;
-    // console.log(data);
-    setgetteam(data);
+    setgetteam(data)
+
+  }catch(err){
+      console.log(err);
+    }
   };
   useEffect(() => {
     Request();
