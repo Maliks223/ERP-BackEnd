@@ -90,14 +90,14 @@ const EmployeeProfile = () => {
           <div className="flexprofile">
             <CardId data={employee} />
             <Button
-            variant="contained"
+              variant="contained"
               className="addEmployeeBtn"
               sx={{
                 backgroundColor: "var(--blue)",
                 minWidth: "8vw",
                 position: "absolute",
                 top: "77vh",
-                left: "24vw",
+                left: "22.5vw",
               }}
               onClick={handleClickOpenTeam}
             >
@@ -111,13 +111,13 @@ const EmployeeProfile = () => {
             </Dialog>
 
             <Button
-            variant="contained"
+              variant="contained"
               className="addEmployeeBtn"
               onClick={handleClickOpen}
               sx={{
-                width:"8vw",
+                width: "8vw",
                 position: "absolute",
-                left: "24vw",
+                left: "22.5vw",
                 top: "83vh",
                 backgroundColor: "#0A4f70",
               }}
@@ -125,7 +125,10 @@ const EmployeeProfile = () => {
               assign KPI
             </Button>
             <Dialog open={open} onClose={handleClose}>
-              <DialogTitle sx = {{width:"25vw", height:"10vh"}}> Assign a KPI</DialogTitle>
+              <DialogTitle sx={{ width: "maxContent", height: "10vh", margin:"auto" }}>
+                {" "}
+                Assign a KPI
+              </DialogTitle>
               <DialogContent>
                 <KPIAssignForm id={employee.id} />
               </DialogContent>
@@ -137,66 +140,68 @@ const EmployeeProfile = () => {
                 className="addEmployeeBtn"
                 sx={{
                   position: "absolute",
-                  left: "24vw",
+                  left: "22.5vw",
                   top: "71vh",
-                  backgroundColor:"var(--blue)",
+                  backgroundColor: "var(--blue)",
                   color: "white",
-                  width:"8vw",
+                  width: "8vw",
                 }}
                 onClick={handleClickOpenRoles}
               >
                 Assign Role
               </Button>
               <Dialog open={openRoles} onClose={handleCloseRoles}>
-                <DialogTitle sx = {{height:"10vh", width:"20vw"}}> Assign a Role in Project</DialogTitle>
+                <DialogTitle sx={{ height: "10vh", width: "maxContent", margin:"auto" }}>
+                  {" "}
+                  Assign a Role in Project
+                </DialogTitle>
                 <DialogContent>
                   <RoleProject id={employee.id} team={employee.teams} />
                 </DialogContent>
               </Dialog>
             </>
           )}
+              {/* <h1 >Latest KPIs</h1> */}
           <div className="combin">
-            <div className="scroly">
-
-                <h1 >Latest KPIs</h1>
+            {/* <div className="scroly">
               <ol className="late">
                 {latest &&
                   latest.map((kpi) => {
                     return (
                       <>
-                      <li sx={{ margin: "50px", borderRadius:"10px" }}>
-                        <KPICard title={kpi.kpi_name} rate={kpi.rate} />
-                      
-                      </li>
+                        <li sx={{ margin: "50px", borderRadius: "10px" }}>
+                          <KPICard title={kpi.kpi_name} rate={kpi.rate} />
+                        </li>
                       </>
                     );
                   })}
               </ol>
-            </div>
+            </div> */}
 
-            {/* <div className="car">
-              <h1
-                style={{ position: "absolute", top: "42.5vh", left: "42.5vw", fontWeight:"lighter" }}
-              >
+            {/* <div className="car"> */}
+              {/* <h1
+                >
                 All Kpis
-              </h1>
-              <Carousel
-                autoPlay={true}
+              </h1> */}
+              {/* <Carousel
+                autoPlay={false}
                 infiniteLoop={true}
                 interval="3000"
                 transitionTime="1000"
                 swipeable={true}
                 showArrows={true}
                 showThumbs={true}
-                width={742}
+                width={650}
+                dynamicHeight={100}
+                // emulateTouch={true}
                 className="hero-carousel"
               >
                 {filtered &&
                   filtered.map((list) => {
                     return <BarCharts kpis={list} />;
                   })}
-              </Carousel>
-            </div> */}
+              </Carousel> */}
+            {/* </div> */}
           </div>
 
           {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>

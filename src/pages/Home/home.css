@@ -16,15 +16,19 @@
   position: absolute;
   z-index: 1000;
   top: -27%;
-  left: 35%;
+  left: 33%;
   object-fit: cover;
   border: 2px solid var(--blue);
   border-radius: 50%;
+  width: 270px;
+  height: 270px;
+  background-color: white;
+  object-fit: contain ;
 }
 .userInfo{
   position: absolute;
-  top: 35%;
-  left:23%;
+  top: 45%;
+  left:27%;
 }
 
 .profileCard {
