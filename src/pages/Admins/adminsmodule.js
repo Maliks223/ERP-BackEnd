@@ -69,7 +69,8 @@ const Admin = ({ id, email, name, image }) => {
       return "error ya kaptin";
     }
   };
-  const handleEdit = async (id) => {
+  const handleEdit = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("name", names);
     data.append("email", emails);
@@ -84,6 +85,7 @@ const Admin = ({ id, email, name, image }) => {
       });
       const res = await response.json();
       console.log(res);
+      
     } catch {
       return "err";
     }
@@ -121,7 +123,7 @@ const Admin = ({ id, email, name, image }) => {
           <DialogContent>
             <form
               style={{ display: "flex", flexDirection: "column" }}
-              onSubmit={(e) => handleEdit(id)}
+              onSubmit={handleEdit}
             >
               <TextField
                 style={{ marginTop: "20px", marginBottom: "20px" }}
@@ -160,6 +162,19 @@ const Admin = ({ id, email, name, image }) => {
                   variant="contained"
                 >
                   Submit
+                </Button>
+                <Button
+                  className="addEmployeeBtn"
+                  style={{
+                    backgroundColor: "var(--blue)",
+                    marginRight: "90px",
+                    marginTop: "36px",
+                    width: "8vw",
+                  }}
+                  variant="contained"
+                  onClick={handleClose}
+                >
+                  Cancel
                 </Button>
               </DialogActions>
             </form>

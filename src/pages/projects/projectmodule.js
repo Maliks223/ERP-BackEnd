@@ -45,7 +45,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
 
   const handleSubmit = async (id) => {
     const data = new FormData();
-    data.append("_method", "PATCH");
+    data.append("_method", "PUT");
     data.append("name", Name);
 
     await axios
@@ -135,7 +135,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
               setassignteam(!assignteam);
             }}
           >
-            assign to a team
+            assign a team
           </Button>
 
           <Button
@@ -173,9 +173,9 @@ const Project = ({ id, name, teamz, pivotId }) => {
                   margin: "36px 36px 75px 36px",
                   display: "flex",
                   flexDirection: "column",
-                  backgroundColor:"var(--blue)",
-                  color:"white",
-                  fontSize:"18px"
+                  backgroundColor: "var(--blue)",
+                  color: "white",
+                  fontSize: "18px"
                 }}
               >
                 <option>Teams</option>
@@ -200,6 +200,20 @@ const Project = ({ id, name, teamz, pivotId }) => {
               >
                 delete team
               </Button>
+              <Button
+                    className="addEmployeeBtn"
+                    variant="contained"
+                    style={{
+                      margin: "auto",
+                      backgroundColor: "var(--blue)",
+                      minWidth: "8vw",
+                    }}
+                    onClick={() => {
+                      setdeleteteam(false)
+                    }}
+                  >
+                    Close
+                  </Button>
             </form>
           </Dialog>
         </StyledTableCell>
@@ -220,15 +234,15 @@ const Project = ({ id, name, teamz, pivotId }) => {
               }}
               color="error"
               className="addEmployeeBtnY"
-              variant = "contained"
+              variant="contained"
               style={{
                 backgroundColor: "grey",
                 marginRight: "30px",
                 marginBottom: "30px",
-                marginLeft:"15px",
+                marginLeft: "15px",
                 backgroundColor: "red",
                 minWidth: "8vw",
-                transition:"0.1s ease-in-out"
+                transition: "0.1s ease-in-out"
               }}
             >
               Yes
@@ -237,12 +251,12 @@ const Project = ({ id, name, teamz, pivotId }) => {
               onClick={(e) => {
                 handleclosedelete(!opendelete);
               }}
-              variant = "contained"
+              variant="contained"
               className="addEmployeeBtn"
               style={{
                 backgroundColor: "var(--blue)",
                 marginBottom: "30px",
-                marginRight:"15px",
+                marginRight: "15px",
                 minWidth: "8vw",
               }}
             >
@@ -275,11 +289,27 @@ const Project = ({ id, name, teamz, pivotId }) => {
                       marginRight: "30px",
                       marginTop: "28px",
                       minWidth: "8vw",
-                      
+
                     }}
                     type="submit"
                   >
                     Edit
+                  </Button>
+                  <Button
+                    className="addEmployeeBtn"
+                    variant="contained"
+                    style={{
+                      backgroundColor: "var(--blue)",
+                      marginRight: "30px",
+                      marginTop: "28px",
+                      minWidth: "8vw",
+
+                    }}
+                    onClick={() => {
+                      setEdit(false)
+                    }}
+                  >
+                    Cancel
                   </Button>
                 </DialogActions>
               </form>
@@ -306,9 +336,9 @@ const Project = ({ id, name, teamz, pivotId }) => {
                     margin: "36px 36px 75px 36px",
                     display: "flex",
                     flexDirection: "column",
-                    color:"white",
-                    backgroundColor:"var(--blue)",
-                    fontSize:"18px"
+                    color: "white",
+                    backgroundColor: "var(--blue)",
+                    fontSize: "18px"
 
                   }}
                 >
@@ -329,12 +359,25 @@ const Project = ({ id, name, teamz, pivotId }) => {
                       margin: "auto",
                       backgroundColor: "var(--blue)",
                       minWidth: "8vw",
-                      }}
+                    }}
                     type="submit"
                   >
                     Submit
                   </Button>
-                  {/* <Button onClick={(e) => { handleDeleteProjectTeam(id) }}>Remove Team</Button> */}
+                  <Button
+                    className="addEmployeeBtn"
+                    variant="contained"
+                    style={{
+                      margin: "auto",
+                      backgroundColor: "var(--blue)",
+                      minWidth: "8vw",
+                    }}
+                    onClick={() => {
+                      setassignteam(false)
+                    }}
+                  >
+                    Close
+                  </Button>
                 </DialogActions>
               </form>
             </DialogContent>

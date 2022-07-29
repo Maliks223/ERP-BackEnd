@@ -33,11 +33,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const KPIRow = ({ data }) => {
-  const [openassign, setopenassign] = useState(false);
+  const [openassign, setOpenAssign] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = useState(false);
 
+  const handleClickOpenAssaign = () => {
+    setOpenAssign(true);
+  };
 
+  const handleCloseAssaign = () => {
+    setOpenAssign(false);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -123,9 +129,7 @@ const KPIRow = ({ data }) => {
           <DeleteIcon color="error" />
         </Button>
         <Button
-          onClick={() => {
-            setopenassign(!openassign);
-          }}
+          onClick={handleClickOpenAssaign}
           className="addEmployeeBtn"
           variant="contained"
           style={{
@@ -137,8 +141,8 @@ const KPIRow = ({ data }) => {
         >
           assign to employee
         </Button>
-        <Dialog open={openassign} onClose={() => setopenassign(!openassign)}>
-          <EmployeeAssignForm data={data}  />
+        <Dialog open={openassign} onClose={handleCloseAssaign}>
+          <EmployeeAssignForm data={data} handleClose={handleCloseAssaign} />
         </Dialog>
         <Dialog open={openDelete} onClose={handleCloseDelete}>
           <DialogTitle>Delete</DialogTitle>

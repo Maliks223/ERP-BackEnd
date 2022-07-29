@@ -35,10 +35,10 @@ const Menu = () => {
                 </i>
               </Link>
             </div>
-            <div title="Kpis" class="btn">
-              <Link to="/kpis">
+            <div title="Teams" class="btn">
+              <Link to="/teams">
                 <i>
-                  <FaProjectDiagram style={{ fontSize: "30px" }} />
+                  <RiTeamFill style={{ fontSize: "30px" }} />
                 </i>
               </Link>
             </div>
@@ -49,17 +49,10 @@ const Menu = () => {
                 </i>
               </Link>
             </div>
-            <div title="Teams" class="btn">
-              <Link to="/teams">
+            <div title="Kpis" class="btn">
+              <Link to="/kpis">
                 <i>
-                  <RiTeamFill style={{ fontSize: "30px" }} />
-                </i>
-              </Link>
-            </div>
-            <div title="Admins" class="btn">
-              <Link to="/admin">
-                <i>
-                  <RiAdminLine style={{ fontSize: "30px" }} />
+                  <FaProjectDiagram style={{ fontSize: "30px" }} />
                 </i>
               </Link>
             </div>
@@ -67,6 +60,13 @@ const Menu = () => {
               <Link to="/roles">
                 <i>
                   <GiEnergySword style={{ fontSize: "30px" }} />
+                </i>
+              </Link>
+            </div>
+            <div title="Admins" class="btn">
+              <Link to="/admin">
+                <i>
+                  <RiAdminLine style={{ fontSize: "30px" }} />
                 </i>
               </Link>
             </div>

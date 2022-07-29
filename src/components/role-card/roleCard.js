@@ -81,7 +81,7 @@ const RoleRow = ({ data }) => {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
           <DialogContent>
-            <RoleForm data={data} />
+            <RoleForm data={data} handleClose={handleClose} />
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
@@ -93,32 +93,32 @@ const RoleRow = ({ data }) => {
             Are you sure you want to Delete this Role?
           </DialogContent>
           <DialogActions>
-          <Button
-            onClick={handleDelete}
-            
+            <Button
+              onClick={handleDelete}
+
               color="error"
               className="addEmployeeBtnY"
-              variant = "contained"
+              variant="contained"
               style={{
                 backgroundColor: "grey",
                 marginRight: "30px",
                 marginBottom: "30px",
-                marginLeft:"15px",
+                marginLeft: "15px",
                 backgroundColor: "red",
                 minWidth: "8vw",
-                transition:"0.1s ease-in-out"
+                transition: "0.1s ease-in-out"
               }}
-              >
+            >
               Yes
             </Button>
             <Button
               onClick={handleCloseDelete}
-              variant = "contained"
+              variant="contained"
               className="addEmployeeBtn"
               style={{
                 backgroundColor: "var(--blue)",
                 marginBottom: "30px",
-                marginRight:"15px",
+                marginRight: "15px",
                 minWidth: "8vw",
               }}
             >
@@ -126,13 +126,13 @@ const RoleRow = ({ data }) => {
             </Button>
           </DialogActions>
         </Dialog>
-        <Button
+        {/* <Button
           className="addEmployeeBtn"
           variant="contained"
           sx={{ marginLeft: "30px", backgroundColor: "var(--blue)" }}
         >
           Assign to Employee
-        </Button>
+        </Button> */}
       </StyledTableCell>
     </StyledTableRow>
   );

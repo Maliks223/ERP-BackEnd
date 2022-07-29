@@ -29,6 +29,7 @@ import FileUploader from "../../components/File_uploader/fileUploader";
 import { AddCircle } from "@mui/icons-material";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -130,6 +131,21 @@ const Admins = (props) => {
   const [image, setimage] = useState(null);
   const [password, setpassword] = useState([]);
 
+  const navigate = useNavigate();
+  const id = localStorage.getItem("id");
+
+  const fetchAdmin = async () => {
+    const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`);
+    const response = await res.json();
+    if (response.role !== 1) {
+      navigate('/');
+    }
+  }
+
+  useEffect(() => {
+    fetchAdmin();
+  })
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - admins.length) : 0;
@@ -182,7 +198,7 @@ const Admins = (props) => {
             <Fab
               color="primary"
               aria-label="add"
-              sx={{ position: "absolute", top: "13vh", right: "6vw", backgroundColor:"#0a4f70" }}
+              sx={{ position: "absolute", top: "13vh", right: "6vw", backgroundColor: "#0a4f70" }}
               onClick={() => {
                 setPost(!post);
               }}
@@ -198,11 +214,11 @@ const Admins = (props) => {
                 setPost(!post);
               }}
             >
-              <DialogTitle style={{ marginLeft:"96px" }}>
+              <DialogTitle style={{ marginLeft: "96px" }}>
                 Add New Admin
               </DialogTitle>
 
-              <DialogContent sx = {{ marginTop:"36px"}}>
+              <DialogContent sx={{ marginTop: "36px" }}>
                 <form
                   style={{
                     display: "flex",
@@ -248,7 +264,33 @@ const Admins = (props) => {
                   />
                   <FileUploader onFileSelect={(image) => setimage(image)} />
 
-                  <Button sx = {{backgroundColor:"var(--blue)", marginTop:"36px", marginBottom:"36px", width:"10vw", marginLeft:"80px"}} className="addEmployeeBtn" type="submit" variant="contained">Submit</Button>
+                  <Button
+                    sx={{
+                      backgroundColor: "var(--blue)", marginTop: "36px",
+                      marginBottom: "36px",
+                      width: "10vw",
+                      marginLeft: "80px"
+                    }}
+                    className="addEmployeeBtn"
+                    type="submit"
+                    variant="contained"
+                  >Submit
+                  </Button>
+                  <Button
+                    sx={{
+                      backgroundColor: "var(--blue)", marginTop: "36px",
+                      marginBottom: "36px",
+                      width: "10vw",
+                      marginLeft: "80px"
+                    }}
+                    className="addEmployeeBtn"
+                    type="submit"
+                    variant="contained"
+                    onClick={() => {
+                      setPost(!post);
+                    }}
+                  >Cancel
+                  </Button>
                 </form>
               </DialogContent>
             </Dialog>
@@ -277,9 +319,9 @@ const Admins = (props) => {
               <TableBody>
                 {(rowsPerPage > 0
                   ? admins.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                   : admins
                 ).map((admin, index) => {
                   return (

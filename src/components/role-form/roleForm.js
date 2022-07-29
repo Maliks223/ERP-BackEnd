@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 
-const RoleForm = ({ data }) => {
+const RoleForm = ({ data, handleClose }) => {
   const { id } = data;
 
   const [inputs, setInputs] = useState({
@@ -70,9 +70,17 @@ const RoleForm = ({ data }) => {
           onClick={handleEdit}
           className="addEmployeeBtn"
           variant="contained"
-          sx = {{backgroundColor:"var(--blue)"}}
+          sx={{ backgroundColor: "var(--blue)" }}
         >
           confirm edit
+        </Button>
+        <Button
+          onClick={handleClose}
+          className="addEmployeeBtn"
+          variant="contained"
+          sx={{ backgroundColor: "var(--blue)" }}
+        >
+          Cancel
         </Button>
       </DialogActions>
     </>

@@ -228,10 +228,10 @@ const Roles = () => {
                 </Button>
 
                 <Button
-                  onCLick={() => setopendialog(!opendialog)}
                   className="addEmployeeBtn"
                   variant="contained"
                   sx={{ backgroundColor: "var(--blue)", marginTop: "16px" }}
+                  onClick={()=>setopendialog(false)}
                 >
                   cancel
                 </Button>
@@ -263,9 +263,9 @@ const Roles = () => {
             <TableBody>
               {(rowsPerPage > 0
                 ? data.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
                 : data
               ).map((employee, index) => (
                 <RoleRow key={index} data={employee} />
