@@ -10,20 +10,6 @@ const CardId = ({ data }) => {
     <>
       {/* <body class="bg-grid-line"></body> */}
       <div class="card">
-        <Button
-          className="addEmployeeBtn"
-          variant="contained"
-          sx={{
-            position:"absolute",
-            top:"21vh",
-            left:"24vw",
-            backgroundColor: "var(--blue)",
-            minWidth: "8vw",
-          }}
-          onClick={() => setopen(!open)}
-        >
-          Edit Profile
-        </Button>
         <Dialog open={open} onClose={() => setopen(!open)}>
           <EmployeeForm data={data} />
         </Dialog>
@@ -32,6 +18,18 @@ const CardId = ({ data }) => {
           id="thumb"
           src={`http://localhost:8000/storage/uploads/${image}`}
         />
+        <Button
+          className="addEmployeeBtn"
+          variant="contained"
+          sx={{
+            margin:"16px",
+            backgroundColor: "var(--blue)",
+            minWidth: "8vw",
+          }}
+          onClick={() => setopen(!open)}
+        >
+          Edit Profile
+        </Button>
         <h2 style={{ marginLeft: "15px" }}>
           {firstname} {`  `}
           {lastname}
