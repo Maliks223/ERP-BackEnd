@@ -27,49 +27,50 @@ const Menu = () => {
         <div class="menu">
           <input type="checkbox" className="inputz" id="toggle" />
           <label id="show-menu" for="toggle">
-
-            <div title="Employees" class="btn">
-              <Link to="/employees">
+            <Link to="/employees" class="btn">
+              <div title="Employees" class="btn">
                 <i>
                   <BiBody style={{ fontSize: "30px" }} />
                 </i>
-              </Link>
-            </div>
+              </div>
+            </Link>
             <div title="Teams" class="btn">
-              <Link to="/teams">
-                <i>
-                  <RiTeamFill style={{ fontSize: "30px" }} />
-                </i>
+              <Link to="/teams" class="btn">
+                <div title="Teams" class="btn">
+                  <i>
+                    <RiTeamFill style={{ fontSize: "30px" }} />
+                  </i>
+                </div>
               </Link>
             </div>
-            <div title="Project" class="btn">
-              <Link to="/projects">
+            <Link to="/projects" class="btn">
+              <div title="Project" class="btn">
                 <i>
                   <RiProjector2Line style={{ fontSize: "30px" }} />
                 </i>
-              </Link>
-            </div>
-            <div title="Kpis" class="btn">
-              <Link to="/kpis">
+              </div>
+            </Link>
+            <Link to="/kpis" class="btn">
+              <div title="Kpis" class="btn">
                 <i>
                   <FaProjectDiagram style={{ fontSize: "30px" }} />
                 </i>
-              </Link>
-            </div>
-            <div title="Roles" class="btn">
-              <Link to="/roles">
+              </div>
+            </Link>
+            <Link to="/roles" class="btn">
+              <div title="Roles" class="btn">
                 <i>
                   <GiEnergySword style={{ fontSize: "30px" }} />
                 </i>
-              </Link>
-            </div>
-            <div title="Admins" class="btn">
-              <Link to="/admin">
+              </div>
+            </Link>
+            <Link to="/admin" class="btn">
+              <div title="Admins" class="btn">
                 <i>
                   <RiAdminLine style={{ fontSize: "30px" }} />
                 </i>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </label>
         </div>
       </body>

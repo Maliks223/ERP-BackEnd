@@ -27,6 +27,7 @@ import FileUploader from "../../components/File_uploader/fileUploader";
 import axios from "axios";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
+import { useLocation } from "react-router-dom";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -112,6 +113,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
+
+  const location = useLocation();
+  const filter = location?.state?.employee;
+
+  const [allData, setAllData] = useState([]);
   const [data, setData] = useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -144,8 +150,13 @@ const Employees = () => {
     try {
       const response = await fetch("http://localhost:8000/api/employees");
       const res = await response.json();
-      console.log(res);
-      setData(res);
+      setAllData(res);
+      if (filter) {
+        setData(res.filter(empl => empl.firstname.toLowerCase().includes(filter.toLowerCase())
+          || empl.lastname.toLowerCase().includes(filter.toLowerCase())))
+      } else {
+        setData(res);
+      }
     } catch {
       console.log("error");
     }
@@ -154,6 +165,16 @@ const Employees = () => {
   useEffect(() => {
     fetchEmployees();
   }, []);
+
+  useEffect(() => {
+    if (filter) {
+      setData(allData.filter(empl => empl.firstname.toLowerCase().includes(filter.toLowerCase())
+        || empl.lastname.toLowerCase().includes(filter.toLowerCase())))
+    }
+    if (!filter) {
+      setData(allData)
+    }
+  }, [filter]);
 
   //teams
   const Request = async () => {
@@ -299,12 +320,12 @@ const Employees = () => {
                   className="addEmployeeBtn"
                   variant="contained"
                   sx={{
-                    backgroundColor:"var(--blue)",
+                    backgroundColor: "var(--blue)",
                     minWidth: "8vw",
                     marginBottom: "24px",
-                    marginLeft:"86px"
+                    marginLeft: "86px"
                   }}
-                  // onClick={handleEdit}
+                // onClick={handleEdit}
                 >
                   Confirm
                 </Button>
@@ -313,10 +334,10 @@ const Employees = () => {
                   variant="contained"
                   className="addEmployeeBtn"
                   sx={{
-                    backgroundColor:"var(--blue)",
+                    backgroundColor: "var(--blue)",
                     minWidth: "8vw",
                     marginBottom: "24px",
-                    marginLeft:"86px"
+                    marginLeft: "86px"
                   }}
                   onClick={() => setpost(!post)}
                 >
@@ -377,9 +398,9 @@ const Employees = () => {
             <TableBody sx={{ Color: "black" }}>
               {(rowsPerPage > 0
                 ? data.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
                 : data
               ).map((employee, i) => (
                 <EmployeeRow key={i} data={employee} />
