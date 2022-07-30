@@ -35,9 +35,12 @@ export default function NavBar() {
       <input className="searchinput" type="text" placeholder="Search Employee"
         onChange={handleChange}
         onKeyPress={event => {
-          if (employee) {
-            if (event.key === 'Enter') {
+          if (event.key === 'Enter') {
+            if (employee) {
               navigate('/employees', { state: { employee } }, { replace: true })
+            }
+            else {
+              navigate('/employees', { state: "" }, { replace: true })
             }
           }
         }} />

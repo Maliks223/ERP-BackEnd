@@ -171,7 +171,7 @@ const Employees = () => {
       setData(allData.filter(empl => empl.firstname.toLowerCase().includes(filter.toLowerCase())
         || empl.lastname.toLowerCase().includes(filter.toLowerCase())))
     }
-    if (!filter) {
+    else if (!location.state) {
       setData(allData)
     }
   }, [filter]);
