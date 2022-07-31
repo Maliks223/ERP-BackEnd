@@ -23,7 +23,7 @@
   width: 270px;
   height: 270px;
   background-color: white;
-  object-fit: contain ;
+  object-fit: cover ;
 }
 .userInfo{
   position: absolute;

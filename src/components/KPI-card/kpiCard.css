@@ -1,14 +1,14 @@
 .kpiCard-container{
-    height: 10vh;
+    height: 35vh;
     text-align: center;
     color: white;
-    width: 10vw;
+    font-size: 18px;
+    width: 13vw;
     background-color:var(--blue);
-    /* opacity: 0.5; */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-content: space-between;
+    justify-content: center;
+    align-items: center;
     margin-right: 10px;
     border-radius: 10px;
 }

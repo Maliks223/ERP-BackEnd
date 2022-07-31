@@ -10,12 +10,11 @@ const KPICard = (props) => {
             <div className="kpiCard-container">
                 <h3>{props.title}</h3>
                 <Slider 
-                    sx = {{color:"white"}}
+                    sx = {{color:"white", marginLeft:"24px", marginRight:"24px", width:"85%", marginTop:"36px"}}
                     aria-label="Rate"
                     defaultValue={props.rate}
-                    valueLabelDisplay="auto"
-                    step={5}
-                    marks
+                    valueLabelDisplay="on"
+                    // step={5}
                     min={1}
                     max={10}
                     disabled

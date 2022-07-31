@@ -2,11 +2,8 @@
   width: 65vw;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  /* justify-content: end; */
+  align-items: center; 
   height: 80vh;
-  /* margin-top: 10vh; */
-  /* padding-top:10vh; */
 }
 
 .profile-image {
@@ -15,24 +12,59 @@
   border-radius: 50%;
 }
 
-
 .car {
- 
   position: absolute;
-  top: 64%;
-  left: 61%;
+  top: 40vh;
+  left: 44%;
   border-radius: 10px;
-  font-weight: lighter  ;
+  font-weight: lighter;
   border: 1.5px solid var(--blue);
-  height:25vh;
-  width: 35vw;
+  height: 46vh;
+  width: 50vw;
   background-color: var(--white);
 }
-.hero-carousel{
-height: 100px;
-position:fixed;
-/* top:0; */
-/* left:0; */
+
+.roleProject{
+  position: absolute;
+  top: 40vh;
+  left: 44%;
+  height: 44vh;
+  width: 48vw;
+  background-color: var(--white);
+  border-radius: 10px;
+  font-weight: lighter;
+  border: 1.5px solid var(--blue);
+  padding: 36px;
+
+}
+.scroly {
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 35vh;
+  margin-left: 6vw;
+  display: flex;
+  align-items: center;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
+  /* white-space: nowrap; */
+  width: 47.8vw;
+  height: 46vh;
+  border: 2px solid var(--blue);
+  background-color: var(--white);
+}
+.hero-carousel {
+  padding: 26px;
+  border: unset;
+  width: 90%;
+  margin-left: 46px;
+}
+
+.car h1{
+  position: absolute;
+  top: -10vh;
+  left: 20vw;
+  letter-spacing: 8px;
+  font-size: 36px;
 }
 
 .combin {
@@ -43,44 +75,38 @@ position:fixed;
 }
 .late {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
   /* align-items: center; */
-  gap: 50px;
-  margin: auto;
-  margin-left: 40px;
-  margin-bottom: 18px;
-  /* border: 2px solid var(--blue); */
+  gap: 40px;
   list-style-type: none;
 }
 
-.scroly {
-  border-radius: 10px;
-  padding: 20px;
-  margin-top: 13vh;
-  margin-left: 4vw;
-  /* overflow-x: scroll; */
-  overflow-y: scroll;
-  /* white-space: nowrap; */
-  width: 17.8vw;
-  height: 66vh;
-  border: 2px solid var(--blue);
-  background-color: var(--white);
+.css-mxdr4s-MuiSlider-root.Mui-disabled {
+  margin: 0 24px 0 24px;
 }
 
+.scroly h1 {
+  position: absolute;
+  top: 29vh;
+  left: 62vw;
+  letter-spacing: 8px;
+  font-size: 36px;
+}
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  /* -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3); */
   border-radius: 10px;
   background-color: #0a4f70;
 }
 
- ::-webkit-scrollbar {
-  width: 6px;
+::-webkit-scrollbar {
+  width: 2px;
   background-color: grey;
-} 
+}
 
- ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
   background-color: grey;
-} 
+}

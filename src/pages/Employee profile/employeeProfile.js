@@ -24,6 +24,8 @@ const EmployeeProfile = () => {
   const [latest, setLatest] = useState([]);
   const [roles, setRoles] = useState([]);
 
+  const [active, setActive] = useState("");
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -125,7 +127,9 @@ const EmployeeProfile = () => {
               assign KPI
             </Button>
             <Dialog open={open} onClose={handleClose}>
-              <DialogTitle sx={{ width: "maxContent", height: "10vh", margin:"auto" }}>
+              <DialogTitle
+                sx={{ width: "maxContent", height: "10vh", margin: "auto" }}
+              >
                 {" "}
                 Assign a KPI
               </DialogTitle>
@@ -151,7 +155,9 @@ const EmployeeProfile = () => {
                 Assign Role
               </Button>
               <Dialog open={openRoles} onClose={handleCloseRoles}>
-                <DialogTitle sx={{ height: "10vh", width: "maxContent", margin:"auto" }}>
+                <DialogTitle
+                  sx={{ height: "10vh", width: "maxContent", margin: "auto" }}
+                >
                   {" "}
                   Assign a Role in Project
                 </DialogTitle>
@@ -161,47 +167,93 @@ const EmployeeProfile = () => {
               </Dialog>
             </>
           )}
-              {/* <h1 >Latest KPIs</h1> */}
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+              position: "absolute",
+              top: "22vh",
+              left: "45vw",
+            }}
+            onClick={() => setActive("scroly")}
+          >
+            Latest Kpis
+          </Button>
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+              position: "absolute",
+              top: "22vh",
+              left: "65vw",
+            }}
+            onClick={() => setActive("car")}
+          >
+            All Kpis
+          </Button>
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+              position: "absolute",
+              top: "22vh",
+              left: "85vw",
+            }}
+            onClick={() => setActive("roleProject")}
+          >
+            Role Project
+          </Button>
+          <div className="roleProject">
+                Role Project
+              </div>
           <div className="combin">
-            {/* <div className="scroly">
-              <ol className="late">
-                {latest &&
-                  latest.map((kpi) => {
-                    return (
-                      <>
-                        <li sx={{ margin: "50px", borderRadius: "10px" }}>
-                          <KPICard title={kpi.kpi_name} rate={kpi.rate} />
-                        </li>
-                      </>
-                    );
-                  })}
-              </ol>
-            </div> */}
-
-            {/* <div className="car"> */}
-              {/* <h1
+            {active === "scroly" && (
+              <div className="scroly">
+                <h1>Latest KPIs</h1>
+                <ol className="late">
+                  {latest &&
+                    latest.map((kpi) => {
+                      return (
+                        <>
+                          <li sx={{ margin: "50px", borderRadius: "10px" }}>
+                            <KPICard title={kpi.kpi_name} rate={kpi.rate} />
+                          </li>
+                        </>
+                      );
+                    })}
+                </ol>
+              </div>
+            )}
+            {active === "car" && (
+              <div className="car">
+                <h1>All Kpis</h1>
+                <Carousel
+                  autoPlay={false}
+                  infiniteLoop={false}
+                  interval="3000"
+                  transitionTime="1000"
+                  swipeable={true}
+                  showArrows={true}
+                  showThumbs={true}
+                  width={850}
+                  dynamicHeight={100}
+                  // emulateTouch={true}
+                  className="hero-carousel"
                 >
-                All Kpis
-              </h1> */}
-              {/* <Carousel
-                autoPlay={false}
-                infiniteLoop={true}
-                interval="3000"
-                transitionTime="1000"
-                swipeable={true}
-                showArrows={true}
-                showThumbs={true}
-                width={650}
-                dynamicHeight={100}
-                // emulateTouch={true}
-                className="hero-carousel"
-              >
-                {filtered &&
-                  filtered.map((list) => {
-                    return <BarCharts kpis={list} />;
-                  })}
-              </Carousel> */}
-            {/* </div> */}
+                  {filtered &&
+                    filtered.map((list) => {
+                      return <BarCharts kpis={list} />;
+                    })}
+                </Carousel>
+            
+              </div>
+            )}
           </div>
 
           {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
