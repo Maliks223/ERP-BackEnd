@@ -24,6 +24,8 @@ const EmployeeProfile = () => {
   const [latest, setLatest] = useState([]);
   const [roles, setRoles] = useState([]);
 
+  const [active, setActive] = useState("");
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -105,7 +107,7 @@ const EmployeeProfile = () => {
                 minWidth: "8vw",
                 position: "absolute",
                 top: "77vh",
-                left: "24vw",
+                left: "22.5vw",
               }}
               onClick={handleClickOpenTeam}
             >
@@ -125,7 +127,7 @@ const EmployeeProfile = () => {
               sx={{
                 width: "8vw",
                 position: "absolute",
-                left: "24vw",
+                left: "22.5vw",
                 top: "83vh",
                 backgroundColor: "#0A4f70",
               }}
@@ -133,7 +135,16 @@ const EmployeeProfile = () => {
               assign KPI
             </Button>
             <Dialog open={open} onClose={handleClose}>
+<<<<<<< HEAD
               <DialogTitle sx={{ width: "25vw", height: "10vh" }}> Assign a KPI</DialogTitle>
+=======
+              <DialogTitle
+                sx={{ width: "maxContent", height: "10vh", margin: "auto" }}
+              >
+                {" "}
+                Assign a KPI
+              </DialogTitle>
+>>>>>>> testing
               <DialogContent>
                 <KPIAssignForm id={employee.id} />
               </DialogContent>
@@ -145,7 +156,7 @@ const EmployeeProfile = () => {
                 className="addEmployeeBtn"
                 sx={{
                   position: "absolute",
-                  left: "24vw",
+                  left: "22.5vw",
                   top: "71vh",
                   backgroundColor: "var(--blue)",
                   color: "white",
@@ -156,14 +167,69 @@ const EmployeeProfile = () => {
                 Assign Role
               </Button>
               <Dialog open={openRoles} onClose={handleCloseRoles}>
+<<<<<<< HEAD
                 <DialogTitle sx={{ height: "10vh", width: "20vw" }}> Assign a Role in Project</DialogTitle>
+=======
+                <DialogTitle
+                  sx={{ height: "10vh", width: "maxContent", margin: "auto" }}
+                >
+                  {" "}
+                  Assign a Role in Project
+                </DialogTitle>
+>>>>>>> testing
                 <DialogContent>
                   <RoleProject id={employee.id} team={employee.teams} />
                 </DialogContent>
               </Dialog>
             </>
           )}
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+              position: "absolute",
+              top: "22vh",
+              left: "45vw",
+            }}
+            onClick={() => setActive("scroly")}
+          >
+            Latest Kpis
+          </Button>
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+              position: "absolute",
+              top: "22vh",
+              left: "65vw",
+            }}
+            onClick={() => setActive("car")}
+          >
+            All Kpis
+          </Button>
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            sx={{
+              backgroundColor: "var(--blue)",
+              minWidth: "8vw",
+              position: "absolute",
+              top: "22vh",
+              left: "85vw",
+            }}
+            onClick={() => setActive("roleProject")}
+          >
+            Role Project
+          </Button>
+          <div className="roleProject">
+                Role Project
+              </div>
           <div className="combin">
+<<<<<<< HEAD
             <div className="scroly">
               <h1 style={{ position: "absolute", top: "11vh", fontWeight: "lighter", marginBottom: "24px" }}>latest kpis</h1>
 
@@ -202,6 +268,49 @@ const EmployeeProfile = () => {
                   })}
               </Carousel>
             </div>
+=======
+            {active === "scroly" && (
+              <div className="scroly">
+                <h1>Latest KPIs</h1>
+                <ol className="late">
+                  {latest &&
+                    latest.map((kpi) => {
+                      return (
+                        <>
+                          <li sx={{ margin: "50px", borderRadius: "10px" }}>
+                            <KPICard title={kpi.kpi_name} rate={kpi.rate} />
+                          </li>
+                        </>
+                      );
+                    })}
+                </ol>
+              </div>
+            )}
+            {active === "car" && (
+              <div className="car">
+                <h1>All Kpis</h1>
+                <Carousel
+                  autoPlay={false}
+                  infiniteLoop={false}
+                  interval="3000"
+                  transitionTime="1000"
+                  swipeable={true}
+                  showArrows={true}
+                  showThumbs={true}
+                  width={850}
+                  dynamicHeight={100}
+                  // emulateTouch={true}
+                  className="hero-carousel"
+                >
+                  {filtered &&
+                    filtered.map((list) => {
+                      return <BarCharts kpis={list} />;
+                    })}
+                </Carousel>
+            
+              </div>
+            )}
+>>>>>>> testing
           </div>
 
           {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>

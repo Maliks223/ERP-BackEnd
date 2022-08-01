@@ -375,7 +375,7 @@ const Team = ({ name, project, id, pivotId, members, fetchTeams }) => {
                       setEdit(!edit);
                     }}
                   >
-                    Cancelsss
+                    Cancel
                   </Button>
                 </DialogActions>
               </form>

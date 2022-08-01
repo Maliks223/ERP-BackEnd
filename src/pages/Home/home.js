@@ -13,6 +13,7 @@ import CompanyData from '../../components/CompanyData/companyData.js';
 
 
 
+
 const Home = () => {
     const navigate = useNavigate();
     const id = localStorage.getItem("id");

@@ -27,7 +27,11 @@ import FileUploader from "../../components/File_uploader/fileUploader";
 import axios from "axios";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
+<<<<<<< HEAD
 import { useLocation } from "react-router-dom";
+=======
+import NotificationBar from "../../components/notificationBar/notificationBar";
+>>>>>>> testing
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -113,11 +117,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
+<<<<<<< HEAD
 
   const location = useLocation();
   const filter = location?.state?.employee;
 
   const [allData, setAllData] = useState([]);
+=======
+  const [note, setNote] = useState(true);
+>>>>>>> testing
   const [data, setData] = useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -228,6 +236,7 @@ const Employees = () => {
 
   return (
     <div className="employeeWraper">
+      <NotificationBar />
       <div className="employee-page">
         <div className="postproject">
           <h1
@@ -340,12 +349,25 @@ const Employees = () => {
                   sx={{
                     backgroundColor: "var(--blue)",
                     minWidth: "8vw",
+<<<<<<< HEAD
                     marginBottom: "24px",
                     marginLeft: "86px"
+=======
+                    marginBottom: "-53px",
+                    marginLeft: "86px",
+                  }}
+                  onCLick={()=>{
+                    setNote(true)
+>>>>>>> testing
                   }}
                 >
                   Confirm
                 </Button>
+<<<<<<< HEAD
+=======
+                <NotificationBar note={note} message={"msg1"} />
+
+>>>>>>> testing
                 <Button
                   variant="contained"
                   className="addEmployeeBtn"
@@ -353,7 +375,11 @@ const Employees = () => {
                     backgroundColor: "var(--blue)",
                     minWidth: "8vw",
                     marginBottom: "24px",
+<<<<<<< HEAD
                     marginLeft: "86px"
+=======
+                    marginLeft: "272px",
+>>>>>>> testing
                   }}
                   onClick={() => setpost(!post)}
                 >

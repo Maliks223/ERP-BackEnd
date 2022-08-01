@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import FileUploader from "../File_uploader/fileUploader";
+import NotificationBar from "../notificationBar/notificationBar";
 
 const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
   const { id } = data;
+  const [note, setNote] = useState(false);
   const [image, setFile] = useState(null);
   const [inputs, setInputs] = useState({
     firstname: "",
@@ -22,8 +24,8 @@ const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
     });
   };
 
-  const handleEdit = async (e) => {
-    e.preventDefault();
+  const handleEdit = async () => {
+    // e.preventDefault();
     const formData = new FormData();
     formData.append("firstname", inputs.firstname);
     formData.append("lastname", inputs.lastname);
@@ -43,18 +45,27 @@ const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
           body: formData,
         }
       );
+<<<<<<< HEAD
       const res = await response.json();
       console.log(res);
       fetchEmployees();
       handleClose();
+=======
+      console.log(note);
+      setNote(true);
+      // handleClose();
+>>>>>>> testing
     } catch {
-      return "err";
+      console.log("error");
     }
   };
+  useEffect(() => {
+    console.log(note);
+  }, [note]);
 
   return (
     <>
-      <DialogContent >
+      <DialogContent>
         <TextField
           autoFocus
           margin="dense"
@@ -122,10 +133,14 @@ const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
             marginRight: "106px",
             marginBottom: "16px",
           }}
-          onClick={handleEdit}
+          onClick={()=>{
+            handleEdit();
+            setNote(true)
+          }}
         >
           Confirm Edit
         </Button>
+        {note && <NotificationBar note={note} message={"Employee data is updated"} />}
         {/* <Button onClick={handleClose}>Cancek</Button> */}
       </DialogActions>
     </>

@@ -212,7 +212,8 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 className="addEmployeeBtnY"
                 color="error"
                 style={{
-                  marginLeft: "105px",
+                  marginLeft: "15px",
+                  marginRight: "25px",
                   marginBottom: "36px",
                   backgroundColor: "red",
                   minWidth: "8vw",
@@ -221,19 +222,20 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 delete team
               </Button>
               <Button
-                className="addEmployeeBtn"
-                variant="contained"
-                style={{
-                  margin: "auto",
-                  backgroundColor: "var(--blue)",
-                  minWidth: "8vw",
-                }}
-                onClick={() => {
-                  setdeleteteam(false)
-                }}
-              >
-                Close
-              </Button>
+                    className="addEmployeeBtn"
+                    variant="contained"
+                    style={{
+                      marginBottom:"36px",
+                      // margin: "auto",
+                      backgroundColor: "var(--blue)",
+                      minWidth: "8vw",
+                    }}
+                    onClick={() => {
+                      setdeleteteam(false)
+                    }}
+                  >
+                    Cancel
+                  </Button>
             </form>
           </Dialog>
         </StyledTableCell>
@@ -396,7 +398,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
                       setassignteam(false)
                     }}
                   >
-                    Close
+                    cancel
                   </Button>
                 </DialogActions>
               </form>
