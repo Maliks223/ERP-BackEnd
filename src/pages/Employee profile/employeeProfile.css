@@ -48,8 +48,8 @@
   /* overflow-x: scroll; */
   overflow-y: scroll;
   /* white-space: nowrap; */
-  width: 47.8vw;
-  height: 46vh;
+  width: 49.8vw;
+  height: 49vh;
   border: 2px solid var(--blue);
   background-color: var(--white);
 }
