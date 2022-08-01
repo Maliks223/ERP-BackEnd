@@ -61,6 +61,9 @@ const Admin = ({ id, email, name, image }) => {
     try {
       const response = await fetch(`http://localhost:8000/api/users/${id}`, {
         method: "Delete",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         content: "application/json",
       });
       const res = await response.json();
@@ -81,11 +84,14 @@ const Admin = ({ id, email, name, image }) => {
       const response = await fetch(`http://localhost:8000/api/users/${id}`, {
         method: "POST",
         content: "application/json",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         body: data,
       });
       const res = await response.json();
       console.log(res);
-      
+
     } catch {
       return "err";
     }
@@ -101,7 +107,7 @@ const Admin = ({ id, email, name, image }) => {
       <StyledTableCell
         className="tableInfo"
         align="center"
-        sx={{ color: "black", fontSize:"18px!important" }}
+        sx={{ color: "black", fontSize: "18px!important" }}
       >
         {name}
       </StyledTableCell>
@@ -109,7 +115,7 @@ const Admin = ({ id, email, name, image }) => {
       <StyledTableCell
         className="tableInfo"
         align="center"
-        sx={{ color: "black", fontSize:"18px!important" }}
+        sx={{ color: "black", fontSize: "18px!important" }}
       >
         {email}
       </StyledTableCell>

@@ -135,7 +135,11 @@ const Admins = (props) => {
   const id = localStorage.getItem("id");
 
   const fetchAdmin = async () => {
-    const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`);
+    const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }
+    });
     const response = await res.json();
     if (response.role !== 1) {
       navigate('/');
@@ -161,7 +165,11 @@ const Admins = (props) => {
 
   const fetchAdmins = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/users");
+      const res = await fetch("http://localhost:8000/api/users", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      });
       const data = await res.json();
       setAdmins(data);
     } catch (err) {
@@ -179,7 +187,11 @@ const Admins = (props) => {
     data.append("profile_image", image);
     data.append("password", password);
 
-    await Axios.post("http://localhost:8000/api/register", data).catch((err) =>
+    await Axios.post("http://localhost:8000/api/register", {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }, data
+    }).catch((err) =>
       console.log(err)
     );
   };

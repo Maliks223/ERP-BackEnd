@@ -20,7 +20,7 @@ const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     // I need to validate if the token is a valid
-    if(token) {
+    if (token) {
       navigate('/')
     }
   }, [])
@@ -41,18 +41,20 @@ const Login = () => {
         },
         body: JSON.stringify(item),
       });
+      console.log(result);
       result = await result.json();
-      if(result.errors) {
-        if(result.errors.email) {
+      console.log(result);
+      if (result.errors) {
+        if (result.errors.email) {
           setEmailError(result.errors.email[0])
         }
-        if(result.errors.password) {
+        if (result.errors.password) {
           setPasswordError(result.errors.password[0])
 
         }
         return;
       }
-      if(result.success === false) {
+      if (result.success === false) {
         setGeneralError(result.message)
         return;
       }
@@ -79,13 +81,13 @@ const Login = () => {
         autoComplete="off"
       >
         <div className="loginContainerform">
-          {loading && 
-           <CircularProgress />
+          {loading &&
+            <CircularProgress />
 
           }
-        {generalError && 
-      <Alert severity="error" sx = {{height:"40px", transform:"scale(1.3)"}}>{generalError}</Alert>
-      }
+          {generalError &&
+            <Alert severity="error" sx={{ height: "40px", transform: "scale(1.3)" }}>{generalError}</Alert>
+          }
           <h2>Please enter your email and password.</h2>
           <TextField
             variant="standard"
@@ -126,7 +128,7 @@ const Login = () => {
       </Box>
       <div className="footer">Codi B08 Group 2 ©</div>
     </div>
-    
+
   );
 };
 

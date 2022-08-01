@@ -33,6 +33,9 @@ const AdminEdit = ({ data }) => {
                 {
                     method: "POST",
                     content: "application/json",
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                    },
                     body: formData,
                 }
             );

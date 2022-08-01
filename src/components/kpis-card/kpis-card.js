@@ -81,6 +81,9 @@ const KPIRow = ({ data }) => {
     try {
       const response = await fetch(`http://localhost:8000/api/kpi/${id}`, {
         method: "Delete",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         content: "application/json",
       })
         .then((response) => response.data)

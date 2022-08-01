@@ -49,13 +49,21 @@ const Project = ({ id, name, teamz, pivotId }) => {
     data.append("name", Name);
 
     await axios
-      .post(`http://localhost:8000/api/project/${id}`, data)
+      .post(`http://localhost:8000/api/project/${id}`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }, data)
       .catch((err) => console.log(err));
   };
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:8000/api/project/${id}`)
+      .delete(`http://localhost:8000/api/project/${id}`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
       .then((response) => response.data)
       .then((result) => window.location.reload())
       .catch((err) => console.log(err));
@@ -67,13 +75,21 @@ const Project = ({ id, name, teamz, pivotId }) => {
     data.append("Project_id", id);
 
     await axios
-      .post("http://localhost:8000/api/teamproject", data)
+      .post("http://localhost:8000/api/teamproject", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }, data)
       .catch((err) => console.log(err));
   };
 
   const handleDeleteProjectTeam = async (e) => {
     await axios
-      .delete(`http://localhost:8000/api/teamproject/${pivotid}`)
+      .delete(`http://localhost:8000/api/teamproject/${pivotid}`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
       .then((response) => response.data)
       .then((result) => window.location.reload())
       .catch((err) => console.log(err));
@@ -85,7 +101,11 @@ const Project = ({ id, name, teamz, pivotId }) => {
 
   const Request = async () => {
     const res = await axios
-      .get("http://localhost:8000/api/teams")
+      .get("http://localhost:8000/api/teams", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
       .catch((err) => console.log(err));
     const data = await res.data;
     // console.log(data);
@@ -201,19 +221,19 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 delete team
               </Button>
               <Button
-                    className="addEmployeeBtn"
-                    variant="contained"
-                    style={{
-                      margin: "auto",
-                      backgroundColor: "var(--blue)",
-                      minWidth: "8vw",
-                    }}
-                    onClick={() => {
-                      setdeleteteam(false)
-                    }}
-                  >
-                    Close
-                  </Button>
+                className="addEmployeeBtn"
+                variant="contained"
+                style={{
+                  margin: "auto",
+                  backgroundColor: "var(--blue)",
+                  minWidth: "8vw",
+                }}
+                onClick={() => {
+                  setdeleteteam(false)
+                }}
+              >
+                Close
+              </Button>
             </form>
           </Dialog>
         </StyledTableCell>

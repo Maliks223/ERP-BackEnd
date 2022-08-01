@@ -29,6 +29,9 @@ const RoleForm = ({ data, handleClose }) => {
       const response = await fetch(`http://localhost:8000/api/roles/${id}`, {
         method: "POST",
         content: "application/json",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         body: formData,
       })
         .then((response) => response.data)

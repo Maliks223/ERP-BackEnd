@@ -34,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const EmployeeRow = ({ data  }) => {
+const EmployeeRow = ({ data, fetchEmployees }) => {
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
   const handleClickOpen = () => {
@@ -53,7 +53,7 @@ const EmployeeRow = ({ data  }) => {
     setOpenDelete(false);
   };
 
-  const { id, firstname, lastname, email, team_id, image ,teams} = data;
+  const { id, firstname, lastname, email, team_id, image, teams } = data;
 
   const handleDelete = async () => {
     try {
@@ -61,11 +61,16 @@ const EmployeeRow = ({ data  }) => {
         `http://localhost:8000/api/employees/${id}`,
         {
           method: "Delete",
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          },
           content: "application/json",
         }
       );
       const res = await response.json();
       console.log(res);
+      fetchEmployees();
+      handleCloseDelete();
     } catch {
       return "error ya kaptin";
     }
@@ -108,12 +113,12 @@ const EmployeeRow = ({ data  }) => {
       </StyledTableCell>
       <StyledTableCell align="center">
         <Button onClick={handleClickOpen}>
-          <EditIcon  color="success" />
+          <EditIcon color="success" />
         </Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
           <DialogContent>
-            <EmployeeForm handleClose={handleClose} data={data} />
+            <EmployeeForm fetchEmployees={fetchEmployees} handleClose={handleClose} data={data} />
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
@@ -127,7 +132,7 @@ const EmployeeRow = ({ data  }) => {
           <DialogActions
             sx={{ display: "flex", justifyContent: "space-around" }}
           >
-                <Button
+            <Button
               onClick={handleDelete}
               color="error"
               className="addEmployeeBtnY"
@@ -160,7 +165,7 @@ const EmployeeRow = ({ data  }) => {
           </DialogActions>
         </Dialog>
         <Button
-        variant="contained"
+          variant="contained"
           className="addEmployeeBtn"
           style={{
             backgroundColor: "var(--blue)",
@@ -170,7 +175,7 @@ const EmployeeRow = ({ data  }) => {
             color: "white",
           }}
         >
-          <Link style = {{color:"white", textDecoration:"none"}} to={`/employees/id=${id}`} state={{ data: data }}>
+          <Link style={{ color: "white", textDecoration: "none" }} to={`/employees/id=${id}`} state={{ data: data }}>
             View More
           </Link>
         </Button>

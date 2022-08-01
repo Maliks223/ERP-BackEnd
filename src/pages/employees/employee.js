@@ -148,7 +148,11 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/employees");
+      const response = await fetch("http://localhost:8000/api/employees", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      });
       const res = await response.json();
       setAllData(res);
       if (filter) {
@@ -179,7 +183,11 @@ const Employees = () => {
   //teams
   const Request = async () => {
     const res = await axios
-      .get("http://localhost:8000/api/teams")
+      .get("http://localhost:8000/api/teams", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
       .catch((err) => console.log(err));
     const data = await res.data;
     // console.log(data);
@@ -190,22 +198,32 @@ const Employees = () => {
   }, []);
 
   //post employee
-  const Postemployee = async () => {
+  const Postemployee = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("firstname", firstname);
     data.append("lastname", lastname);
     data.append("email", email);
     data.append("phonenumber", phonenumber);
     data.append("image", file);
-    data.append("team_id", team);
-
-    const responsee = await fetch("http://localhost:8000/api/employees", {
-      method: "POST",
-      content: "application/json",
-      body: data,
-    }).catch((err) => console.log(err));
-    // const res = await responsee.json();
-    // console.log(res);
+    if (team) {
+      data.append("team_id", team);
+    }
+    try {
+      const responsee = await fetch("http://localhost:8000/api/employees", {
+        method: "POST",
+        content: "application/json",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
+        body: data,
+      })
+      fetchEmployees();
+      setpost(!post)
+    }
+    catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -238,7 +256,7 @@ const Employees = () => {
             <DialogContent>
               <form
                 onSubmit={(e) => {
-                  Postemployee();
+                  Postemployee(e);
                 }}
               >
                 <TextField
@@ -291,7 +309,7 @@ const Employees = () => {
                   sx={{ marginBottom: "24px" }}
                 />
                 <FileUploader onFileSelect={(file) => setFile(file)} />
-                <select
+                {getteam && <select
                   onChange={(e) => {
                     setteam(e.target.value);
                   }}
@@ -314,7 +332,7 @@ const Employees = () => {
                       </option>
                     );
                   })}
-                </select>
+                </select>}
                 <Button
                   type="submit"
                   className="addEmployeeBtn"
@@ -325,11 +343,9 @@ const Employees = () => {
                     marginBottom: "24px",
                     marginLeft: "86px"
                   }}
-                // onClick={handleEdit}
                 >
                   Confirm
                 </Button>
-
                 <Button
                   variant="contained"
                   className="addEmployeeBtn"
@@ -403,7 +419,7 @@ const Employees = () => {
                 )
                 : data
               ).map((employee, i) => (
-                <EmployeeRow key={i} data={employee} />
+                <EmployeeRow key={i} data={employee} fetchEmployees={fetchEmployees}/>
               ))}
             </TableBody>
             <TableFooter>

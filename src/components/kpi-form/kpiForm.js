@@ -26,6 +26,9 @@ const KPIForm = ({ data, handleClose }) => {
     try {
       const response = await fetch(`http://localhost:8000/api/kpi/${id}`, {
         method: "POST",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         content: "application/json",
         body: formData,
       })
@@ -53,17 +56,17 @@ const KPIForm = ({ data, handleClose }) => {
         />
       </DialogContent>
       <DialogActions>
-          <Button
-            variant="contained"
-            className="addEmployeeBtn"
-            sx={{
-              backgroundColor: "var(--blue)",
-              minWidth: "8vw",
-            }}
-           onClick={handleClose}
-          >
-            Cancel
-          </Button>
+        <Button
+          variant="contained"
+          className="addEmployeeBtn"
+          sx={{
+            backgroundColor: "var(--blue)",
+            minWidth: "8vw",
+          }}
+          onClick={handleClose}
+        >
+          Cancel
+        </Button>
         <Button
           className="addEmployeeBtn"
           variant="contained"

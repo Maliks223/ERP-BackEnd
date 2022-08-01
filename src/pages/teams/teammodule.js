@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Team = ({ name, project, id, pivotId, members }) => {
+const Team = ({ name, project, id, pivotId, members, fetchTeams }) => {
   const [Name, setname] = useState(name);
   const [edit, setEdit] = useState(false);
   const [projects, setproject] = useState([]);
@@ -48,43 +48,70 @@ const Team = ({ name, project, id, pivotId, members }) => {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:8000/api/teams/${id}`)
+      .delete(`http://localhost:8000/api/teams/${id}`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
       .then((response) => response.data)
-      .then((result) => window.location.reload())
+      .then(() => fetchTeams())
+      .then(() => handleclosedelete(false))
       .catch((err) => console.log(err));
   };
 
-  const handleEdit = async (id) => {
+  const handleEdit = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("_method", "PATCH");
     data.append("name", Name);
 
     await axios
-      .post(`http://localhost:8000/api/teams/${id}`, data)
+      .post(`http://localhost:8000/api/teams/${id}`, data,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        })
+      .then(() => fetchTeams())
+      .then(() => setEdit(false))
       .catch((err) => console.log(err));
   };
 
-  const Projectteam = async () => {
+  const Projectteam = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("Team_id", id);
     data.append("Project_id", projectz);
-
     await axios
-      .post("http://localhost:8000/api/teamproject", data)
-      .catch((err) => console.log(err));
+      .post("http://localhost:8000/api/teamproject", data,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        })
+      .then(res => console.log(res))
+      .then(() => fetchTeams())
+      .then(() => setassignproject(false))
+      .catch((err) => { console.log(err); setassignproject(false) });
   };
 
   const handleDeleteProjectTeam = async (e) => {
+    e.preventDefault();
     await axios
       .delete(`http://localhost:8000/api/teamproject/${pivotid}`)
       .then((response) => response.data)
-      .then((result) => window.location.reload())
+      .then(() => fetchTeams())
+      .then(() => setdeleteproject(false))
       .catch((err) => console.log(err));
   };
 
   const Request = async () => {
     const res = await axios
-      .get("http://localhost:8000/api/project")
+      .get("http://localhost:8000/api/project", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
       .catch((err) => console.log(err));
     const data = await res.data;
     // console.log(data);
@@ -207,7 +234,7 @@ const Team = ({ name, project, id, pivotId, members }) => {
               Delete Assigned project
             </DialogTitle>
             <DialogContent>
-              <form onSubmit={(e) => handleDeleteProjectTeam(pivotId)}>
+              <form >
                 <select
                   style={{
                     width: "15vw",
@@ -224,7 +251,7 @@ const Team = ({ name, project, id, pivotId, members }) => {
                   onChange={(e) => {
                     setpivot(e.target.value);
                   }}
-                  // style={{ padding: "3px 3px 10px 3px", margin: "11px" }}
+                // style={{ padding: "3px 3px 10px 3px", margin: "11px" }}
                 >
                   <option>Projects</option>
                   {pivotId &&
@@ -236,9 +263,6 @@ const Team = ({ name, project, id, pivotId, members }) => {
                 </select>
                 <DialogActions>
                   <Button
-                    onClick={() => {
-                      setdeleteproject(deleteproject);
-                    }}
                     color="error"
                     className="addEmployeeBtnY"
                     variant="contained"
@@ -251,6 +275,7 @@ const Team = ({ name, project, id, pivotId, members }) => {
                       minWidth: "8vw",
                       transition: "0.1s ease-in-out",
                     }}
+                    onClick={handleDeleteProjectTeam}
                   >
                     Delete project
                   </Button>
@@ -259,7 +284,7 @@ const Team = ({ name, project, id, pivotId, members }) => {
                       setdeleteproject(!deleteproject);
                     }}
                     className="addEmployeeBtn"
-                    sx={{ backgroundColor: "var(--blue)", width: "8vw", marginBottom:"30px" }}
+                    sx={{ backgroundColor: "var(--blue)", width: "8vw", marginBottom: "30px" }}
                     variant="contained"
                   >
                     Cancel
@@ -268,55 +293,58 @@ const Team = ({ name, project, id, pivotId, members }) => {
               </form>
             </DialogContent>
           </Dialog>
-          <Button
-            className="addEmployeeBtn"
-            sx={{ backgroundColor: "var(--blue)", width: "8.6vw" }}
-            onClick={() => {
-              setshow(!show);
-            }}
-            variant="contained"
-          >
-            Show Members
-          </Button>
-          <Dialog open={show} onClose={() => setshow(!show)}>
-            <DialogTitle style={{ margin: "30px" }}>
-              Members of {name}'s team
-            </DialogTitle>
-            <div>
-              {members.map((member, i) => {
-                return (
-                  <h4 key={i} style={{ paddingLeft: "20px" }}>
-                    {i + 1}
-                    {". "}
-                    {member.firstname} {member.lastname}
-                  </h4>
-                );
-              })}
-            </div>
-            <DialogActions>
+          {members && members.length!=0 &&
+            <>
               <Button
                 className="addEmployeeBtn"
-                sx={{
-                  backgroundColor: "var(--blue)",
-                  width: "8.6vw",
-                  margin: "auto",
+                sx={{ backgroundColor: "var(--blue)", width: "8.6vw" }}
+                onClick={() => {
+                  setshow(!show);
                 }}
-                onClick={() => setshow(!show)}
                 variant="contained"
               >
-                close
+                Show Members
               </Button>
-            </DialogActions>
+              <Dialog open={show} onClose={() => setshow(!show)}>
+                <DialogTitle style={{ margin: "30px" }}>
+                  Members of {name}'s team
+                </DialogTitle>
+                <div>
+                  {members.map((member, i) => {
+                    return (
+                      <h4 key={i} style={{ paddingLeft: "20px" }}>
+                        {i + 1}
+                        {". "}
+                        {member.firstname} {member.lastname}
+                      </h4>
+                    );
+                  })}
+                </div>
+                <DialogActions>
+                  <Button
+                    className="addEmployeeBtn"
+                    sx={{
+                      backgroundColor: "var(--blue)",
+                      width: "8.6vw",
+                      margin: "auto",
+                    }}
+                    onClick={() => setshow(!show)}
+                    variant="contained"
+                  >
+                    close
+                  </Button>
+                </DialogActions>
 
-            <DialogContent></DialogContent>
-          </Dialog>
+                <DialogContent></DialogContent>
+              </Dialog>
+            </>}
         </StyledTableCell>
 
         {edit && (
           <Dialog open={edit} onClose={() => setEdit(!edit)}>
             <DialogTitle>Edit Team</DialogTitle>
             <DialogContent>
-              <form onSubmit={(e) => handleEdit(id)}>
+              <form onSubmit={(e) => handleEdit(e)}>
                 <TextField
                   autoFocus
                   margin="dense"
@@ -363,7 +391,7 @@ const Team = ({ name, project, id, pivotId, members }) => {
             <DialogContent>
               <form
                 onSubmit={(e) => {
-                  Projectteam();
+                  Projectteam(e);
                 }}
               >
                 {/* <TextField

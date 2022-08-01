@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import FileUploader from "../File_uploader/fileUploader";
 
-const EmployeeForm = ({ data, handleClose }) => {
+const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
   const { id } = data;
   const [image, setFile] = useState(null);
   const [inputs, setInputs] = useState({
@@ -37,11 +37,16 @@ const EmployeeForm = ({ data, handleClose }) => {
         {
           method: "POST",
           content: "application/json",
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          },
           body: formData,
         }
       );
       const res = await response.json();
       console.log(res);
+      fetchEmployees();
+      handleClose();
     } catch {
       return "err";
     }
@@ -94,7 +99,7 @@ const EmployeeForm = ({ data, handleClose }) => {
         <FileUploader onFileSelect={(file) => setFile(file)} />
       </DialogContent>
       <DialogActions>
-      <Button
+        <Button
           variant="contained"
           className="addEmployeeBtn"
           sx={{
@@ -103,7 +108,7 @@ const EmployeeForm = ({ data, handleClose }) => {
             minWidth: "8vw",
             marginBottom: "17px",
           }}
-          onClick = {handleClose}
+          onClick={handleClose}
         >
           Cancel
         </Button>

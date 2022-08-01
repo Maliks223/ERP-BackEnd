@@ -54,7 +54,11 @@ const EmployeeProfile = () => {
   const fetchEmployee = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/employees/${data.id}`
+        `http://localhost:8000/api/employees/${data.id}`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }
       );
       const res = await response.json();
       setEmployee(res.data[0]);
@@ -69,7 +73,11 @@ const EmployeeProfile = () => {
   const fetchRoles = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/employeerole/${data.id}`
+        `http://localhost:8000/api/employeerole/${data.id}`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }
       );
       const res = await response.json();
       setRoles(res);
@@ -90,7 +98,7 @@ const EmployeeProfile = () => {
           <div className="flexprofile">
             <CardId data={employee} />
             <Button
-            variant="contained"
+              variant="contained"
               className="addEmployeeBtn"
               sx={{
                 backgroundColor: "var(--blue)",
@@ -111,11 +119,11 @@ const EmployeeProfile = () => {
             </Dialog>
 
             <Button
-            variant="contained"
+              variant="contained"
               className="addEmployeeBtn"
               onClick={handleClickOpen}
               sx={{
-                width:"8vw",
+                width: "8vw",
                 position: "absolute",
                 left: "24vw",
                 top: "83vh",
@@ -125,7 +133,7 @@ const EmployeeProfile = () => {
               assign KPI
             </Button>
             <Dialog open={open} onClose={handleClose}>
-              <DialogTitle sx = {{width:"25vw", height:"10vh"}}> Assign a KPI</DialogTitle>
+              <DialogTitle sx={{ width: "25vw", height: "10vh" }}> Assign a KPI</DialogTitle>
               <DialogContent>
                 <KPIAssignForm id={employee.id} />
               </DialogContent>
@@ -139,16 +147,16 @@ const EmployeeProfile = () => {
                   position: "absolute",
                   left: "24vw",
                   top: "71vh",
-                  backgroundColor:"var(--blue)",
+                  backgroundColor: "var(--blue)",
                   color: "white",
-                  width:"8vw",
+                  width: "8vw",
                 }}
                 onClick={handleClickOpenRoles}
               >
                 Assign Role
               </Button>
               <Dialog open={openRoles} onClose={handleCloseRoles}>
-                <DialogTitle sx = {{height:"10vh", width:"20vw"}}> Assign a Role in Project</DialogTitle>
+                <DialogTitle sx={{ height: "10vh", width: "20vw" }}> Assign a Role in Project</DialogTitle>
                 <DialogContent>
                   <RoleProject id={employee.id} team={employee.teams} />
                 </DialogContent>
@@ -157,13 +165,13 @@ const EmployeeProfile = () => {
           )}
           <div className="combin">
             <div className="scroly">
-              <h1 style={{ position: "absolute", top: "11vh", fontWeight:"lighter", marginBottom:"24px" }}>latest kpis</h1>
+              <h1 style={{ position: "absolute", top: "11vh", fontWeight: "lighter", marginBottom: "24px" }}>latest kpis</h1>
 
               <ol className="late">
                 {latest &&
                   latest.map((kpi) => {
                     return (
-                      <li sx={{ margin: "50px", borderRadius:"10px" }}>
+                      <li sx={{ margin: "50px", borderRadius: "10px" }}>
                         <KPICard title={kpi.kpi_name} rate={kpi.rate} />
                       </li>
                     );
@@ -173,7 +181,7 @@ const EmployeeProfile = () => {
 
             <div className="car">
               <h1
-                style={{ position: "absolute", top: "42.5vh", left: "42.5vw", fontWeight:"lighter" }}
+                style={{ position: "absolute", top: "42.5vh", left: "42.5vw", fontWeight: "lighter" }}
               >
                 All Kpis
               </h1>

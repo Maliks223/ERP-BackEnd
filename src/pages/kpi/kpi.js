@@ -121,7 +121,11 @@ const KPIS = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/kpi");
+      const response = await fetch("http://localhost:8000/api/kpi", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      });
       const res = await response.json();
       console.table(res);
       setData(res);
@@ -153,6 +157,9 @@ const KPIS = () => {
 
     const res = await fetch("http://localhost:8000/api/kpi", {
       method: "POST",
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      },
       body: data,
     }).catch((err) => console.log(err));
   };
@@ -181,7 +188,7 @@ const KPIS = () => {
               setclose(!open);
             }}
           >
-            <DialogTitle sx={{margin:"auto"}}>Add New KPI</DialogTitle>
+            <DialogTitle sx={{ margin: "auto" }}>Add New KPI</DialogTitle>
             <DialogContent>
               <form
                 onSubmit={() => {
@@ -202,7 +209,7 @@ const KPIS = () => {
                 />
                 <DialogActions>
                   <Button
-                  variant="contained"
+                    variant="contained"
                     className="addEmployeeBtn"
                     type="submit"
                     style={{
@@ -216,7 +223,7 @@ const KPIS = () => {
                     Submit
                   </Button>
                   <Button
-                  variant="contained"
+                    variant="contained"
                     className="addEmployeeBtn"
                     style={{
                       marginRight: "20px",
@@ -267,9 +274,9 @@ const KPIS = () => {
             <TableBody>
               {(rowsPerPage > 0
                 ? data.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
                 : data
               ).map((kpi, index) => (
                 <KPIRow key={index} data={kpi} />

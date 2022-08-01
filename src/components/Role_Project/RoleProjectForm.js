@@ -28,7 +28,11 @@ const RoleProject = (props) => {
   const fetchProjects = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/teams/${props.team.id}`
+        `http://localhost:8000/api/teams/${props.team.id}`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }
       );
       const data = await response.json();
       setProjects(data[0].projects);
@@ -39,7 +43,11 @@ const RoleProject = (props) => {
 
   const fetchRoles = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/roles`);
+      const response = await fetch(`http://localhost:8000/api/roles`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      });
       const data = await response.json();
       setRoles(data);
     } catch (err) {
@@ -57,6 +65,9 @@ const RoleProject = (props) => {
       const response = await fetch(`http://localhost:8000/api/employeerole`, {
         method: "POST",
         content: "application/json",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         body: formData,
       });
       const res = await response.json();

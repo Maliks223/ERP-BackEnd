@@ -25,7 +25,11 @@ const SideBar = () => {
   const [user, setuser] = useState([]);
 
   const fetchAdmin = async () => {
-    const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`);
+    const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`,{
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }
+    });
     const response = await res.json();
     console.log(response);
     setuser(response);

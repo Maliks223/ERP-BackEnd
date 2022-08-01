@@ -22,7 +22,11 @@ const KPIAssignForm = (props) => {
     }
 
     const fetchKPIS = async () => {
-        const response = await fetch(`http://localhost:8000/api/kpi`);
+        const response = await fetch(`http://localhost:8000/api/kpi`, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            }
+        });
         const data = await response.json();
         setKPIs(data);
     }
@@ -39,6 +43,9 @@ const KPIAssignForm = (props) => {
                 `http://localhost:8000/api/employeekpi`, {
                 method: "POST",
                 content: "application/json",
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                },
                 body: formData
             });
             const res = await response.json();
@@ -55,9 +62,9 @@ const KPIAssignForm = (props) => {
 
     return (
         <>
-            <InputLabel sx={{marginLeft:"80px", marginBottom:"10px"}} >KPIs List</InputLabel>
+            <InputLabel sx={{ marginLeft: "80px", marginBottom: "10px" }} >KPIs List</InputLabel>
             <Select
-            sx={{width:"20vw", marginLeft:"80px"}}
+                sx={{ width: "20vw", marginLeft: "80px" }}
                 label='KPIs List'
                 value={kpi}
                 onChange={handelKPIChange}
@@ -69,7 +76,7 @@ const KPIAssignForm = (props) => {
                 })}
             </Select>
             <Slider
-            sx={{margin:"20px 0px 20px 0px"}}
+                sx={{ margin: "20px 0px 20px 0px" }}
                 aria-label="Rate"
                 defaultValue={0}
                 valueLabelDisplay="auto"
@@ -80,12 +87,12 @@ const KPIAssignForm = (props) => {
                 onChange={handleRateChange}
             />
             <TextField
-             sx={{width:"20vw", marginLeft:"80px", marginBottom:"26px"}}
+                sx={{ width: "20vw", marginLeft: "80px", marginBottom: "26px" }}
                 type='date'
                 onChange={handleDateChange}
             />
             <DialogActions>
-                <Button variant="contained" className="addEmployeeBtn" sx = {{backgroundColor:"var(--blue)", width:"8vw", margin:"auto"}} onClick={handleAssign}>Submit</Button>
+                <Button variant="contained" className="addEmployeeBtn" sx={{ backgroundColor: "var(--blue)", width: "8vw", margin: "auto" }} onClick={handleAssign}>Submit</Button>
             </DialogActions>
         </>
     )

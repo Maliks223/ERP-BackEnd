@@ -12,9 +12,9 @@ import {
 import React, { useEffect, useState } from "react";
 
 
-const EmployeeAssignForm = ({data,handleClose}) => {
+const EmployeeAssignForm = ({ data, handleClose }) => {
   // const handleClose = props.handleClose;
-  const {id} =data;
+  const { id } = data;
   const [employees, setEmployees] = useState([]);
   const [employee, setEmployee] = useState(0);
   const [rate, setRate] = useState(0);
@@ -33,7 +33,11 @@ const EmployeeAssignForm = ({data,handleClose}) => {
   };
 
   const fetchEmployees = async () => {
-    const response = await fetch(`http://localhost:8000/api/employees`);
+    const response = await fetch(`http://localhost:8000/api/employees`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }
+    });
     const data = await response.json();
     setEmployees(data);
   };
@@ -49,6 +53,9 @@ const EmployeeAssignForm = ({data,handleClose}) => {
       const response = await fetch(`http://localhost:8000/api/employeekpi`, {
         method: "POST",
         content: "application/json",
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         body: formData,
       });
       const res = await response.json();
@@ -125,7 +132,7 @@ const EmployeeAssignForm = ({data,handleClose}) => {
               marginRight: "36px",
               marginLeft: "120px",
             }}
-            onClick = {handleClose}
+            onClick={handleClose}
           >
             Cancel
           </Button>

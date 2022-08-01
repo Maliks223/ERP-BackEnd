@@ -32,6 +32,9 @@ const EditEmployeeTeam = ({ data }) => {
         {
           method: "POST",
           content: "application/json",
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          },
           body: formData,
         }
       );
@@ -43,7 +46,11 @@ const EditEmployeeTeam = ({ data }) => {
   };
 
   const fetchTeams = async () => {
-    const response = await fetch(`http://localhost:8000/api/teams`);
+    const response = await fetch(`http://localhost:8000/api/teams`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }
+    });
     const data = await response.json();
     setTeams(data);
   };
@@ -55,9 +62,9 @@ const EditEmployeeTeam = ({ data }) => {
   return (
     <>
       {teams && <p>Current Team: "{teams.name}" Wanna Change Team?</p>}
-      <InputLabel  sx={{ width: "10vw", marginLeft: "136px", marginTop:"36px" }} >Teams List</InputLabel>
+      <InputLabel sx={{ width: "10vw", marginLeft: "136px", marginTop: "36px" }} >Teams List</InputLabel>
       <Select
-        sx={{ width: "10vw", marginLeft: "86px", marginTop:"36px"}}
+        sx={{ width: "10vw", marginLeft: "86px", marginTop: "36px" }}
         label="Teams List"
         placeholder="Team List"
         value={teamId}

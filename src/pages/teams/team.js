@@ -125,14 +125,6 @@ const Teams = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const Post = async () => {
-    const data = new FormData();
-    data.append("name", name);
-    const res = await axios
-      .post("http://localhost:8000/api/teams", data)
-      .catch((err) => console.log(err));
-  };
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - team.length) : 0;
@@ -148,14 +140,37 @@ const Teams = () => {
 
   const Request = async () => {
     const res = await axios
-      .get("http://localhost:8000/api/teams")
+      .get("http://localhost:8000/api/teams", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
       .catch((err) => console.log(err));
     const data = await res.data;
-    console.log(data);
-    return data;
+    setteam(data);
   };
+
+  const Post = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("name", name);
+    try {
+      const res = await axios
+        .post("http://localhost:8000/api/teams", data, {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          }
+        })
+      Request();
+      setpost(!post);
+    }
+    catch (err) {
+      console.log(err)
+    }
+  };
+
   useEffect(() => {
-    Request().then((data) => setteam(data));
+    Request();
   }, []);
 
   return (
@@ -181,7 +196,7 @@ const Teams = () => {
               <Dialog open={post} onClose={() => setpost(!post)}>
                 <DialogTitle>Add Team</DialogTitle>
                 <form
-                  onSubmit={(e) => Post()}
+                  onSubmit={(e) => Post(e)}
                   style={{
                     padding: "50px",
                     display: "flex",
@@ -257,14 +272,15 @@ const Teams = () => {
                   {/* <div className="TeamContainer"> */}
                   {(rowsPerPage > 0
                     ? team.slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
                     : team
                   ).map((teamm, index) => {
                     return (
                       <Team
                         key={index}
+                        fetchTeams={Request}
                         name={teamm.name}
                         id={teamm.id}
                         members={teamm.employees}

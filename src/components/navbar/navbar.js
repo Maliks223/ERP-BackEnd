@@ -12,7 +12,11 @@ export default function NavBar() {
   const navigate = useNavigate();
 
   const fetchAdmin = async () => {
-    const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`);
+    const res = await fetch(`http://localhost:8000/api/getAdmin/${id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }
+    });
     const response = await res.json();
     setuser(response);
   }

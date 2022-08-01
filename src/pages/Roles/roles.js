@@ -123,7 +123,11 @@ const Roles = () => {
 
   const fetchRoles = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/roles");
+      const response = await fetch("http://localhost:8000/api/roles", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      });
       const res = await response.json();
       console.log(res);
       setData(res);
@@ -154,7 +158,11 @@ const Roles = () => {
     data.append("description", description);
 
     const res = await axios
-      .post("http://localhost:8000/api/roles", data)
+      .post("http://localhost:8000/api/roles", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }, data)
 
       .catch((err) => console.log(err));
   };
@@ -231,7 +239,7 @@ const Roles = () => {
                   className="addEmployeeBtn"
                   variant="contained"
                   sx={{ backgroundColor: "var(--blue)", marginTop: "16px" }}
-                  onClick={()=>setopendialog(false)}
+                  onClick={() => setopendialog(false)}
                 >
                   cancel
                 </Button>

@@ -138,7 +138,11 @@ const Projects = (props) => {
   };
 
   const Request = async () => {
-    const res = await Axios.get("http://localhost:8000/api/project").catch(
+    const res = await Axios.get("http://localhost:8000/api/project", {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }
+    }).catch(
       (err) => console.log(err)
     );
     const data = await res.data;
@@ -153,9 +157,15 @@ const Projects = (props) => {
     const data = new FormData();
     data.append("name", postname);
 
-    await Axios.post("http://localhost:8000/api/project", data).catch((err) =>
-      console.log(err)
-    );
+    await Axios
+      .post("http://localhost:8000/api/project", {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }, data)
+      .catch((err) =>
+        console.log(err)
+      );
   };
 
   return (
@@ -213,10 +223,10 @@ const Projects = (props) => {
                   }}
                 />
                 <Button
-                variant="contained"
+                  variant="contained"
                   type="submit"
                   className="addEmployeeBtn"
-                  style={{ marginTop: "80px", marginRight: "20px", backgroundColor:"var(--blue)" }}
+                  style={{ marginTop: "80px", marginRight: "20px", backgroundColor: "var(--blue)" }}
                 >
                   submit
                 </Button>
@@ -248,9 +258,9 @@ const Projects = (props) => {
             <TableBody>
               {(rowsPerPage > 0
                 ? projects.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
                 : projects
               ).map((project, index) => {
                 return (
