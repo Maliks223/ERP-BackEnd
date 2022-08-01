@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 
-const KPIForm = ({ data, handleClose }) => {
+const KPIForm = ({ data, handleClose, fetchEmployees }) => {
   const { id } = data;
 
   const [inputs, setInputs] = useState({
@@ -32,8 +32,8 @@ const KPIForm = ({ data, handleClose }) => {
         content: "application/json",
         body: formData,
       })
-        .then((response) => response.data)
-        .then((result) => window.location.reload());
+      fetchEmployees();
+      handleClose();
       const res = await response.json();
       console.log(res);
     } catch (err) {

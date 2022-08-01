@@ -4,11 +4,12 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 
-const RoleForm = ({ data, handleClose }) => {
+const RoleForm = ({ data, handleClose, fetchRoles }) => {
   const { id } = data;
 
   const [inputs, setInputs] = useState({
     role: "",
+    description:''
   });
 
   const handleChange = (e) => {
@@ -34,10 +35,10 @@ const RoleForm = ({ data, handleClose }) => {
         },
         body: formData,
       })
-        .then((response) => response.data)
-        .then((result) => window.location.reload());
-      const res = await response.json();
-      console.log(res);
+        .then((response) => console.log(data))
+        .then(() => fetchRoles())
+        .then(() => handleClose())
+
     } catch (err) {
       console.log(err);
     }

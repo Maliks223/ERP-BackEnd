@@ -12,7 +12,7 @@ import {
 import React, { useEffect, useState } from "react";
 
 
-const EmployeeAssignForm = ({ data, handleClose }) => {
+const EmployeeAssignForm = ({ data, handleClose, fetchEmployeess }) => {
   // const handleClose = props.handleClose;
   const { id } = data;
   const [employees, setEmployees] = useState([]);
@@ -58,6 +58,8 @@ const EmployeeAssignForm = ({ data, handleClose }) => {
         },
         body: formData,
       });
+      fetchEmployeess();
+      handleClose();
       const res = await response.json();
       console.log(res);
     } catch (err) {

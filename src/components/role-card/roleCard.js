@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const RoleRow = ({ data }) => {
+const RoleRow = ({ data, fetchRoles }) => {
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
   const handleClickOpen = () => {
@@ -53,7 +53,8 @@ const RoleRow = ({ data }) => {
 
   const { id, role, description } = data;
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(`http://localhost:8000/api/roles/${id}`, {
         method: "Delete",
@@ -63,7 +64,8 @@ const RoleRow = ({ data }) => {
         content: "application/json",
       })
         .then((response) => response.data)
-        .then((result) => window.location.reload());
+        .then(() => fetchRoles())
+        .then(() => handleCloseDelete())
       const res = await response.json();
       console.log(res);
     } catch {
@@ -84,7 +86,7 @@ const RoleRow = ({ data }) => {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
           <DialogContent>
-            <RoleForm data={data} handleClose={handleClose} />
+            <RoleForm data={data} handleClose={handleClose} fetchRoles={fetchRoles} />
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
@@ -97,7 +99,7 @@ const RoleRow = ({ data }) => {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={handleDelete}
+              onClick={e => handleDelete(e)}
 
               color="error"
               className="addEmployeeBtnY"

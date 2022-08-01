@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const KPIRow = ({ data }) => {
+const KPIRow = ({ data, fetchEmployees }) => {
   const [openassign, setOpenAssign] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = useState(false);
@@ -63,21 +63,22 @@ const KPIRow = ({ data }) => {
 
   const { id, name, employees } = data;
 
-  const getemployees = async () => {
-    return (
-      <div>
-        {employees.map((emplo, i) => {
-          return (
-            <h4 key={i}>
-              {emplo.firstname} {emplo.lastname}
-            </h4>
-          );
-        })}
-      </div>
-    );
-  };
+  // const getemployees = async () => {
+  //   return (
+  //     <div>
+  //       {employees.map((emplo, i) => {
+  //         return (
+  //           <h4 key={i}>
+  //             {emplo.firstname} {emplo.lastname}
+  //           </h4>
+  //         );
+  //       })}
+  //     </div>
+  //   );
+  // };
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(`http://localhost:8000/api/kpi/${id}`, {
         method: "Delete",
@@ -86,8 +87,8 @@ const KPIRow = ({ data }) => {
         },
         content: "application/json",
       })
-        .then((response) => response.data)
-        .then((result) => window.location.reload());
+      fetchEmployees();
+      handleCloseDelete();
       const res = await response.json();
       console.log(res);
     } catch {
@@ -101,7 +102,7 @@ const KPIRow = ({ data }) => {
       </StyledTableCell>
       {/* <StyledTableCell align="center">{firstname}</StyledTableCell> */}
       <StyledTableCell align="center">{name}</StyledTableCell>
-      <StyledTableCell align="center">
+      {/* <StyledTableCell align="center">
         {employees.length !== 0 ? (
           <div>
             {" "}
@@ -116,7 +117,7 @@ const KPIRow = ({ data }) => {
         ) : (
           "Not Assigned Yet"
         )}
-      </StyledTableCell>
+      </StyledTableCell> */}
 
       <StyledTableCell align="center">
         <Button onClick={handleClickOpen}>
@@ -125,7 +126,7 @@ const KPIRow = ({ data }) => {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Edit</DialogTitle>
           <DialogContent>
-            <KPIForm data={data} handleClose={handleClose} />
+            <KPIForm data={data} handleClose={handleClose} fetchEmployees={fetchEmployees} />
           </DialogContent>
         </Dialog>
         <Button onClick={handleClickOpenDelete}>
@@ -145,7 +146,7 @@ const KPIRow = ({ data }) => {
           assign to employee
         </Button>
         <Dialog open={openassign} onClose={handleCloseAssaign}>
-          <EmployeeAssignForm data={data} handleClose={handleCloseAssaign} />
+          <EmployeeAssignForm data={data} handleClose={handleCloseAssaign} fetchEmployeess={fetchEmployees} />
         </Dialog>
         <Dialog open={openDelete} onClose={handleCloseDelete}>
           <DialogTitle>Delete</DialogTitle>

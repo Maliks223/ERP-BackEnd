@@ -152,18 +152,20 @@ const Roles = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const PostRole = async () => {
+  const PostRole = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("role", role);
     data.append("description", description);
 
     const res = await axios
-      .post("http://localhost:8000/api/roles", {
+      .post("http://localhost:8000/api/roles", data, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
-      }, data)
-
+      })
+      .then(() => fetchRoles())
+      .then(() => setopendialog(false))
       .catch((err) => console.log(err));
   };
 
@@ -191,8 +193,8 @@ const Roles = () => {
           <DialogTitle>Add New Role</DialogTitle>
           <DialogContent>
             <form
-              onSubmit={() => {
-                PostRole();
+              onSubmit={(e) => {
+                PostRole(e);
               }}
             >
               <TextField
@@ -276,7 +278,7 @@ const Roles = () => {
                 )
                 : data
               ).map((employee, index) => (
-                <RoleRow key={index} data={employee} />
+                <RoleRow key={index} data={employee} fetchRoles={fetchRoles} />
               ))}
             </TableBody>
             <TableBody>

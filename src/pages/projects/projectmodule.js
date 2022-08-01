@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Project = ({ id, name, teamz, pivotId }) => {
+const Project = ({ id, name, teamz, pivotId, fetchProjects }) => {
   // console.log('ali',pivotId);
   const [Name, setName] = useState(name);
   const [edit, setEdit] = useState(false);
@@ -43,55 +43,62 @@ const Project = ({ id, name, teamz, pivotId }) => {
   const [deleteteam, setdeleteteam] = useState(false);
   const [pivotid, setpivot] = useState(0);
 
-  const handleSubmit = async (id) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("_method", "PUT");
     data.append("name", Name);
 
     await axios
-      .post(`http://localhost:8000/api/project/${id}`, {
+      .post(`http://localhost:8000/api/project/${id}`, data, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
-      }, data)
+      })
+      .then(() => fetchProjects())
+      .then(() => setEdit(false))
       .catch((err) => console.log(err));
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (e) => {
     await axios
       .delete(`http://localhost:8000/api/project/${id}`, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
       })
-      .then((response) => response.data)
-      .then((result) => window.location.reload())
+      .then(() => fetchProjects())
+      .then(() => handleclosedelete(false))
       .catch((err) => console.log(err));
   };
 
-  const Projectteam = async () => {
+  const Projectteam = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("Team_id", teamzz);
     data.append("Project_id", id);
 
     await axios
-      .post("http://localhost:8000/api/teamproject", {
+      .post("http://localhost:8000/api/teamproject", data, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
-      }, data)
+      })
+      .then(() => fetchProjects())
+      .then(() => setassignteam(false))
       .catch((err) => console.log(err));
   };
 
   const handleDeleteProjectTeam = async (e) => {
+    e.preventDefault();
     await axios
       .delete(`http://localhost:8000/api/teamproject/${pivotid}`, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
       })
-      .then((response) => response.data)
-      .then((result) => window.location.reload())
+      .then(() => fetchProjects())
+      .then(() => setdeleteteam(false))
       .catch((err) => console.log(err));
   };
 
@@ -179,7 +186,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
               setdeleteteam(!deleteteam);
             }}
           >
-            <form onSubmit={(e) => handleDeleteProjectTeam(pivotId)}>
+            <form onSubmit={(e) => handleDeleteProjectTeam(e)}>
               <h4 className="deleteTeamForm">Delete team </h4>
               <select
                 name="team"
@@ -222,20 +229,20 @@ const Project = ({ id, name, teamz, pivotId }) => {
                 delete team
               </Button>
               <Button
-                    className="addEmployeeBtn"
-                    variant="contained"
-                    style={{
-                      marginBottom:"36px",
-                      // margin: "auto",
-                      backgroundColor: "var(--blue)",
-                      minWidth: "8vw",
-                    }}
-                    onClick={() => {
-                      setdeleteteam(false)
-                    }}
-                  >
-                    Cancel
-                  </Button>
+                className="addEmployeeBtn"
+                variant="contained"
+                style={{
+                  marginBottom: "36px",
+                  // margin: "auto",
+                  backgroundColor: "var(--blue)",
+                  minWidth: "8vw",
+                }}
+                onClick={() => {
+                  setdeleteteam(false)
+                }}
+              >
+                Cancel
+              </Button>
             </form>
           </Dialog>
         </StyledTableCell>
@@ -291,7 +298,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
           <Dialog open={edit} onClose={() => setEdit(!edit)}>
             <DialogTitle>Edit</DialogTitle>
             <DialogContent>
-              <form onSubmit={(e) => handleSubmit(id)}>
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <TextField
                   defaultValue={name}
                   name="name"
@@ -345,7 +352,7 @@ const Project = ({ id, name, teamz, pivotId }) => {
             <DialogContent>
               <form
                 onSubmit={(e) => {
-                  Projectteam();
+                  Projectteam(e);
                 }}
               >
                 <select

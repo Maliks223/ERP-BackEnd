@@ -11,8 +11,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Avatar } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
 import FileUploader from "../../components/File_uploader/fileUploader";
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -33,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Admin = ({ id, email, name, image }) => {
+const Admin = ({ id, email, name, image, fetchAdmins }) => {
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
 
@@ -57,7 +58,8 @@ const Admin = ({ id, email, name, image }) => {
   const [emails, setemail] = useState("");
   const [file, setFile] = useState(null);
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(`http://localhost:8000/api/users/${id}`, {
         method: "Delete",
@@ -66,6 +68,8 @@ const Admin = ({ id, email, name, image }) => {
         },
         content: "application/json",
       });
+      fetchAdmins();
+      handleCloseDelete();
       const res = await response.json();
       console.log(res);
     } catch {
@@ -89,6 +93,8 @@ const Admin = ({ id, email, name, image }) => {
         },
         body: data,
       });
+      fetchAdmins();
+      handleClose();
       const res = await response.json();
       console.log(res);
 

@@ -151,7 +151,8 @@ const KPIS = () => {
     setPage(0);
   };
 
-  const Postkpi = async () => {
+  const Postkpi = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("name", name);
 
@@ -161,7 +162,10 @@ const KPIS = () => {
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
       },
       body: data,
-    }).catch((err) => console.log(err));
+    })
+      .then(() => fetchEmployees())
+      .then(() => setclose(false))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -191,8 +195,8 @@ const KPIS = () => {
             <DialogTitle sx={{ margin: "auto" }}>Add New KPI</DialogTitle>
             <DialogContent>
               <form
-                onSubmit={() => {
-                  Postkpi();
+                onSubmit={(e) => {
+                  Postkpi(e);
                 }}
               >
                 <TextField
@@ -262,9 +266,9 @@ const KPIS = () => {
                 <StyledTableCell className="tableTitle" align="center">
                   Kpi Name
                 </StyledTableCell>
-                <StyledTableCell className="tableTitle" align="center">
+                {/* <StyledTableCell className="tableTitle" align="center">
                   Assigned to
-                </StyledTableCell>
+                </StyledTableCell> */}
                 {/* <StyledTableCell align="center">Description</StyledTableCell> */}
                 <StyledTableCell className="tableTitle" align="center">
                   Actions
@@ -279,7 +283,7 @@ const KPIS = () => {
                 )
                 : data
               ).map((kpi, index) => (
-                <KPIRow key={index} data={kpi} />
+                <KPIRow key={index} data={kpi} fetchEmployees={fetchEmployees} />
               ))}
             </TableBody>
             <TableBody>

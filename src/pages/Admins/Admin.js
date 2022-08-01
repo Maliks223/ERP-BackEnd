@@ -180,20 +180,24 @@ const Admins = (props) => {
     fetchAdmins();
   }, []);
 
-  const handlePost = async () => {
+  const handlePost = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("name", name);
     data.append("email", email);
     data.append("profile_image", image);
     data.append("password", password);
 
-    await Axios.post("http://localhost:8000/api/register", {
+    await Axios.post("http://localhost:8000/api/register", data, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      }, data
-    }).catch((err) =>
-      console.log(err)
-    );
+      }
+    })
+      .then(() => fetchAdmins())
+      .then(() => setPost(false))
+      .catch((err) =>
+        console.log(err)
+      );
   };
 
   return (
@@ -238,7 +242,7 @@ const Admins = (props) => {
                     justifyContent: "space-between",
                   }}
                   onSubmit={(e) => {
-                    handlePost();
+                    handlePost(e);
                   }}
                 >
                   <TextField
@@ -338,6 +342,7 @@ const Admins = (props) => {
                 ).map((admin, index) => {
                   return (
                     <Admin
+                      fetchAdmins={fetchAdmins}
                       key={index}
                       id={admin.id}
                       name={admin.name}

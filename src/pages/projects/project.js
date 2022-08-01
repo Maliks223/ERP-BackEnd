@@ -146,23 +146,25 @@ const Projects = (props) => {
       (err) => console.log(err)
     );
     const data = await res.data;
-    console.log(data);
-    return data;
+    setprojects(data)
   };
   useEffect(() => {
-    Request().then((data) => setprojects(data));
+    Request();
   }, []);
 
-  const handlePost = async () => {
+  const handlePost = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("name", postname);
 
     await Axios
-      .post("http://localhost:8000/api/project", {
+      .post("http://localhost:8000/api/project", data, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
-      }, data)
+      })
+      .then(() => Request())
+      .then(() => setPost(!post))
       .catch((err) =>
         console.log(err)
       );
@@ -210,7 +212,7 @@ const Projects = (props) => {
             <DialogContent>
               <form
                 onSubmit={(e) => {
-                  handlePost();
+                  handlePost(e);
                 }}
               >
                 <TextField
@@ -227,9 +229,19 @@ const Projects = (props) => {
                   type="submit"
                   className="addEmployeeBtn"
                   style={{ marginTop: "80px", marginRight: "20px", backgroundColor: "var(--blue)" }}
+                  onClick={() => setPost(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  className="addEmployeeBtn"
+                  style={{ marginTop: "80px", marginRight: "20px", backgroundColor: "var(--blue)" }}
                 >
                   submit
                 </Button>
+
               </form>
             </DialogContent>
           </Dialog>
@@ -269,6 +281,7 @@ const Projects = (props) => {
                     name={project.name}
                     id={project.id}
                     pivotId={project.team}
+                    fetchProjects={Request}
                     //  pivotId={project.team.map((pivots,index)=>{
                     //   return <div key={index}>{pivots.pivot.id}</div>
                     //  })}

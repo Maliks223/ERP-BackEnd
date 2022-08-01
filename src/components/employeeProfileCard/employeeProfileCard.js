@@ -3,7 +3,7 @@ import "./employeeProfileCard.css";
 import EmployeeForm from "../employee-form/employee-form";
 import { Button, Dialog } from "@mui/material";
 
-const CardId = ({ data }) => {
+const CardId = ({ data, fetchEmployee}) => {
   const [open, setopen] = useState(false);
   const { id, firstname, lastname, image, phonenumber, email, teams } = data;
   return (

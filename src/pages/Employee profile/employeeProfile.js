@@ -98,7 +98,7 @@ const EmployeeProfile = () => {
       {employee && (
         <div className="employee-profile">
           <div className="flexprofile">
-            <CardId data={employee} />
+            <CardId data={employee} fetchEmployee={fetchEmployee} />
             <Button
               variant="contained"
               className="addEmployeeBtn"
