@@ -24,7 +24,7 @@ const EmployeeProfile = () => {
   const [latest, setLatest] = useState([]);
   const [roles, setRoles] = useState([]);
 
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState("car");
 
   const handleClickOpen = () => {
     setOpen(true);

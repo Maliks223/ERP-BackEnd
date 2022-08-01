@@ -38,6 +38,7 @@
 
 }
 .scroly {
+  z-index: 2000;
   border-radius: 6px;
   padding: 20px;
   margin-top: 35vh;
