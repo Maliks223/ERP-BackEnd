@@ -45,16 +45,13 @@ const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
           body: formData,
         }
       );
-<<<<<<< HEAD
       const res = await response.json();
       console.log(res);
       fetchEmployees();
       handleClose();
-=======
       console.log(note);
       setNote(true);
       // handleClose();
->>>>>>> testing
     } catch {
       console.log("error");
     }
