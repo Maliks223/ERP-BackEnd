@@ -2,7 +2,7 @@
   width: 65vw;
   display: flex;
   flex-direction: row;
-  align-items: center; 
+  align-items: center;
   height: 80vh;
 }
 
@@ -24,18 +24,21 @@
   background-color: var(--white);
 }
 
-.roleProject{
+.roleProject {
   position: absolute;
   top: 40vh;
   left: 44%;
-  height: 44vh;
-  width: 48vw;
+  height: 52vh;
+  width: 50vw;
   background-color: var(--white);
   border-radius: 10px;
   font-weight: lighter;
   border: 1.5px solid var(--blue);
-  padding: 36px;
-
+  object-fit: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .scroly {
   z-index: 2000;
@@ -60,7 +63,7 @@
   margin-left: 46px;
 }
 
-.car h1{
+.car h1 {
   position: absolute;
   top: -10vh;
   left: 20vw;

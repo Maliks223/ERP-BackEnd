@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Phone } from "@mui/icons-material";
 import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import "./employeeProfile.css";
@@ -13,7 +12,8 @@ import RoleProject from "../../components/Role_Project/RoleProjectForm";
 import KPICard from "../../components/KPI-card/kpiCard";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { AutoRotatingCarousel } from "material-auto-rotating-carousel";
+
+
 const EmployeeProfile = () => {
   const [open, setOpen] = useState(false);
   const [openTeam, setOpenTeam] = useState(false);
@@ -24,7 +24,9 @@ const EmployeeProfile = () => {
   const [latest, setLatest] = useState([]);
   const [roles, setRoles] = useState([]);
 
-  const [active, setActive] = useState("car");
+  const [activeAllKpis, setActiveAllKpis] = useState(true);
+  const [activeLatestKpis, setActiveLatestKpis] = useState(false);
+  const [activeRolesProjects, setActiveRolesProjects] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -82,6 +84,7 @@ const EmployeeProfile = () => {
       }
       );
       const res = await response.json();
+      console.log(res.response);
       setRoles(res);
     } catch (err) {
       console.log("error", err);
@@ -185,7 +188,11 @@ const EmployeeProfile = () => {
               top: "22vh",
               left: "45vw",
             }}
-            onClick={() => setActive("scroly")}
+            onClick={() => {
+              setActiveLatestKpis(true);
+              setActiveAllKpis(false);
+              setActiveRolesProjects(false);
+            }}
           >
             Latest Kpis
           </Button>
@@ -199,7 +206,11 @@ const EmployeeProfile = () => {
               top: "22vh",
               left: "65vw",
             }}
-            onClick={() => setActive("car")}
+            onClick={() => {
+              setActiveLatestKpis(false);
+              setActiveAllKpis(true);
+              setActiveRolesProjects(false);
+            }}
           >
             All Kpis
           </Button>
@@ -213,16 +224,19 @@ const EmployeeProfile = () => {
               top: "22vh",
               left: "85vw",
             }}
-            onClick={() => setActive("roleProject")}
+            onClick={() => {
+              setActiveLatestKpis(false);
+              setActiveAllKpis(false);
+              setActiveRolesProjects(true);
+            }}
           >
-            Role Project
+            Roles in Projects
           </Button>
+
+
           <div className="roleProject">
-                Role Project
-              </div>
-          <div className="combin">
-            {active === "scroly" && (
-              <div className="scroly">
+            {activeLatestKpis && (
+              <>
                 <h1>Latest KPIs</h1>
                 <ol className="late">
                   {latest &&
@@ -236,11 +250,11 @@ const EmployeeProfile = () => {
                       );
                     })}
                 </ol>
-              </div>
+              </>
             )}
-            {active === "car" && (
-              <div className="car">
-                <h1>All Kpis</h1>
+
+            {activeAllKpis && (
+              <>
                 <Carousel
                   autoPlay={false}
                   infiniteLoop={false}
@@ -259,20 +273,18 @@ const EmployeeProfile = () => {
                       return <BarCharts kpis={list} />;
                     })}
                 </Carousel>
-            
-              </div>
+              </>
+            )}
+
+            {activeRolesProjects && (
+              <>
+                Roles in Projects
+              </>
             )}
           </div>
-
-          {/* <Button onClick={handleClickOpenTeam} >Assign a Role in Project</Button>
-                    <Dialog open={openTeam} onClose={handleCloseTeam}>
-                        <DialogTitle> Edit</DialogTitle>
-                        <DialogContent>
-                            <EditEmployeeTeam data={data} />
-                        </DialogContent>
-                    </Dialog> */}
         </div>
-      )}
+      )
+      }
     </>
   );
 };

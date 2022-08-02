@@ -25,10 +25,10 @@ const BarCharts = (props) => {
     const kpis = props.kpis;
     return (
         <>
-        
+
             <div className='line-graph'>
                 <Bar data={{
-                    labels: kpis.map((employee) => employee.KPI_date.slice(0,10)),
+                    labels: kpis.map((employee) => employee.KPI_date.slice(0, 10)),
                     datasets: [
                         {
                             label: "Rate",
@@ -40,16 +40,34 @@ const BarCharts = (props) => {
                     ]
                 }} options={{
                     responsive: true,
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: 'black'
+                            }
+                        },
+                        y: {
+                            // max: 10,
+                            ticks: {
+                                color: 'black'
+                            }
+                        }
+                    },
                     plugins: {
                         legend: {
                             position: 'top',
                         },
                         title: {
                             display: true,
+                            color: 'black',
                             text: kpis[0].kpi_name,
+                            font: {
+                                size: 20,
+                            }
                         },
-                    },
-                }} />
+                    }
+                }
+                } />
             </div>
         </>
     )

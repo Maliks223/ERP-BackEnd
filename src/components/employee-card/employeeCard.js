@@ -164,21 +164,24 @@ const EmployeeRow = ({ data, fetchEmployees }) => {
             </Button>
           </DialogActions>
         </Dialog>
-        <Button
-          variant="contained"
-          className="addEmployeeBtn"
-          style={{
-            backgroundColor: "var(--blue)",
-            marginLeft: "20px",
-            textDecoration: "none",
-            minWidth: "8vw",
-            color: "white",
-          }}
-        >
-          <Link style={{ color: "white", textDecoration: "none" }} to={`/employees/id=${id}`} state={{ data: data }}>
+        <Link style={{
+              textDecoration: "none",
+              color: "white",
+            }} to={`/employees/id=${id}`} state={{ data: data }}>
+          <Button
+            variant="contained"
+            className="addEmployeeBtn"
+            style={{
+              backgroundColor: "var(--blue)",
+              marginLeft: "20px",
+              textDecoration: "none",
+              minWidth: "8vw",
+              color: "white",
+            }}
+          >
             View More
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </StyledTableCell>
     </StyledTableRow>
   );
