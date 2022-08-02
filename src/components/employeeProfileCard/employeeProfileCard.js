@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import "./employeeProfileCard.css";
-import EmployeeForm from "../employee-form/employee-form";
 import { Button, Dialog } from "@mui/material";
+import EmployeeProfileForm from "../employee-form/employee-profile-form";
 
-const CardId = ({ data, fetchEmployee}) => {
+const CardId = ({ data, fetchEmployee }) => {
   const [open, setopen] = useState(false);
+
+  const handleCloseEdit = () => {
+    setopen(false)
+  }
   const { id, firstname, lastname, image, phonenumber, email, teams } = data;
   return (
     <>
       {/* <body class="bg-grid-line"></body> */}
       <div class="card">
-        <Dialog open={open} onClose={() => setopen(!open)}>
-          <EmployeeForm data={data} />
+        <Dialog open={open} onClose={handleCloseEdit}>
+          <EmployeeProfileForm data={data} handleCloseEdit={handleCloseEdit} fetchEmployee={fetchEmployee} />
         </Dialog>
 
         <img
+          alt="employee-profile"
           id="thumb"
           src={`http://localhost:8000/storage/uploads/${image}`}
         />
@@ -22,7 +27,7 @@ const CardId = ({ data, fetchEmployee}) => {
           className="addEmployeeBtn"
           variant="contained"
           sx={{
-            margin:"16px",
+            margin: "16px",
             backgroundColor: "var(--blue)",
             minWidth: "8vw",
           }}

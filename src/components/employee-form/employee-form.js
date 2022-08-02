@@ -57,7 +57,6 @@ const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
     }
   };
   useEffect(() => {
-    console.log(note);
   }, [note]);
 
   return (
@@ -108,19 +107,6 @@ const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
       </DialogContent>
       <DialogActions>
         <Button
-          variant="contained"
-          className="addEmployeeBtn"
-          sx={{
-            marginRight: "16px",
-            backgroundColor: "var(--blue)",
-            minWidth: "8vw",
-            marginBottom: "17px",
-          }}
-          onClick={handleClose}
-        >
-          Cancel
-        </Button>
-        <Button
           className="addEmployeeBtn"
           variant="contained"
           sx={{
@@ -130,12 +116,28 @@ const EmployeeForm = ({ data, handleClose, fetchEmployees }) => {
             marginRight: "106px",
             marginBottom: "16px",
           }}
-          onClick={()=>{
+          onClick={() => {
             handleEdit();
             setNote(true)
           }}
         >
           Confirm Edit
+        </Button>
+        <Button
+          variant="contained"
+          className="addEmployeeBtn"
+          sx={{
+            marginRight: "16px",
+            backgroundColor: "var(--blue)",
+            minWidth: "8vw",
+            marginBottom: "17px",
+          }}
+          onClick={() => {
+            handleClose();
+          }
+          }
+        >
+          Close
         </Button>
         {note && <NotificationBar note={note} message={"Employee data is updated"} />}
         {/* <Button onClick={handleClose}>Cancek</Button> */}

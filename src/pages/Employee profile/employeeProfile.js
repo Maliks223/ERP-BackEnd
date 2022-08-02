@@ -84,7 +84,6 @@ const EmployeeProfile = () => {
       }
       );
       const res = await response.json();
-      console.log(res.response);
       setRoles(res);
     } catch (err) {
       console.log("error", err);
@@ -119,7 +118,7 @@ const EmployeeProfile = () => {
             <Dialog open={openTeam} onClose={handleCloseTeam}>
               <DialogTitle> Edit</DialogTitle>
               <DialogContent>
-                <EditEmployeeTeam data={data} />
+                <EditEmployeeTeam data={data} handleClose={handleCloseTeam} />
               </DialogContent>
             </Dialog>
 
@@ -145,7 +144,7 @@ const EmployeeProfile = () => {
                 Assign a KPI
               </DialogTitle>
               <DialogContent>
-                <KPIAssignForm id={employee.id} />
+                <KPIAssignForm id={employee.id} handleClose={handleClose} />
               </DialogContent>
             </Dialog>
           </div>
@@ -173,7 +172,7 @@ const EmployeeProfile = () => {
                   Assign a Role in Project
                 </DialogTitle>
                 <DialogContent>
-                  <RoleProject id={employee.id} team={employee.teams} />
+                  <RoleProject id={employee.id} team={employee.teams} fetchEmployee={fetchEmployee} handleClose={handleCloseRoles}/>
                 </DialogContent>
               </Dialog>
             </>

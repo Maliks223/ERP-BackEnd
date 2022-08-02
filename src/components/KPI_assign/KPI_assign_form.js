@@ -2,7 +2,7 @@ import { Button, DialogActions, InputLabel, MenuItem, Select, Slider, TextField 
 import React, { useEffect, useState } from "react";
 
 
-const KPIAssignForm = (props) => {
+const KPIAssignForm = ({ id, handleClose }) => {
 
     const [kpis, setKPIs] = useState([]);
     const [kpi, setKpi] = useState(0);
@@ -34,7 +34,7 @@ const KPIAssignForm = (props) => {
     const handleAssign = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('employee_id', props.id);
+        formData.append('employee_id', id);
         formData.append('kpi_id', kpi);
         formData.append('rate', rate);
         formData.append('KPI_date', KPI_date);
@@ -92,7 +92,20 @@ const KPIAssignForm = (props) => {
                 onChange={handleDateChange}
             />
             <DialogActions>
-                <Button variant="contained" className="addEmployeeBtn" sx={{ backgroundColor: "var(--blue)", width: "8vw", margin: "auto" }} onClick={handleAssign}>Submit</Button>
+                <Button variant="contained" className="addEmployeeBtn"
+                    sx={{ backgroundColor: "var(--blue)", width: "8vw", margin: "auto" }}
+                    onClick={() => {
+                        handleAssign();
+                        handleClose();
+                    }
+                    }>
+                    Submit
+                </Button>
+                <Button variant="contained" className="addEmployeeBtn"
+                    sx={{ backgroundColor: "var(--blue)", width: "8vw", margin: "auto" }}
+                    onClick={handleClose}>
+                    Cancel
+                </Button>
             </DialogActions>
         </>
     )

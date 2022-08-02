@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 
-const EditEmployeeTeam = ({ data }) => {
+const EditEmployeeTeam = ({ data, handleClose }) => {
   const [teamsfetch, setTeams] = useState([]);
   const [teamId, setTeamId] = useState(0);
 
@@ -61,35 +61,56 @@ const EditEmployeeTeam = ({ data }) => {
 
   return (
     <>
-      {teams && <p>Current Team: "{teams.name}" Wanna Change Team?</p>}
-      <InputLabel sx={{ width: "10vw", marginLeft: "136px", marginTop: "36px" }} >Teams List</InputLabel>
-      <Select
-        sx={{ width: "10vw", marginLeft: "86px", marginTop: "36px" }}
-        label="Teams List"
-        placeholder="Team List"
-        value={teamId}
-        onChange={handleTeamChange}
-      >
-        {teamsfetch &&
-          teamsfetch.map((team) => {
-            return <MenuItem value={team.id}>{team.name}</MenuItem>;
-          })}
-      </Select>
-      <DialogActions>
-        <Button
-          variant="contained"
-          className="addEmployeeBtn"
-          sx={{
-            backgroundColor: "var(--blue)",
-            width: "8vw",
-            margin: "auto",
-            marginTop: "24px",
-          }}
-          onClick={handleEditTeam}
-        >
-          Edit
-        </Button>
-      </DialogActions>
+      {teamsfetch ? (
+        <>
+          <InputLabel sx={{ width: "10vw", marginLeft: "136px", marginTop: "36px" }} >Teams List</InputLabel>
+          <Select
+            sx={{ width: "10vw", marginLeft: "86px", marginTop: "36px" }}
+            label="Teams List"
+            placeholder="Team List"
+            value={teamId}
+            onChange={handleTeamChange}
+          >
+            {teamsfetch &&
+              teamsfetch.map((team) => {
+                return <MenuItem value={team.id}>{team.name}</MenuItem>;
+              })}
+          </Select>
+          <DialogActions>
+            <Button
+              variant="contained"
+              className="addEmployeeBtn"
+              sx={{
+                backgroundColor: "var(--blue)",
+                width: "8vw",
+                margin: "auto",
+                marginTop: "24px",
+              }}
+              onClick={() => {
+                handleEditTeam();
+                handleClose();
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              className="addEmployeeBtn"
+              sx={{
+                backgroundColor: "var(--blue)",
+                width: "8vw",
+                margin: "auto",
+                marginTop: "24px",
+              }}
+              onClick={handleClose}
+            >
+              Close
+            </Button>
+          </DialogActions>
+        </>
+      ) : (
+        <p>No Available Teams</p>
+      )}
     </>
   );
 };

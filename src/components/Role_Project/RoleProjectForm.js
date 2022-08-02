@@ -4,12 +4,11 @@ import {
   DialogActions,
   InputLabel,
   MenuItem,
-  Select,
-  Slider,
-  TextField,
+  Select
 } from "@mui/material";
 
-const RoleProject = (props) => {
+const RoleProject = ({ id, team, handleClose, fetchEmployee }) => {
+
   const [projects, setProjects] = useState([]);
   const [roles, setRoles] = useState([]);
   const [project, setProject] = useState(0);
@@ -23,12 +22,10 @@ const RoleProject = (props) => {
     setRole(e.target.value);
   };
 
-  console.log("id", props.team.id);
-
   const fetchProjects = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/teams/${props.team.id}`, {
+        `http://localhost:8000/api/teams/${team.id}`, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
@@ -56,9 +53,9 @@ const RoleProject = (props) => {
   };
 
   const handleAssign = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const formData = new FormData();
-    formData.append("employee_id", props.id);
+    formData.append("employee_id", id);
     formData.append("role_id", role);
     formData.append("project_id", project);
     try {
@@ -70,6 +67,7 @@ const RoleProject = (props) => {
         },
         body: formData,
       });
+      fetchEmployee();
       const res = await response.json();
       console.log(res);
     } catch (err) {
@@ -120,9 +118,25 @@ const RoleProject = (props) => {
             marginRight: "100px",
             marginTop: "40px",
           }}
-          onClick={handleAssign}
+          onClick={() => {
+            handleAssign();
+            handleClose();
+          }}
         >
           Submit
+        </Button>
+        <Button
+          variant="contained"
+          className="addEmployeeBtn"
+          sx={{
+            backgroundColor: "var(--blue)",
+            width: "8vw",
+            marginRight: "100px",
+            marginTop: "40px",
+          }}
+          onClick={handleClose}
+        >
+          Close
         </Button>
       </DialogActions>
     </>
