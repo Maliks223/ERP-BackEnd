@@ -2,7 +2,7 @@ import { Button, DialogActions, InputLabel, MenuItem, Select, Slider, TextField 
 import React, { useEffect, useState } from "react";
 
 
-const KPIAssignForm = ({ id, handleClose }) => {
+const KPIAssignForm = ({ id, handleClose, fetchEmployee }) => {
 
     const [kpis, setKPIs] = useState([]);
     const [kpi, setKpi] = useState(0);
@@ -49,6 +49,8 @@ const KPIAssignForm = ({ id, handleClose }) => {
                 body: formData
             });
             const res = await response.json();
+            fetchEmployee();
+            handleClose();
             console.log(res);
         }
         catch (err) {
@@ -94,9 +96,8 @@ const KPIAssignForm = ({ id, handleClose }) => {
             <DialogActions>
                 <Button variant="contained" className="addEmployeeBtn"
                     sx={{ backgroundColor: "var(--blue)", width: "8vw", margin: "auto" }}
-                    onClick={() => {
-                        handleAssign();
-                        handleClose();
+                    onClick={(e) => {
+                        handleAssign(e);
                     }
                     }>
                     Submit

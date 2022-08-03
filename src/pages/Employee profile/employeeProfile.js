@@ -84,7 +84,7 @@ const EmployeeProfile = () => {
       }
       );
       const res = await response.json();
-      setRoles(res);
+      setRoles(res.response);
     } catch (err) {
       console.log("error", err);
     }
@@ -144,7 +144,7 @@ const EmployeeProfile = () => {
                 Assign a KPI
               </DialogTitle>
               <DialogContent>
-                <KPIAssignForm id={employee.id} handleClose={handleClose} />
+                <KPIAssignForm id={employee.id} handleClose={handleClose} fetchEmployee={fetchEmployee}/>
               </DialogContent>
             </Dialog>
           </div>
@@ -277,7 +277,10 @@ const EmployeeProfile = () => {
 
             {activeRolesProjects && (
               <>
-                Roles in Projects
+                Roles in Projects:
+                {roles.map(role=>{
+                  return <p>Role: {role.role_name}  Project:{role.project_name}</p>
+                })}
               </>
             )}
           </div>

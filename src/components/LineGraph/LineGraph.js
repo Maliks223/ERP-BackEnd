@@ -47,7 +47,7 @@ const BarCharts = (props) => {
                             }
                         },
                         y: {
-                            // max: 10,
+                            max: 10,
                             ticks: {
                                 color: 'black'
                             }
