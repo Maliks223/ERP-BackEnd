@@ -176,7 +176,7 @@ const EmployeeProfile = () => {
                 </DialogContent>
               </Dialog>
             </>
-          )}
+          }
           <Button
             variant="contained"
             className="addEmployeeBtn"
