@@ -293,7 +293,7 @@ const Team = ({ name, project, id, pivotId, members, fetchTeams }) => {
               </form>
             </DialogContent>
           </Dialog>
-          {members && members.length!=0 &&
+          {members && members.length!=0 ?
             <>
               <Button
                 className="addEmployeeBtn"
@@ -337,6 +337,16 @@ const Team = ({ name, project, id, pivotId, members, fetchTeams }) => {
 
                 <DialogContent></DialogContent>
               </Dialog>
+            </> :
+            <>
+              <Button
+                disabled={true}
+                className="addEmployeeBtn"
+                sx={{ backgroundColor: "var(--blue)", width: "8.6vw" }}
+                variant="contained"
+              >
+                Show Members
+              </Button>
             </>}
         </StyledTableCell>
 
