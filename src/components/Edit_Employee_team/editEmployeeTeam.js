@@ -86,8 +86,8 @@ const EditEmployeeTeam = ({ data, handleClose }) => {
                 margin: "auto",
                 marginTop: "24px",
               }}
-              onClick={() => {
-                handleEditTeam();
+              onClick={(e) => {
+                handleEditTeam(e);
                 handleClose();
               }}
             >
