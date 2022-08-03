@@ -81,10 +81,10 @@ const Login = () => {
         autoComplete="off"
       >
         <div className="loginContainerform">
-          {loading &&
+          {/* {loading &&
             <CircularProgress />
 
-          }
+          } */}
           {generalError &&
             <Alert severity="error" sx={{ height: "40px", transform: "scale(1.3)" }}>{generalError}</Alert>
           }

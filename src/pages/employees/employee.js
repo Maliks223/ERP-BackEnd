@@ -353,7 +353,7 @@ const Employees = () => {
                 >
                   Confirm
                 </Button>
-                <NotificationBar note={note} message={"msg1"} />
+                <NotificationBar note={note} message={"test"} />
 
                 <Button
                   variant="contained"
@@ -362,7 +362,7 @@ const Employees = () => {
                     backgroundColor: "var(--blue)",
                     minWidth: "8vw",
                     marginBottom: "24px",
-                    marginLeft: "272px",
+                    marginLeft: "290px",
                   }}
                   onClick={() => setpost(!post)}
                 >
