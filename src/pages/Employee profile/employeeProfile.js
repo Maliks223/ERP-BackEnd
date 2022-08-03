@@ -148,7 +148,7 @@ const EmployeeProfile = () => {
               </DialogContent>
             </Dialog>
           </div>
-          {team && (
+          {team && 
             <>
               <Button
                 className="addEmployeeBtn"
