@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 
-const EditEmployeeTeam = ({ data, handleClose }) => {
+const EditEmployeeTeam = ({ data, handleClose, fetchEmployee }) => {
   const [teamsfetch, setTeams] = useState([]);
   const [teamId, setTeamId] = useState(0);
 
@@ -38,6 +38,7 @@ const EditEmployeeTeam = ({ data, handleClose }) => {
           body: formData,
         }
       );
+      fetchEmployee();
       const res = await response.json();
       console.log(res);
     } catch (err) {

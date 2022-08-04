@@ -1,8 +1,8 @@
 .kpiCard-container{
-    height: 35vh;
+    height: 30vh;
     text-align: center;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
     width: 13vw;
     background-color:var(--blue);
     display: flex;

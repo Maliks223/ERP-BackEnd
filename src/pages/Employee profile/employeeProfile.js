@@ -118,7 +118,7 @@ const EmployeeProfile = () => {
             <Dialog open={openTeam} onClose={handleCloseTeam}>
               <DialogTitle> Edit</DialogTitle>
               <DialogContent>
-                <EditEmployeeTeam data={data} handleClose={handleCloseTeam} />
+                <EditEmployeeTeam data={data} handleClose={handleCloseTeam} fetchEmployee={fetchEmployee}/>
               </DialogContent>
             </Dialog>
 
@@ -144,11 +144,11 @@ const EmployeeProfile = () => {
                 Assign a KPI
               </DialogTitle>
               <DialogContent>
-                <KPIAssignForm id={employee.id} handleClose={handleClose} fetchEmployee={fetchEmployee}/>
+                <KPIAssignForm id={employee.id} handleClose={handleClose} fetchEmployee={fetchEmployee} />
               </DialogContent>
             </Dialog>
           </div>
-          {team && 
+          {team &&
             <>
               <Button
                 className="addEmployeeBtn"
@@ -172,7 +172,7 @@ const EmployeeProfile = () => {
                   Assign a Role in Project
                 </DialogTitle>
                 <DialogContent>
-                  <RoleProject id={employee.id} team={employee.teams} fetchEmployee={fetchEmployee} handleClose={handleCloseRoles}/>
+                  <RoleProject id={employee.id} team={employee.teams} fetchRoless={fetchRoles} handleClose={handleCloseRoles} />
                 </DialogContent>
               </Dialog>
             </>
@@ -234,55 +234,84 @@ const EmployeeProfile = () => {
 
 
           <div className="roleProject">
-            {activeLatestKpis && (
+            {activeLatestKpis ?
+              latest.length !== 0 ?
+                <>
+                  {/* <h2>Latest KPIs</h2> */}
+                  <ol className="late">
+                    {latest &&
+                      latest.map((kpi) => {
+                        return (
+                          <>
+                            <li sx={{ margin: "50px", borderRadius: "10px" }}>
+                              <KPICard data={kpi} title={kpi.kpi_name} rate={kpi.rate} />
+                            </li>
+                          </>
+                        );
+                      })}
+                  </ol>
+                </> :
+                <h2>
+                  No Data Available
+                </h2>
+              :
               <>
-                <h1>Latest KPIs</h1>
-                <ol className="late">
-                  {latest &&
-                    latest.map((kpi) => {
-                      return (
-                        <>
-                          <li sx={{ margin: "50px", borderRadius: "10px" }}>
-                            <KPICard title={kpi.kpi_name} rate={kpi.rate} />
-                          </li>
-                        </>
-                      );
-                    })}
-                </ol>
               </>
-            )}
+            }
 
-            {activeAllKpis && (
+            {activeAllKpis ?
+              filtered.length !== 0 ?
+                <>
+                  <Carousel
+                    autoPlay={false}
+                    infiniteLoop={false}
+                    interval="3000"
+                    transitionTime="1000"
+                    swipeable={true}
+                    showArrows={true}
+                    showThumbs={true}
+                    width={850}
+                    dynamicHeight={100}
+                    // emulateTouch={true}
+                    className="hero-carousel"
+                  >
+                    {filtered &&
+                      filtered.map((list) => {
+                        return <BarCharts kpis={list} />;
+                      })}
+                  </Carousel>
+                </>
+                :
+                <h2>
+                  No Data Available
+                </h2>
+              :
               <>
-                <Carousel
-                  autoPlay={false}
-                  infiniteLoop={false}
-                  interval="3000"
-                  transitionTime="1000"
-                  swipeable={true}
-                  showArrows={true}
-                  showThumbs={true}
-                  width={850}
-                  dynamicHeight={100}
-                  // emulateTouch={true}
-                  className="hero-carousel"
-                >
-                  {filtered &&
-                    filtered.map((list) => {
-                      return <BarCharts kpis={list} />;
-                    })}
-                </Carousel>
               </>
-            )}
+            }
 
-            {activeRolesProjects && (
+            {activeRolesProjects ?
+              roles ?
+                <>
+                  Roles in Projects:
+                  {roles.map(role => {
+                    return <>
+                      <div className="role-tabel">
+                        <div className="tabel=head"></div>
+
+                        Role: {role.role_name}  Project:{role.project_name}
+                    </div>
+                    </>
+                  })}
+                </>
+                : (
+                  <h2>
+                    No Data available
+                  </h2>
+                ) :
               <>
-                Roles in Projects:
-                {roles.map(role=>{
-                  return <p>Role: {role.role_name}  Project:{role.project_name}</p>
-                })}
               </>
-            )}
+            }
           </div>
         </div>
       )

@@ -7,7 +7,7 @@ import {
   Select
 } from "@mui/material";
 
-const RoleProject = ({ id, team, handleClose, fetchEmployee }) => {
+const RoleProject = ({ id, team, handleClose, fetchRoless }) => {
 
   const [projects, setProjects] = useState([]);
   const [roles, setRoles] = useState([]);
@@ -32,7 +32,7 @@ const RoleProject = ({ id, team, handleClose, fetchEmployee }) => {
       }
       );
       const data = await response.json();
-      setProjects(data[0].projects);
+      setProjects(data.projects);
     } catch (err) {
       console.log("err", err);
     }
@@ -67,9 +67,10 @@ const RoleProject = ({ id, team, handleClose, fetchEmployee }) => {
         },
         body: formData,
       });
-      fetchEmployee();
       const res = await response.json();
       console.log(res);
+      fetchRoless();
+      handleClose();
     } catch (err) {
       console.log(err);
     }
@@ -118,9 +119,8 @@ const RoleProject = ({ id, team, handleClose, fetchEmployee }) => {
             marginRight: "100px",
             marginTop: "40px",
           }}
-          onClick={() => {
-            handleAssign();
-            handleClose();
+          onClick={(e) => {
+            handleAssign(e)
           }}
         >
           Submit
