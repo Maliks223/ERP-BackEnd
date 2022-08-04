@@ -1,47 +1,54 @@
-import React, { useState } from "react";
-import "./notificationBar.css";
-import Button from "@mui/material/Button";
-import Snackbar from "@mui/material/Snackbar";
-import Slide from "@mui/material/Slide";
-import CloseIcon from "@mui/icons-material/Close";
 
-function SlideTransition(props) {
-  return <Slide {...props} direction="down" />;
+import { Alert, Snackbar } from "@mui/material";
+import { green } from "@mui/material/colors";
+import { makeStyles } from "@mui/styles";
+import React from "react";
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     color:theme,
+//   },
+// }));
+
+export default function Notification(props) {
+  const { notify, setNotify } = props;
+//   const classes = useStyles();
+
+const handleClose = (event,reason) => {
+    if(reason === 'clickaway'){
+        return ;
+    }
+    setNotify({
+        ...notify,
+        isOpen:false
+    })
 }
 
-const NotificationBar = (props) => {
-  const [state, setState] = useState({
-    open: props.note,
-    Transition: Slide,
-  });
-  const handleClick = (Transition) => () => {
-    setState({
-      open: true,
-      Transition,
-    });
-  };
 
-  const handleClose = () => {
-    setState({
-      ...state,
-      open: false,
-    });
-  };
   return (
-    <div className="notificationBarWrapper">
-      {/* <Button onClick={handleClick(SlideTransition)}>Slide Transition</Button> */}
-      <Snackbar
-        bodyStyle={{ backgroundColor: "green", color: "coral" }}
-        open={state.open}
-        onClose={handleClose}
-        TransitionComponent={state.Transition}
-        message={props.message}
-        key={state.Transition.name}
-        transitionDuration={500}
-        autoHideDuration={3000}
-      />
-    </div>
+    <Snackbar
+    //   className={classes.root}
+      open={notify.isOpen}
+      autoHideDuration={3000}
+      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      onClose={handleClose}
+    >
+      <Alert 
+      variant="filled"
+      severity={notify.type}
+         onClose={handleClose}
+         >{notify.message}</Alert>
+    </Snackbar>
   );
-};
+}
 
-export default NotificationBar;
+{/* <Notification 
+      notify = {notify}
+      setNotify = {setNotify}
+      />
+const [ notify, setNotify] = useState({isOpen:false , message:'', type:''})
+setNotify({
+          isOpen:true,
+          message:'Employee added !',
+          type:'success'
+        }) */}
