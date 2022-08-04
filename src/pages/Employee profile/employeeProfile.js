@@ -102,7 +102,7 @@ const EmployeeProfile = () => {
           <div className="flexprofile">
             <CardId data={employee} fetchEmployee={fetchEmployee} />
             <Button
-              variant="contained"
+              variant="contained" 
               className="addEmployeeBtn"
               sx={{
                 backgroundColor: "var(--blue)",
