@@ -119,7 +119,6 @@ const Employees = () => {
   const filter = location?.state?.employee;
 
   const [allData, setAllData] = useState([]);
-  const [note, setNote] = useState(true);
   const [data, setData] = useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -347,13 +346,9 @@ const Employees = () => {
                     marginLeft: "86px",
                     marginLeft: "86px",
                   }}
-                  onCLick={()=>{
-                    setNote(true)
-                  }}
                 >
                   Confirm
                 </Button>
-                <NotificationBar note={note} message={"test"} />
 
                 <Button
                   variant="contained"
